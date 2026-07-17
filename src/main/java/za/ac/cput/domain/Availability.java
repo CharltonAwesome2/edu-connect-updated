@@ -9,7 +9,7 @@ public class Availability {
     private DayOfWeek dayOfWeek;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private boolean recurring;
+    private boolean isRecurring;
 
     private Availability(Builder builder) {
         this.id = builder.id;
@@ -17,7 +17,7 @@ public class Availability {
         this.dayOfWeek = builder.dayOfWeek;
         this.startTime = builder.startTime;
         this.endTime = builder.endTime;
-        this.recurring = builder.recurring;
+        this.isRecurring = builder.isRecurring;
     }
 
     public Long getId() {
@@ -61,17 +61,17 @@ public class Availability {
     }
 
     public boolean isRecurring() {
-        return recurring;
+        return isRecurring;
     }
 
     public void setRecurring(boolean recurring) {
-        this.recurring = recurring;
+        this.isRecurring = recurring;
     }
 
     @Override
     public String toString() {
         return "Availability [id=" + id + ", tutorProfile=" + tutorProfile + ", dayOfWeek=" + dayOfWeek + ", startTime="
-                + startTime + ", endTime=" + endTime + ", recurring=" + recurring + "]";
+                + startTime + ", endTime=" + endTime + ", isRecurring=" + isRecurring + "]";
     }
 
     public static class Builder {
@@ -80,7 +80,7 @@ public class Availability {
         private DayOfWeek dayOfWeek;
         private LocalDateTime startTime;
         private LocalDateTime endTime;
-        private boolean recurring;
+        private boolean isRecurring;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -107,8 +107,8 @@ public class Availability {
             return this;
         }
 
-        public Builder setRecurring(boolean recurring) {
-            this.recurring = recurring;
+        public Builder setRecurring(boolean isRecurring) {
+            this.isRecurring = isRecurring;
             return this;
         }
 
@@ -118,7 +118,7 @@ public class Availability {
             this.dayOfWeek = availability.dayOfWeek;
             this.startTime = availability.startTime;
             this.endTime = availability.endTime;
-            this.recurring = availability.recurring;
+            this.isRecurring = availability.isRecurring;
             return this;
         }
 
