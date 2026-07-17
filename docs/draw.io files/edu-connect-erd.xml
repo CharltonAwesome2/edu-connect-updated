@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="5.0">
   <diagram id="edu-connect-erd" name="ERD">
-    <mxGraphModel dx="381" dy="208" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
+    <mxGraphModel dx="782" dy="423" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -301,7 +301,7 @@
         <mxCell id="tutorprofile-row5" parent="tutorprofile-table" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" value="" vertex="1">
           <mxGeometry height="25" width="260" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="tutorprofile-row5-field" parent="tutorprofile-row5" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" value="hourly_rating DECIMAL(10,2)" vertex="1">
+        <mxCell id="tutorprofile-row5-field" parent="tutorprofile-row5" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" value="hourly_rate DECIMAL(10,2)" vertex="1">
           <mxGeometry height="25" width="260" as="geometry">
             <mxRectangle height="25" width="260" as="alternateBounds" />
           </mxGeometry>
@@ -444,7 +444,7 @@
         <mxCell id="availability-row3" parent="availability-table" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" value="" vertex="1">
           <mxGeometry height="25" width="280" y="80" as="geometry" />
         </mxCell>
-        <mxCell id="availability-row3-field" parent="availability-row3" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" value="day_of_week VARCHAR(20)" vertex="1">
+        <mxCell id="availability-row3-field" parent="availability-row3" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" value="day_of_week DAYOFWEEK" vertex="1">
           <mxGeometry height="25" width="280" as="geometry">
             <mxRectangle height="25" width="280" as="alternateBounds" />
           </mxGeometry>
