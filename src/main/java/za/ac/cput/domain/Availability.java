@@ -31,48 +31,24 @@ public class Availability {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public TutorProfile getTutorProfile() {
         return tutorProfile;
-    }
-
-    public void setTutorProfile(TutorProfile tutorProfile) {
-        this.tutorProfile = tutorProfile;
     }
 
     public DayOfWeek getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
     public LocalDateTime getStartTime() {
         return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
     }
 
     public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
     public boolean isRecurring() {
         return isRecurring;
-    }
-
-    public void setRecurring(boolean recurring) {
-        this.isRecurring = recurring;
     }
 
     @Override

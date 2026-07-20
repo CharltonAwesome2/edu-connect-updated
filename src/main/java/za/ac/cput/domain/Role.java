@@ -23,24 +23,12 @@ public class Role {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long roleId) {
-        this.id = roleId;
     }
 
     @Override
