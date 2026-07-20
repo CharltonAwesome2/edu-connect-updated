@@ -1,5 +1,12 @@
 package za.ac.cput.domain;
 
+/*
+    Role.java
+    Role model class
+    Author: Charlton Solomons (220483418)
+    Date: 17 July 2026
+*/
+
 public class Role {
 
     private Long id;

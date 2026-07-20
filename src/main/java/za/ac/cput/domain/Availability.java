@@ -3,6 +3,13 @@ package za.ac.cput.domain;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+/*
+    Availability.java
+    Availability model class
+    Author: Charlton Solomons (220483418)
+    Date: 17 July 2026
+*/
+
 public class Availability {
     private Long id;
     private TutorProfile tutorProfile;
