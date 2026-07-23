@@ -1,37 +1,41 @@
 package za.ac.cput.domain;
 
 import za.ac.cput.enums.BookingStatus;
-// BookingRequest.java
-//Booking Request model class
-//Author:Reotshepile Stock (230875807)
-//Date:23 July 2026
 
 import java.time.LocalDateTime;
 
+// BookingRequest.java
+// Booking Request model class
+// Author: Reotshepile Stock (230875807)
+// Date: 23 July 2026
+
 public class BookingRequest {
 
-    private Long tutoringSessionId;
+    private Long requestId;
     private LocalDateTime requestedStartTime;
     private int durationMinutes;
-    private LocalDateTime createdAt;
     private BookingStatus status;
-    private User user;
+    private User student;
     private TutorProfile tutorProfile;
     private Subject subject;
+    private String studentNotes;
 
-    private BookingRequest(Builder builder) {
-        this.tutoringSessionId = builder.tutoringSessionId;
-        this.requestedStartTime = builder.requestedStartTime;
-        this.durationMinutes = builder.durationMinutes;
-        this.createdAt = builder.createdAt;
-        this.status = builder.status;
-        this.user = builder.user;
-        this.tutorProfile = builder.tutorProfile;
-        this.subject = builder.subject;
+    public BookingRequest() {
     }
 
-    public Long getTutoringSessionId() {
-        return tutoringSessionId;
+    private BookingRequest(Builder builder) {
+        this.requestId = builder.requestId;
+        this.requestedStartTime = builder.requestedStartTime;
+        this.durationMinutes = builder.durationMinutes;
+        this.status = builder.status;
+        this.student = builder.student;
+        this.tutorProfile = builder.tutorProfile;
+        this.subject = builder.subject;
+        this.studentNotes = builder.studentNotes;
+    }
+
+    public Long getRequestId() {
+        return requestId;
     }
 
     public LocalDateTime getRequestedStartTime() {
@@ -42,16 +46,12 @@ public class BookingRequest {
         return durationMinutes;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
     public BookingStatus getStatus() {
         return status;
     }
 
-    public User getUser() {
-        return user;
+    public User getStudent() {
+        return student;
     }
 
     public TutorProfile getTutorProfile() {
@@ -62,26 +62,37 @@ public class BookingRequest {
         return subject;
     }
 
+    public String getStudentNotes() {
+        return studentNotes;
+    }
+
     @Override
     public String toString() {
-        return "BookingRequest [tutoringSessionId=" + tutoringSessionId + ", requestedStartTime=" + requestedStartTime
-                + ", durationMinutes=" + durationMinutes + ", createdAt=" + createdAt + ", status=" + status
-                + ", user=" + user + ", tutorProfile=" + tutorProfile + ", subject=" + subject + "]";
+        return "BookingRequest{" +
+                "requestId=" + requestId +
+                ", requestedStartTime=" + requestedStartTime +
+                ", durationMinutes=" + durationMinutes +
+                ", status=" + status +
+                ", student=" + student +
+                ", tutorProfile=" + tutorProfile +
+                ", subject=" + subject +
+                ", studentNotes='" + studentNotes + '\'' +
+                '}';
     }
 
     public static class Builder {
 
-        private Long tutoringSessionId;
+        private Long requestId;
         private LocalDateTime requestedStartTime;
         private int durationMinutes;
-        private LocalDateTime createdAt;
         private BookingStatus status;
-        private User user;
+        private User student;
         private TutorProfile tutorProfile;
         private Subject subject;
+        private String studentNotes;
 
-        public Builder setTutoringSessionId(Long tutoringSessionId) {
-            this.tutoringSessionId = tutoringSessionId;
+        public Builder setRequestId(Long requestId) {
+            this.requestId = requestId;
             return this;
         }
 
@@ -95,18 +106,13 @@ public class BookingRequest {
             return this;
         }
 
-        public Builder setCreatedAt(LocalDateTime createdAt){
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public Builder setStatus(BookingStatus status) {
             this.status = status;
             return this;
         }
 
-        public Builder setUser(User user) {
-            this.user = user;
+        public Builder setStudent(User student) {
+            this.student = student;
             return this;
         }
 
@@ -120,15 +126,20 @@ public class BookingRequest {
             return this;
         }
 
+        public Builder setStudentNotes(String studentNotes) {
+            this.studentNotes = studentNotes;
+            return this;
+        }
+
         public Builder copy(BookingRequest bookingRequest) {
-            this.tutoringSessionId = bookingRequest.tutoringSessionId;
+            this.requestId = bookingRequest.requestId;
             this.requestedStartTime = bookingRequest.requestedStartTime;
             this.durationMinutes = bookingRequest.durationMinutes;
-            this.createdAt = bookingRequest.createdAt;
             this.status = bookingRequest.status;
-            this.user = bookingRequest.user;
+            this.student = bookingRequest.student;
             this.tutorProfile = bookingRequest.tutorProfile;
             this.subject = bookingRequest.subject;
+            this.studentNotes = bookingRequest.studentNotes;
             return this;
         }
 
