@@ -4,7 +4,7 @@ import za.ac.cput.enums.BookingStatus;
 // BookingRequest.java
 //Booking Request model class
 //Author:Reotshepile Stock (230875807)
-//Date:17 March 2026
+//Date:23 July 2026
 
 import java.time.LocalDateTime;
 
