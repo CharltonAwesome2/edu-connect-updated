@@ -13,13 +13,13 @@ public class UserAuth {
     private long authId;
     private String passwordHash;
     private LocalDateTime lastLogin;
-    private Long userId;
+    private User user;
 
     private UserAuth(Builder builder) {
         this.authId = builder.authId;
         this.passwordHash = builder.setPasswordHash;
         this.lastLogin = builder.lastLogin;
-        this.userId = builder.userId;
+        this.user = builder.user;
     }
 
     public long getAuthId() {
@@ -34,22 +34,22 @@ public class UserAuth {
         return lastLogin;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
 
     @Override
     public String toString() {
         return "UserAuth [authId=" + authId + ", passwordHash=" + passwordHash + ", lastLogin="
-                + lastLogin + ", userId=" + userId + "]";
+                + lastLogin + ", user=" + user + "]";
     }
 
     public static class Builder {
         private long authId;
         private String setPasswordHash;
         private LocalDateTime lastLogin;
-        private Long userId;
+        private User user;
 
         public Builder setAuthId(long authId) {
             this.authId = authId;
@@ -67,8 +67,8 @@ public class UserAuth {
             return this;
         }
 
-        public Builder setUser(Long userId) {
-            this.userId = userId;
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
 
@@ -76,7 +76,7 @@ public class UserAuth {
             this.authId = userAuth.authId;
             this.setPasswordHash = userAuth.passwordHash;
             this.lastLogin = userAuth.lastLogin;
-            this.userId = userAuth.userId;
+            this.user = userAuth.user;
             return this;
         }
 
