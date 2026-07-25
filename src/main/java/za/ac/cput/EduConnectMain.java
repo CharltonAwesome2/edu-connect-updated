@@ -7,10 +7,12 @@ public class EduConnectMain {
 }
 
 /* Team members
+
     Reotshepile Stock (230875807)
     Nolwazi Zulu (220118876)
     Ayabonga Jervasio Yawa (221241558)
     Esaile Franck Siani Djiakeng (220274142)
-    Lesego Kutlwano Tshabalala (240263952)
+    Ayabonga Jervasio Yawa (221241558)
     Charlton Solomons (220483418)
+
 */
