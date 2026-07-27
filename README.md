@@ -8,4 +8,4 @@ The core features of the application are: Registration of students and tutors; S
 ## Documentation
 
 - [UML Diagram](./docs/diagrams/uml.png)
-- [ERD Diagram](./docs/diagrams/erd.png)
+- [ERD Diagram](./docs/diagrams/erd.png) 
