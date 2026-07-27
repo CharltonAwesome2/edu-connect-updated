@@ -1,9 +1,9 @@
 package za.ac.cput.domain;
 
-// SubjectClass.java
-//Subject model class
-//Author:Reotshepile Stock (230875807)
-//Date:17 March 2026
+// Subject.java
+// Subject model class
+// Author: Reotshepile Stock (230875807)
+// Date: 23 July 2026
 
 public class Subject {
 
@@ -12,8 +12,7 @@ public class Subject {
     private String subjectCode;
     private String department;
 
-    public Subject(){
-        
+    public Subject() {
     }
 
     private Subject(Builder builder) {
@@ -43,9 +42,9 @@ public class Subject {
     public String toString() {
         return "Subject{" +
                 "subjectId=" + subjectId +
-                "department=" + department +
                 ", subjectName='" + subjectName + '\'' +
                 ", subjectCode='" + subjectCode + '\'' +
+                ", department='" + department + '\'' +
                 '}';
     }
 
@@ -66,15 +65,14 @@ public class Subject {
             return this;
         }
 
-        public Builder setDepartment(String department) {
-            this.department = department;
+        public Builder setSubjectCode(String subjectCode) {
+            this.subjectCode = subjectCode;
             return this;
         }
 
-        public Builder setSubjectCoe(String subjectCode){
-            this.subjectCode = subjectCode;
+        public Builder setDepartment(String department) {
+            this.department = department;
             return this;
-
         }
 
         public Builder copy(Subject subject) {
@@ -82,7 +80,6 @@ public class Subject {
             this.subjectName = subject.subjectName;
             this.subjectCode = subject.subjectCode;
             this.department = subject.department;
-
             return this;
         }
 
