@@ -1,22 +1,41 @@
 package za.ac.cput.domain;
 
-public class TutorProfile {
+import java.time.LocalDateTime;
 
-    private long tutorProfileId;
-    private Long userId;
+/**
+ * TutorProfile.java
+ * TutorProfile model class
+ * Author: Esaile Siani Djiakeng
+ * Date: 30 July 2026
+ */
+public class TutorProfile {
+    private Long tutorProfileId;
+    private User user;
     private String bio;
     private int yearsExperience;
     private double hourlyRate;
     private double averageRating;
     private LocalDateTime createdAt;
 
-    public long getTutorProfileId() {
+    public TutorProfile() {
+    }
 
+    private TutorProfile(Builder builder) {
+        this.tutorProfileId = builder.tutorProfileId;
+        this.user = builder.user;
+        this.bio = builder.bio;
+        this.yearsExperience = builder.yearsExperience;
+        this.hourlyRate = builder.hourlyRate;
+        this.averageRating = builder.averageRating;
+        this.createdAt = builder.createdAt;
+    }
+
+    public Long getTutorProfileId() {
         return tutorProfileId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public String getBio() {
@@ -39,22 +58,29 @@ public class TutorProfile {
         return createdAt;
     }
 
+    @Override
+    public String toString() {
+        return "TutorProfile [tutorProfileId=" + tutorProfileId + ", user=" + user + ", bio=" + bio
+                + ", yearsExperience=" + yearsExperience + ", hourlyRate=" + hourlyRate + ", averageRating="
+                + averageRating + ", createdAt=" + createdAt + "]";
+    }
+
     public static class Builder {
-        private long tutorProfileId;
-        private Long userId;
+        private Long tutorProfileId;
+        private User user;
         private String bio;
         private int yearsExperience;
         private double hourlyRate;
         private double averageRating;
         private LocalDateTime createdAt;
 
-        public Builder setTutorProfileId(long tutorProfileId) {
+        public Builder setTutorProfileId(Long tutorProfileId) {
             this.tutorProfileId = tutorProfileId;
             return this;
         }
 
-        public Builder setUserId(Long userId) {
-            this.userId = userId;
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
 
@@ -85,7 +111,7 @@ public class TutorProfile {
 
         public Builder copy(TutorProfile tutorProfile) {
             this.tutorProfileId = tutorProfile.tutorProfileId;
-            this.userId = tutorProfile.userId;
+            this.user = tutorProfile.user;
             this.bio = tutorProfile.bio;
             this.yearsExperience = tutorProfile.yearsExperience;
             this.hourlyRate = tutorProfile.hourlyRate;
