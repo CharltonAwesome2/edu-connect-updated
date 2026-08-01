@@ -7,7 +7,7 @@ import za.ac.cput.enums.NotificationType;
 public class Notification {
 
     private Long notificationId;
-    private Long userId;
+    private User user;
     private String title;
     private String message;
     private NotificationType type;
@@ -16,7 +16,7 @@ public class Notification {
 
     private Notification(Builder builder) {
         this.notificationId = builder.notificationId;
-        this.userId = builder.userId;
+        this.user = builder.user;
         this.title = builder.title;
         this.message = builder.message;
         this.type = builder.type;
@@ -28,8 +28,8 @@ public class Notification {
         return notificationId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public String getTitle() {
@@ -52,10 +52,16 @@ public class Notification {
         return readAt;
     }
 
+    @Override
+    public String toString() {
+        return "Notification [notificationId=" + notificationId + ", user=" + user + ", title=" + title + ", message="
+                + message + ", type=" + type + ", isRead=" + isRead + ", readAt=" + readAt + "]";
+    }
+
     public static class Builder {
 
         private Long notificationId;
-        private Long userId;
+        private User user;
         private String title;
         private String message;
         private NotificationType type;
@@ -67,8 +73,8 @@ public class Notification {
             return this;
         }
 
-        public Builder setUserId(Long userId) {
-            this.userId = userId;
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
 

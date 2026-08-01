@@ -7,9 +7,9 @@ import za.ac.cput.enums.ReportStatus;
 public class Report {
 
     private Long reportId;
-    private Long reporterId;
-    private Long reportedUserId;
-    private Long sessionId;
+    private User reporter;
+    private User reportedUser;
+    private TutoringSession session;
     private String reason;
     private String description;
     private ReportStatus status;
@@ -18,9 +18,9 @@ public class Report {
 
     private Report(Builder builder) {
         this.reportId = builder.reportId;
-        this.reporterId = builder.reporterId;
-        this.reportedUserId = builder.reportedUserId;
-        this.sessionId = builder.sessionId;
+        this.reporter = builder.reporter;
+        this.reportedUser = builder.reportedUser;
+        this.session = builder.session;
         this.reason = builder.reason;
         this.description = builder.description;
         this.status = builder.status;
@@ -32,16 +32,16 @@ public class Report {
         return reportId;
     }
 
-    public Long getReporterId() {
-        return reporterId;
+    public User getReporter() {
+        return reporter;
     }
 
-    public Long getReportedUserId() {
-        return reportedUserId;
+    public User getReportedUser() {
+        return reportedUser;
     }
 
-    public Long getSessionId() {
-        return sessionId;
+    public TutoringSession getSession() {
+        return session;
     }
 
     public String getReason() {
@@ -64,12 +64,19 @@ public class Report {
         return resolvedAt;
     }
 
+    @Override
+    public String toString() {
+        return "Report [reportId=" + reportId + ", reporter=" + reporter + ", reportedUser=" + reportedUser
+                + ", session=" + session + ", reason=" + reason + ", description=" + description + ", status=" + status
+                + ", reportAt=" + reportAt + ", resolvedAt=" + resolvedAt + "]";
+    }
+
     public static class Builder {
 
         private Long reportId;
-        private Long reporterId;
-        private Long reportedUserId;
-        private Long sessionId;
+        private User reporter;
+        private User reportedUser;
+        private TutoringSession session;
         private String reason;
         private String description;
         private ReportStatus status;
@@ -81,18 +88,18 @@ public class Report {
             return this;
         }
 
-        public Builder setReporterId(Long reporterId) {
-            this.reporterId = reporterId;
+        public Builder setReporter(User reporter) {
+            this.reporter = reporter;
             return this;
         }
 
-        public Builder setReportedUserId(Long reportedUserId) {
-            this.reportedUserId = reportedUserId;
+        public Builder setReportedUser(User reportedUser) {
+            this.reportedUser = reportedUser;
             return this;
         }
 
-        public Builder setSessionId(Long sessionId) {
-            this.sessionId = sessionId;
+        public Builder setSession(TutoringSession session) {
+            this.session = session;
             return this;
         }
 
