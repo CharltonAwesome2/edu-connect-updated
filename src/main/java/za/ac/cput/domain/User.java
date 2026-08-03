@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public class User {
 
-    private long userId;
+    private Long userId;
     private String name;
     private String surname;
     private String studentNumber;
@@ -33,7 +33,7 @@ public class User {
         this.isStudent= builder.isStudent;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -73,7 +73,7 @@ public class User {
     }
 
     public static class Builder {
-        private long userId;
+        private Long userId;
         private String name;
         private String surname;
         private String studentNumber;
@@ -83,7 +83,7 @@ public class User {
         private  Boolean isTutor;
         private Boolean isStudent;
 
-        public Builder setUserId(long userId) {
+        public Builder setUserId(Long userId) {
             this.userId = userId;
             return this;
         }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  */
 
 public class UserAuth {
-    private long authId;
+    private Long authId;
     private String passwordHash;
     private LocalDateTime lastLogin;
     private User user;
@@ -22,7 +22,7 @@ public class UserAuth {
         this.user = builder.user;
     }
 
-    public long getAuthId() {
+    public Long getAuthId() {
         return authId;
     }
 
@@ -46,12 +46,12 @@ public class UserAuth {
     }
 
     public static class Builder {
-        private long authId;
+        private Long authId;
         private String setPasswordHash;
         private LocalDateTime lastLogin;
         private User user;
 
-        public Builder setAuthId(long authId) {
+        public Builder setAuthId(Long authId) {
             this.authId = authId;
             return this;
         }
