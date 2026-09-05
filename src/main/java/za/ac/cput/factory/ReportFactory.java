@@ -2,8 +2,8 @@
   ReportFactory.java
   Report Factory class
   Author: Nolwazi Zulu (220118876)
-  Date: 23 March 2026 
-  */
+  Date: 05 September 2026
+*/
 
 package za.ac.cput.factory;
 
@@ -19,7 +19,7 @@ public class ReportFactory {
             User reporter,
             User reportedUser) {
 
-        if (HelperUtil.isNullOrEmpty(reason)
+        if (!HelperUtil.isNullOrEmpty(reason)
                 || reportDate == null
                 || reporter == null
                 || reportedUser == null) {
@@ -30,7 +30,7 @@ public class ReportFactory {
         return new Report.Builder()
                 .setReportId(reportId)
                 .setReason(reason)
-                .setReportDate(reportDate)
+                .setReportAt(reportDate)
                 .setReporter(reporter)
                 .setReportedUser(reportedUser)
                 .build();
