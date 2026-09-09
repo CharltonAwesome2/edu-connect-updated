@@ -16,8 +16,14 @@ import java.time.LocalDateTime;
 
 public class TutorReviewFactory {
 
-    public static TutorReview createTutorReview(TutoringSession session, User student, TutorProfile tutorProfile,
-            int rating, String comment, String strengths, String improvements, LocalDateTime reviewedAt,
+    public static TutorReview createTutorReview(TutoringSession session,
+            User student,
+            TutorProfile tutorProfile,
+            int rating,
+            String comment,
+            String strengths,
+            String improvements,
+            LocalDateTime reviewedAt,
             boolean isPublic) {
 
         Long reviewId = HelperUtil.generateId();

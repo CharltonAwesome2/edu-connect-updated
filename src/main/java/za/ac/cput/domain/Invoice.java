@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 */
 public class Invoice {
     private Long invoiceId;
-    // private Long paymentId;
     private Payment payment;
     private String invoiceNumber;
     private LocalDateTime issuedDate;

@@ -6,28 +6,41 @@
 */
 package za.ac.cput.factory;
 
+import java.time.LocalDateTime;
+
 import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
 import za.ac.cput.util.HelperUtil;
 
 public class NotificationFactory {
 
-    public static Notification createNotification(String message,
-        boolean isRead,
-        User user) {
+    public static Notification createNotification(
+            User user,
+            String title,
+            String message,
+            NotificationType type,
+            boolean isRead,
+            LocalDateTime readAt) {
 
-    if (!HelperUtil.isNullOrEmpty(message)
-            || user == null) {
-        return null;
+        if (user == null ||
+                HelperUtil.isNullOrEmpty(title) ||
+                HelperUtil.isNullOrEmpty(message) ||
+                type == null ||
+                readAt == null) {
+            return null;
+        }
+
+        Long id = HelperUtil.generateId();
+
+        return new Notification.Builder()
+                .setNotificationId(id)
+                .setUser(user)
+                .setTitle(title)
+                .setMessage(message)
+                .setType(type)
+                .setRead(isRead)
+                .setRead(isRead)
+                .build();
     }
-
-    Long notificationId = HelperUtil.generateId();
-
-    return new Notification.Builder()
-            .setNotificationId(notificationId)
-            .setMessage(message)
-            .setRead(isRead)
-            .setUser(user)
-            .build();
- }
 }

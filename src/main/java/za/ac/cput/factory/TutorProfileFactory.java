@@ -9,10 +9,17 @@ import za.ac.cput.util.HelperUtil;
 
 public class TutorProfileFactory {
 
-    public TutorProfile createTutorProfile(User user, String bio, int yearsExperience, BigDecimal hourlyRate,
-            double averageRating, LocalDateTime createdAt) {
+    public TutorProfile createTutorProfile(User user,
+            String bio,
+            int yearsExperience,
+            BigDecimal hourlyRate,
+            double averageRating,
+            LocalDateTime createdAt) {
 
-        if (user == null || createdAt == null || HelperUtil.isNullOrEmpty(bio)) {
+        if (user == null ||
+                createdAt == null ||
+                HelperUtil.isNullOrEmpty(bio) ||
+                createdAt == null) {
             return null;
         }
 

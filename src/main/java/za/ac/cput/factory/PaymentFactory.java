@@ -16,8 +16,13 @@ import java.time.LocalDateTime;
 */
 
 public class PaymentFactory {
-    public static Payment createPayment(TutoringSession session, BigDecimal amount, BigDecimal tutorEarnings,
-            BigDecimal platformFee, PaymentStatus status, LocalDateTime paidAt, PaymentMethod paymentMethod) {
+    public static Payment createPayment(TutoringSession session,
+            BigDecimal amount,
+            BigDecimal tutorEarnings,
+            BigDecimal platformFee,
+            PaymentStatus status,
+            LocalDateTime paidAt,
+            PaymentMethod paymentMethod) {
 
         Long paymentId = HelperUtil.generateId();
         if (session == null

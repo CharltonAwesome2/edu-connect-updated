@@ -29,7 +29,9 @@ public class TutoringSessionFactory {
                 tutorProfile == null ||
                 subject == null ||
                 status == null ||
-                HelperUtil.isNullOrEmpty(sessionNotes)) {
+                HelperUtil.isNullOrEmpty(sessionNotes) ||
+                createdAt == null ||
+                updatedAt == null) {
             return null;
         }
 
