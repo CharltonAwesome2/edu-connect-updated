@@ -16,15 +16,18 @@ import java.time.LocalDateTime;
 class InvoiceFactoryTest {
 
     Payment payment = new Payment.Builder().build();
-    private Invoice invoice = InvoiceFactory.createInvoice(
-            payment,
-            "INV-001",
-            LocalDateTime.now(),
-            LocalDateTime.now().plusDays(30),
-            new BigDecimal("25000.00"),
-            new BigDecimal("3750.00")
+    LocalDateTime issuedDate = LocalDateTime.now();
+    String invoiceNumber = "INV-001";
+    LocalDateTime dueDate = LocalDateTime.now().plusDays(30);
+    BigDecimal totalAmount = new BigDecimal("25000.00");
+    BigDecimal taxAmount = new BigDecimal("3750.00");
 
-    );
+    private Invoice invoice = InvoiceFactory.createInvoice(payment,
+            invoiceNumber,
+            issuedDate,
+            dueDate,
+            totalAmount,
+            taxAmount);
 
     @Test
     void createInvoice() {

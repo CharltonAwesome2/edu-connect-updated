@@ -24,8 +24,16 @@ public class TutoringSessionFactoryTest {
     LocalDateTime createdAt = LocalDateTime.now();
     LocalDateTime updatedAt = LocalDateTime.now();
 
-    private TutoringSession tutoringSession = new TutoringSessionFactory().createTutoringSession(bookingRequest,
-            student, tutorProfile, subject, startTime, endTime, status, sessionNote, createdAt, updatedAt);
+    private TutoringSession tutoringSession = TutoringSessionFactory.createTutoringSession(bookingRequest,
+            student,
+            tutorProfile,
+            subject,
+            startTime,
+            endTime,
+            status,
+            sessionNote,
+            createdAt,
+            updatedAt);
 
     @Test
     void createTutoringSession() {

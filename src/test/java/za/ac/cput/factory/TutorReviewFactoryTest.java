@@ -19,17 +19,21 @@ class TutorReviewFactoryTest {
     TutoringSession tutoringSession = new TutoringSession.Builder().build();
     User student = new User.Builder().build();
     TutorProfile tutorProfile = new TutorProfile.Builder().build();
+    int rating = 5;
+    String comment = "Excellent tutoring session.";
+    String strengths = "Clear explanations and good communication.";
+    String improvements = "Provision of  more practice exercises.";
+    LocalDateTime reviewedAt = LocalDateTime.now();
 
-    private TutorReview tutorReview = TutorReviewFactory.createTutorReview(
-            tutoringSession,
+    private TutorReview tutorReview = TutorReviewFactory.createTutorReview(tutoringSession,
             student,
             tutorProfile,
-            5,
-            "Excellent tutoring session.",
-            "Clear explanations and good communication.",
-            "Provision of  more practice exercises.",
-            LocalDateTime.now(),
-            true);
+            rating,
+            comment,
+            strengths,
+            improvements,
+            reviewedAt,
+            false);
 
     @Test
     void createTutorReview() {

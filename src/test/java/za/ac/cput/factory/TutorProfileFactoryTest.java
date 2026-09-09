@@ -17,8 +17,12 @@ public class TutorProfileFactoryTest {
     double averageRating = 4.3;
     LocalDateTime createdAt = LocalDateTime.now();
 
-    private TutorProfile tutorProfile = new TutorProfileFactory().createTutorProfile(user, bio, yearsExperience,
-            hourlyRate, averageRating, createdAt);
+    private TutorProfile tutorProfile = TutorProfileFactory.createTutorProfile(user,
+            bio,
+            yearsExperience,
+            hourlyRate,
+            averageRating,
+            createdAt);
 
     @Test
     void createTutorProfile() {

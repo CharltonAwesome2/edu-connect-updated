@@ -16,18 +16,23 @@ import java.time.LocalDateTime;
 */
 class PaymentFactoryTest {
 
-
     TutoringSession session = new TutoringSession.Builder().build();
 
-    private Payment payment = PaymentFactory.createPayment(
-            session,
-            new BigDecimal("25000.00"),
-            new BigDecimal("21250.00"),
-            new BigDecimal("3750.00"),
-            PaymentStatus.PENDING,
-            LocalDateTime.now(),
-            PaymentMethod.PAYPAL
-    );
+    BigDecimal amount = new BigDecimal("3750.00");
+    BigDecimal tutorEarnings = new BigDecimal("25000.00");
+    BigDecimal platformFee = new BigDecimal("21250.00");
+    PaymentStatus status = PaymentStatus.PENDING;
+    LocalDateTime paidAt = LocalDateTime.now();
+    PaymentMethod paymentMethod = PaymentMethod.PAYPAL;
+
+    private Payment payment = PaymentFactory.createPayment(session,
+            amount,
+            tutorEarnings,
+            platformFee,
+            status,
+            paidAt,
+            paymentMethod);
+
     @Test
     void createPayment() {
         System.out.println(payment);

@@ -6,40 +6,47 @@
 */
 package za.ac.cput.factory;
 
-// import org.junit.jupiter.api.Test;
-// import za.ac.cput.domain.Notification;
-// import za.ac.cput.domain.User;
+import org.junit.jupiter.api.Test;
+import za.ac.cput.domain.Notification;
+import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
 
-// import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
-// import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class NotificationFactoryTest {
 
-    // private final User user = new User.Builder()
-    //         .setUserId(1L)
-    //         .setName("Nolwazi")
-    //         .setSurname("Zulu")
-    //         .setStudentNumber("220118876")
-    //         .setEmail("nolwazi@example.com")
-    //         .setContactNumber("0712345678")
-    //         .setCreatedAt(LocalDateTime.now())
-    //         .setIsTutor(false)
-    //         .setIsStudent(true)
-    //         .build();
+    User user = new User.Builder()
+            .setName("Nolwazi")
+            .setSurname("Zulu")
+            .setStudentNumber("220118876")
+            .setEmail("nolwazi@example.com")
+            .setContactNumber("0712345678")
+            .setCreatedAt(LocalDateTime.now())
+            .setIsTutor(false)
+            .setIsStudent(true)
+            .build();
 
-    // @Test
-    // void createNotification() {
-    //     Notification notification = NotificationFactory.createNotification(
-    //             "Your tutoring session has been approved.",
-    //             false,
-    //             user
-    //     );
+    String title = "Notification title";
+    String message = "Notification message";
+    NotificationType type = NotificationType.BOOKING_CONFIRMATION;
+    LocalDateTime readAt = LocalDateTime.now();
 
-    //     assertNotNull(notification);
-    //     assertEquals("Your tutoring session has been approved.", notification.getMessage());
-    //     assertFalse(notification.isRead());
-    //     assertEquals(user, notification.getUser());
-    //     assertNotNull(notification.getNotificationId());
-    // }
+    private Notification notification = NotificationFactory.createNotification(user,
+            title,
+            message,
+            type,
+            false,
+            readAt);
+
+    @Test
+    void createNotification() {
+
+        assertNotNull(notification);
+        assertEquals("Your tutoring session has been approved.", notification.getMessage());
+        assertFalse(notification.isRead());
+        assertEquals(user, notification.getUser());
+        assertNotNull(notification.getNotificationId());
+    }
 }

@@ -11,7 +11,7 @@ import za.ac.cput.util.HelperUtil;
 
 public class BookingRequestFactory {
 
-    public BookingRequest createBookingRequest(
+    public static BookingRequest createBookingRequest(
             LocalDateTime requestedStartTime,
             int durationMinutes,
             BookingStatus status,

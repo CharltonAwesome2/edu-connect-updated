@@ -9,7 +9,7 @@ import za.ac.cput.util.HelperUtil;
 
 public class TutorProfileFactory {
 
-    public TutorProfile createTutorProfile(User user,
+    public static TutorProfile createTutorProfile(User user,
             String bio,
             int yearsExperience,
             BigDecimal hourlyRate,

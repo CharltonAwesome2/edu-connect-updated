@@ -12,7 +12,7 @@ import za.ac.cput.util.HelperUtil;
 
 public class TutoringSessionFactory {
 
-    public TutoringSession createTutoringSession(
+    public static TutoringSession createTutoringSession(
             BookingRequest bookingRequest,
             User student,
             TutorProfile tutorProfile,
