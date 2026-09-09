@@ -1,6 +1,7 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Payment;
+import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.enums.PaymentMethod;
 import za.ac.cput.enums.PaymentStatus;
 import za.ac.cput.util.HelperUtil;
@@ -15,10 +16,11 @@ import java.time.LocalDateTime;
 */
 
 public class PaymentFactory {
-    public static Payment createPayment(Long sessionId, BigDecimal amount, BigDecimal tutorEarnings, BigDecimal platformFee, PaymentStatus status, LocalDateTime paidAt, PaymentMethod paymentMethod){
+    public static Payment createPayment(TutoringSession session, BigDecimal amount, BigDecimal tutorEarnings,
+            BigDecimal platformFee, PaymentStatus status, LocalDateTime paidAt, PaymentMethod paymentMethod) {
 
         Long paymentId = HelperUtil.generateId();
-        if (sessionId == null
+        if (session == null
                 || amount == null
                 || tutorEarnings == null
                 || platformFee == null
@@ -29,7 +31,8 @@ public class PaymentFactory {
         }
 
         return new Payment.Builder()
-                .setSessionId(sessionId)
+                .setPaymentId(paymentId)
+                .setSession(session)
                 .setAmount(amount)
                 .setTutorEarnings(tutorEarnings)
                 .setPlatformFee(platformFee)

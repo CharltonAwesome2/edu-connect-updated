@@ -1,5 +1,6 @@
 package za.ac.cput.factory;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ public class TutorProfileFactoryTest {
     User user = new User.Builder().build();
     String bio = "Tutor profile biography";
     int yearsExperience = 2;
-    double hourlyRate = 25.00;
+    BigDecimal hourlyRate = new BigDecimal(25.00);
     double averageRating = 4.3;
     LocalDateTime createdAt = LocalDateTime.now();
 

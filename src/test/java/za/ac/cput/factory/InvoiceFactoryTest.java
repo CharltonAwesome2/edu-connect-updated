@@ -2,11 +2,10 @@ package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Invoice;
+import za.ac.cput.domain.Payment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /* InvoiceFactoryTest.java
    InvoiceFactoryTest class
@@ -16,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InvoiceFactoryTest {
 
+    Payment payment = new Payment.Builder().build();
     private Invoice invoice = InvoiceFactory.createInvoice(
-            1L,
+            payment,
             "INV-001",
             LocalDateTime.now(),
             LocalDateTime.now().plusDays(30),
             new BigDecimal("25000.00"),
             new BigDecimal("3750.00")
-
 
     );
 

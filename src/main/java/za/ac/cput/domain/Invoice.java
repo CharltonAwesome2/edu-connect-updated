@@ -11,18 +11,17 @@ import java.time.LocalDateTime;
 */
 public class Invoice {
     private Long invoiceId;
-    private Long paymentId;
+    // private Long paymentId;
+    private Payment payment;
     private String invoiceNumber;
     private LocalDateTime issuedDate;
     private LocalDateTime dueDate;
-
     private BigDecimal totalAmount;
-
     private BigDecimal taxAmount;
 
     private Invoice(Builder builder) {
         this.invoiceId = builder.invoiceId;
-        this.paymentId = builder.paymentId;
+        this.payment = builder.payment;
         this.invoiceNumber = builder.invoiceNumber;
         this.issuedDate = builder.issuedDate;
         this.dueDate = builder.dueDate;
@@ -34,8 +33,8 @@ public class Invoice {
         return invoiceId;
     }
 
-    public Long getPaymentId() {
-        return paymentId;
+    public Payment getPayment() {
+        return payment;
     }
 
     public String getInvoiceNumber() {
@@ -62,7 +61,7 @@ public class Invoice {
     public String toString() {
         return "invoice{" +
                 "invoiceId=" + invoiceId +
-                ", paymentId=" + paymentId +
+                ", payment=" + payment +
                 ", invoiceNumber='" + invoiceNumber + '\'' +
                 ", issuedDate=" + issuedDate +
                 ", dueDate=" + dueDate +
@@ -73,7 +72,7 @@ public class Invoice {
 
     public static class Builder {
         private Long invoiceId;
-        private Long paymentId;
+        private Payment payment;
         private String invoiceNumber;
         private LocalDateTime issuedDate;
         private LocalDateTime dueDate;
@@ -85,8 +84,8 @@ public class Invoice {
             return this;
         }
 
-        public Builder setPaymentId(Long paymentId) {
-            this.paymentId = paymentId;
+        public Builder setPayment(Payment payment) {
+            this.payment = payment;
             return this;
         }
 
@@ -117,7 +116,7 @@ public class Invoice {
 
         public Builder Copy(Invoice invoice) {
             this.invoiceId = invoice.invoiceId;
-            this.paymentId = invoice.paymentId;
+            this.payment = invoice.payment;
             this.invoiceNumber = invoice.invoiceNumber;
             this.issuedDate = invoice.issuedDate;
             this.dueDate = invoice.dueDate;
