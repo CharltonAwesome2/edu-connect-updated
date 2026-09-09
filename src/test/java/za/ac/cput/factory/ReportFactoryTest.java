@@ -2,7 +2,7 @@
     ReportFactoryTest.java
     Report Factory Test class
     Author: Nolwazi Zulu (220118876)
-    Date: 05 September 2026
+    Date: 09 September 2026
 */
 package za.ac.cput.factory;
 
@@ -40,23 +40,82 @@ class ReportFactoryTest {
             .setIsStudent(false)
             .build();
 
-   @Test
-void createReport() {
-    LocalDateTime reportDate = LocalDateTime.now();
+    @Test
+    void createReport() {
+        LocalDateTime reportDate = LocalDateTime.now();
 
-    Report report = ReportFactory.createReport(
-            "Inappropriate behaviour",
-            reportDate,
-            reporter,
-            reportedUser
-    );
+        Report report = ReportFactory.createReport(
+                "Inappropriate behaviour",
+                reportDate,
+                reporter,
+                reportedUser
+        );
 
-    assertNotNull(report);
-    assertNotNull(report.getReportId());
-    assertEquals("Inappropriate behaviour", report.getReason());
-    assertEquals(reportDate, report.getReportAt());
-    assertEquals(reporter, report.getReporter());
-    assertEquals(reportedUser, report.getReportedUser());
- }
+        assertNotNull(report);
+        assertNotNull(report.getReportId());
+        assertEquals("Inappropriate behaviour", report.getReason());
+        assertEquals(reportDate, report.getReportAt());
+        assertEquals(reporter, report.getReporter());
+        assertEquals(reportedUser, report.getReportedUser());
+    }
 
+    @Test
+    void createReportWithNullReason() {
+        Report report = ReportFactory.createReport(
+                null,
+                LocalDateTime.now(),
+                reporter,
+                reportedUser
+        );
+
+        assertNull(report);
+    }
+
+    @Test
+    void createReportWithEmptyReason() {
+        Report report = ReportFactory.createReport(
+                "",
+                LocalDateTime.now(),
+                reporter,
+                reportedUser
+        );
+
+        assertNull(report);
+    }
+
+    @Test
+    void createReportWithNullReportDate() {
+        Report report = ReportFactory.createReport(
+                "Inappropriate behaviour",
+                null,
+                reporter,
+                reportedUser
+        );
+
+        assertNull(report);
+    }
+
+    @Test
+    void createReportWithNullReporter() {
+        Report report = ReportFactory.createReport(
+                "Inappropriate behaviour",
+                LocalDateTime.now(),
+                null,
+                reportedUser
+        );
+
+        assertNull(report);
+    }
+
+    @Test
+    void createReportWithNullReportedUser() {
+        Report report = ReportFactory.createReport(
+                "Inappropriate behaviour",
+                LocalDateTime.now(),
+                reporter,
+                null
+        );
+
+        assertNull(report);
+    }
 }
