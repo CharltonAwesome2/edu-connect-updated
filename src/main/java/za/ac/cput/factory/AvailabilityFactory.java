@@ -11,10 +11,10 @@ public class AvailabilityFactory {
 
     public static Availability createAvailability(
             TutorProfile profile, DayOfWeek dayOfWeek,
-            LocalDateTime startTime, LocalDateTime endtimDate,
+            LocalDateTime startTime, LocalDateTime endTime,
             boolean isRecurring) {
 
-        if (profile == null || dayOfWeek == null || startTime == null || endtimDate == null) {
+        if (profile == null || dayOfWeek == null || startTime == null || endTime == null) {
             return null;
         }
 
@@ -25,7 +25,7 @@ public class AvailabilityFactory {
                 .setTutorProfile(profile)
                 .setDayOfWeek(dayOfWeek)
                 .setStartTime(startTime)
-                .setEndTime(endtimDate)
+                .setEndTime(endTime)
                 .setRecurring(isRecurring)
                 .build();
 
