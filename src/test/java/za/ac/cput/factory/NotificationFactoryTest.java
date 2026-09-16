@@ -2,7 +2,7 @@
     NotificationFactoryTest.java
     Notification Factory Test class
     Author: Nolwazi Zulu (220118876)
-    Date: 05 September 2026
+    Date: 09 September 2026
 */
 package za.ac.cput.factory;
 
@@ -41,5 +41,38 @@ class NotificationFactoryTest {
         assertFalse(notification.isRead());
         assertEquals(user, notification.getUser());
         assertNotNull(notification.getNotificationId());
+    }
+
+    @Test
+    void createNotificationWithNullMessage() {
+        Notification notification = NotificationFactory.createNotification(
+                null,
+                false,
+                user
+        );
+
+        assertNull(notification);
+    }
+
+    @Test
+    void createNotificationWithEmptyMessage() {
+        Notification notification = NotificationFactory.createNotification(
+                "",
+                false,
+                user
+        );
+
+        assertNull(notification);
+    }
+
+    @Test
+    void createNotificationWithNullUser() {
+        Notification notification = NotificationFactory.createNotification(
+                "Your tutoring session has been approved.",
+                false,
+                null
+        );
+
+        assertNull(notification);
     }
 }
