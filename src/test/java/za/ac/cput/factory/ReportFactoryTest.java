@@ -1,23 +1,23 @@
 /*
-    ReportFactoryTest.java
-    Report Factory Test class
+    NotificationFactoryTest.java
+    Notification Factory Test class
     Author: Nolwazi Zulu (220118876)
     Date: 09 September 2026
 */
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.Report;
+import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ReportFactoryTest {
+class NotificationFactoryTest {
 
-    private final User reporter = new User.Builder()
-            .setUserId(1L)
+    User user = new User.Builder()
             .setName("Nolwazi")
             .setSurname("Zulu")
             .setStudentNumber("220118876")
@@ -28,94 +28,110 @@ class ReportFactoryTest {
             .setIsStudent(true)
             .build();
 
-    private final User reportedUser = new User.Builder()
-            .setUserId(2L)
-            .setName("Test")
-            .setSurname("User")
-            .setStudentNumber("220118877")
-            .setEmail("test@example.com")
-            .setContactNumber("0723456789")
-            .setCreatedAt(LocalDateTime.now())
-            .setIsTutor(true)
-            .setIsStudent(false)
-            .build();
+    String title = "Notification title";
+    String message = "Your tutoring session has been approved.";
+    NotificationType type = NotificationType.BOOKING_CONFIRMATION;
+    LocalDateTime readAt = LocalDateTime.now();
+
+    private Notification notification = NotificationFactory.createNotification(user,
+            title,
+            message,
+            type,
+            false,
+            readAt);
 
     @Test
-    void createReport() {
-        LocalDateTime reportDate = LocalDateTime.now();
+    void createNotification() {
 
-        Report report = ReportFactory.createReport(
-                "Inappropriate behaviour",
-                reportDate,
-                reporter,
-                reportedUser
-        );
-
-        assertNotNull(report);
-        assertNotNull(report.getReportId());
-        assertEquals("Inappropriate behaviour", report.getReason());
-        assertEquals(reportDate, report.getReportAt());
-        assertEquals(reporter, report.getReporter());
-        assertEquals(reportedUser, report.getReportedUser());
+        assertNotNull(notification);
+        assertNotNull(notification.getNotificationId());
+        assertEquals(message, notification.getMessage());
+        assertFalse(notification.isRead());
+        assertEquals(user, notification.getUser());
+        assertNotNull(notification.getNotificationId());
     }
 
     @Test
-    void createReportWithNullReason() {
-        Report report = ReportFactory.createReport(
+    void createNotificationWithNullUser() {
+
+        Notification notification = NotificationFactory.createNotification(null,
+                title,
+                message,
+                type,
+                false,
+                readAt);
+
+        assertNull(notification);
+
+    }
+
+    @Test
+    void createNotificationWithNullTitle() {
+
+        Notification notification = NotificationFactory.createNotification(user,
                 null,
-                LocalDateTime.now(),
-                reporter,
-                reportedUser
-        );
+                message,
+                type,
+                false,
+                readAt);
 
-        assertNull(report);
+        assertNull(notification);
+
     }
 
     @Test
-    void createReportWithEmptyReason() {
-        Report report = ReportFactory.createReport(
+    void createNotificationWithEmptyTitle() {
+
+        Notification notification = NotificationFactory.createNotification(user,
                 "",
-                LocalDateTime.now(),
-                reporter,
-                reportedUser
-        );
+                message,
+                type,
+                false,
+                readAt);
 
-        assertNull(report);
+        assertNull(notification);
+
     }
 
     @Test
-    void createReportWithNullReportDate() {
-        Report report = ReportFactory.createReport(
-                "Inappropriate behaviour",
+    void createNotificationWithNullMessage() {
+
+        Notification notification = NotificationFactory.createNotification(user,
+                title,
                 null,
-                reporter,
-                reportedUser
-        );
+                type,
+                false,
+                readAt);
 
-        assertNull(report);
+        assertNull(notification);
+
     }
 
     @Test
-    void createReportWithNullReporter() {
-        Report report = ReportFactory.createReport(
-                "Inappropriate behaviour",
-                LocalDateTime.now(),
+    void createNotificationWithEmptyMessage() {
+
+        Notification notification = NotificationFactory.createNotification(user,
+                title,
+                "",
+                type,
+                false,
+                readAt);
+
+        assertNull(notification);
+
+    }
+
+    @Test
+    void createNotificationWithNullType() {
+
+        Notification notification = NotificationFactory.createNotification(user,
+                title,
+                message,
                 null,
-                reportedUser
-        );
+                false,
+                readAt);
 
-        assertNull(report);
-    }
+        assertNull(notification);
 
-    @Test
-    void createReportWithNullReportedUser() {
-        Report report = ReportFactory.createReport(
-                "Inappropriate behaviour",
-                LocalDateTime.now(),
-                reporter,
-                null
-        );
-
-        assertNull(report);
     }
 }
