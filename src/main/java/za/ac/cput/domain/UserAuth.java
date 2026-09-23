@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 
 public class UserAuth {
     private Long authId;
+    private User user;
     private String passwordHash;
     private LocalDateTime lastLogin;
-    private User user;
 
     private UserAuth(Builder builder) {
         this.authId = builder.authId;
