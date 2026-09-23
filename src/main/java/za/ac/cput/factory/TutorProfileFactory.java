@@ -1,5 +1,6 @@
 package za.ac.cput.factory;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import za.ac.cput.domain.TutorProfile;
@@ -8,10 +9,17 @@ import za.ac.cput.util.HelperUtil;
 
 public class TutorProfileFactory {
 
-    public TutorProfile createTutorProfile(User user, String bio, int yearsExperience, double hourlyRate,
-            double averageRating, LocalDateTime createdAt) {
+    public static TutorProfile createTutorProfile(User user,
+            String bio,
+            int yearsExperience,
+            BigDecimal hourlyRate,
+            double averageRating,
+            LocalDateTime createdAt) {
 
-        if (user == null || createdAt == null || HelperUtil.isNullOrEmpty(bio)) {
+        if (user == null ||
+                createdAt == null ||
+                HelperUtil.isNullOrEmpty(bio) ||
+                createdAt == null) {
             return null;
         }
 

@@ -12,27 +12,37 @@ import java.time.LocalDateTime;
  * Date: 06 August 2026
  */
 
-public class userFactory {
-    public static User createUser(String name, String surname, String studentNumber,
-                                  String email, String contactNumber) {
+public class UserFactory {
+    public static User createUser(String name,
+            String surname,
+            String studentNumber,
+            String email,
+            String contactNumber,
+            LocalDateTime createdAt,
+            Boolean isTutor,
+            Boolean isStudent) {
 
-        if (!HelperUtil.isNullOrEmpty(name) || !HelperUtil.isNullOrEmpty(surname) ||
-                !HelperUtil.isNullOrEmpty(studentNumber)) {
+        if (HelperUtil.isNullOrEmpty(name) ||
+                HelperUtil.isNullOrEmpty(surname) ||
+                HelperUtil.isNullOrEmpty(studentNumber) ||
+                HelperUtil.isNullOrEmpty(email) ||
+                HelperUtil.isNullOrEmpty(contactNumber) ||
+                createdAt == null) {
             return null;
         }
 
-        if (!HelperUtil.isValidEmail(email)) {
-            return null;
-        }
+        Long id = HelperUtil.generateId();
 
         return new User.Builder()
-                .setUserId(HelperUtil.generateId())
+                .setUserId(id)
                 .setName(name)
                 .setSurname(surname)
                 .setStudentNumber(studentNumber)
                 .setEmail(email)
                 .setContactNumber(contactNumber)
-                .setCreatedAt(LocalDateTime.now())
+                .setCreatedAt(createdAt)
+                .setIsTutor(isTutor)
+                .setIsStudent(isStudent)
                 .build();
     }
 }

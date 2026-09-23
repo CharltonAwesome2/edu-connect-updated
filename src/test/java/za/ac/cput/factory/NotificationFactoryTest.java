@@ -9,6 +9,7 @@ package za.ac.cput.factory;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
 
 import java.time.LocalDateTime;
 
@@ -16,8 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NotificationFactoryTest {
 
-    private final User user = new User.Builder()
-            .setUserId(1L)
+    User user = new User.Builder()
             .setName("Nolwazi")
             .setSurname("Zulu")
             .setStudentNumber("220118876")
@@ -28,13 +28,20 @@ class NotificationFactoryTest {
             .setIsStudent(true)
             .build();
 
+    String title = "Notification title";
+    String message = "Notification message";
+    NotificationType type = NotificationType.BOOKING_CONFIRMATION;
+    LocalDateTime readAt = LocalDateTime.now();
+
+    private Notification notification = NotificationFactory.createNotification(user,
+            title,
+            message,
+            type,
+            false,
+            readAt);
+
     @Test
     void createNotification() {
-        Notification notification = NotificationFactory.createNotification(
-                "Your tutoring session has been approved.",
-                false,
-                user
-        );
 
         assertNotNull(notification);
         assertEquals("Your tutoring session has been approved.", notification.getMessage());

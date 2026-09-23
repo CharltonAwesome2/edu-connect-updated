@@ -1,11 +1,13 @@
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
+
+import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorReview;
+import za.ac.cput.domain.TutoringSession;
+import za.ac.cput.domain.User;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /* TutorReviewFactoryTest.java
    TutorReviewFactoryTest class
@@ -14,17 +16,24 @@ import static org.junit.jupiter.api.Assertions.*;
 */
 class TutorReviewFactoryTest {
 
-    private TutorReview tutorReview = TutorReviewFactory.createTutorReview(
-            1L,
-            2L,
-            3L,
-            5,
-            "Excellent tutoring session.",
-            "Clear explanations and good communication.",
-            "Provision of  more practice exercises.",
-            LocalDateTime.now(),
-            true
-    );
+    TutoringSession tutoringSession = new TutoringSession.Builder().build();
+    User student = new User.Builder().build();
+    TutorProfile tutorProfile = new TutorProfile.Builder().build();
+    int rating = 5;
+    String comment = "Excellent tutoring session.";
+    String strengths = "Clear explanations and good communication.";
+    String improvements = "Provision of  more practice exercises.";
+    LocalDateTime reviewedAt = LocalDateTime.now();
+
+    private TutorReview tutorReview = TutorReviewFactory.createTutorReview(tutoringSession,
+            student,
+            tutorProfile,
+            rating,
+            comment,
+            strengths,
+            improvements,
+            reviewedAt,
+            false);
 
     @Test
     void createTutorReview() {

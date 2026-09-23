@@ -10,8 +10,10 @@ import za.ac.cput.util.HelperUtil;
 public class AvailabilityFactory {
 
     public static Availability createAvailability(
-            TutorProfile profile, DayOfWeek dayOfWeek,
-            LocalDateTime startTime, LocalDateTime endTime,
+            TutorProfile profile,
+            DayOfWeek dayOfWeek,
+            LocalDateTime startTime,
+            LocalDateTime endTime,
             boolean isRecurring) {
 
         if (profile == null || dayOfWeek == null || startTime == null || endTime == null) {

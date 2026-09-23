@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -13,7 +14,7 @@ public class TutorProfile {
     private User user;
     private String bio;
     private int yearsExperience;
-    private double hourlyRate;
+    private BigDecimal hourlyRate;
     private double averageRating;
     private LocalDateTime createdAt;
 
@@ -46,7 +47,7 @@ public class TutorProfile {
         return yearsExperience;
     }
 
-    public double getHourlyRate() {
+    public BigDecimal getHourlyRate() {
         return hourlyRate;
     }
 
@@ -70,7 +71,7 @@ public class TutorProfile {
         private User user;
         private String bio;
         private int yearsExperience;
-        private double hourlyRate;
+        private BigDecimal hourlyRate;
         private double averageRating;
         private LocalDateTime createdAt;
 
@@ -94,7 +95,7 @@ public class TutorProfile {
             return this;
         }
 
-        public Builder setHourlyRate(double hourlyRate) {
+        public Builder setHourlyRate(BigDecimal hourlyRate) {
             this.hourlyRate = hourlyRate;
             return this;
         }

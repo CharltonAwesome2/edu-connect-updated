@@ -2,13 +2,12 @@ package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Payment;
+import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.enums.PaymentMethod;
 import za.ac.cput.enums.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /* PaymentFactoryTest.java
    PaymentFactoryTest class
@@ -17,16 +16,23 @@ import static org.junit.jupiter.api.Assertions.*;
 */
 class PaymentFactoryTest {
 
+    TutoringSession session = new TutoringSession.Builder().build();
 
-    private Payment payment = PaymentFactory.createPayment(
-            1L,
-            new BigDecimal("25000.00"),
-            new BigDecimal("21250.00"),
-            new BigDecimal("3750.00"),
-            PaymentStatus.PENDING,
-            LocalDateTime.now(),
-            PaymentMethod.PAYPAL
-    );
+    BigDecimal amount = new BigDecimal("3750.00");
+    BigDecimal tutorEarnings = new BigDecimal("25000.00");
+    BigDecimal platformFee = new BigDecimal("21250.00");
+    PaymentStatus status = PaymentStatus.PENDING;
+    LocalDateTime paidAt = LocalDateTime.now();
+    PaymentMethod paymentMethod = PaymentMethod.PAYPAL;
+
+    private Payment payment = PaymentFactory.createPayment(session,
+            amount,
+            tutorEarnings,
+            platformFee,
+            status,
+            paidAt,
+            paymentMethod);
+
     @Test
     void createPayment() {
         System.out.println(payment);
