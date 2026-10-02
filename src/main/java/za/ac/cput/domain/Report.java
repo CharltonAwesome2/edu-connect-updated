@@ -118,7 +118,7 @@ public class Report {
             return this;
         }
 
-        public Builder setReportAt(LocalDateTime reportAt) {
+        public Builder setReportedAt(LocalDateTime reportAt) {
             this.reportAt = reportAt;
             return this;
         }

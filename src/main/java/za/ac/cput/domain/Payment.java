@@ -16,21 +16,17 @@ import java.time.LocalDateTime;
 public class Payment {
 
     private Long paymentId;
-
-    private Long sessionId;
+    private TutoringSession session;
     private BigDecimal amount;
     private BigDecimal tutorEarnings;
-
     private BigDecimal platformFee;
     private PaymentStatus status;
-
     private LocalDateTime paidAt;
-
     private PaymentMethod paymentMethod;
 
     private Payment(Builder builder) {
         this.paymentId = builder.paymentId;
-        this.sessionId = builder.sessionId;
+        this.session = builder.session;
         this.amount = builder.amount;
         this.tutorEarnings = builder.tutorEarnings;
         this.platformFee = builder.platformFee;
@@ -45,8 +41,8 @@ public class Payment {
         return paymentId;
     }
 
-    public Long getSessionId() {
-        return sessionId;
+    public TutoringSession getSession() {
+        return session;
     }
 
     public BigDecimal getAmount() {
@@ -78,7 +74,7 @@ public class Payment {
     public String toString() {
         return "Payment{" +
                 "paymentId=" + paymentId +
-                ", sessionId=" + sessionId +
+                ", session=" + session +
                 ", amount=" + amount +
                 ", tutorEarnings=" + tutorEarnings +
                 ", platformFee=" + platformFee +
@@ -90,7 +86,7 @@ public class Payment {
 
     public static class Builder {
         private Long paymentId;
-        private Long sessionId;
+        private TutoringSession session;
         private BigDecimal amount;
         private BigDecimal tutorEarnings;
         private BigDecimal platformFee;
@@ -103,8 +99,8 @@ public class Payment {
             return this;
         }
 
-        public Builder setSessionId(Long sessionId) {
-            this.sessionId = sessionId;
+        public Builder setSession(TutoringSession session) {
+            this.session = session;
             return this;
         }
 
@@ -140,7 +136,7 @@ public class Payment {
 
         public Builder copy(Payment payment) {
             this.paymentId = payment.paymentId;
-            this.sessionId = payment.sessionId;
+            this.session = payment.session;
             this.amount = payment.amount;
             this.tutorEarnings = payment.tutorEarnings;
             this.platformFee = payment.platformFee;

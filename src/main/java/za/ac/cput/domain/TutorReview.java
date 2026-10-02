@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 
 public class TutorReview {
     private Long reviewId;
-    private Long sessionId;
-    private Long studentId;
-    private Long tutorProfileId;
+    private TutoringSession session;
+    private User student;
+    private TutorProfile tutorProfile;
     private int rating;
     private String comment;
     private String strengths;
@@ -23,9 +23,9 @@ public class TutorReview {
 
     private TutorReview(Builder builder) {
         this.reviewId = builder.reviewId;
-        this.sessionId = builder.sessionId;
-        this.studentId = builder.studentId;
-        this.tutorProfileId = builder.tutorProfileId;
+        this.session = builder.session;
+        this.student = builder.student;
+        this.tutorProfile = builder.tutorProfile;
         this.rating = builder.rating;
         this.comment = builder.comment;
         this.strengths = builder.strengths;
@@ -39,16 +39,16 @@ public class TutorReview {
         return reviewId;
     }
 
-    public Long getSessionId() {
-        return sessionId;
+    public TutoringSession getSession() {
+        return session;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public User getStudent() {
+        return student;
     }
 
-    public Long getTutorProfileId() {
-        return tutorProfileId;
+    public TutorProfile getTutorProfile() {
+        return tutorProfile;
     }
 
     public int getRating() {
@@ -80,9 +80,9 @@ public class TutorReview {
     public String toString() {
         return "TutorReviewFactory{" +
                 "reviewId=" + reviewId +
-                ", sessionId=" + sessionId +
-                ", studentId=" + studentId +
-                ", tutorProfileId=" + tutorProfileId +
+                ", sessionId=" + session +
+                ", studentId=" + student +
+                ", tutorProfile=" + tutorProfile +
                 ", rating=" + rating +
                 ", comment='" + comment + '\'' +
                 ", strengths='" + strengths + '\'' +
@@ -95,9 +95,9 @@ public class TutorReview {
 
     public static class Builder {
         private Long reviewId;
-        private Long sessionId;
-        private Long studentId;
-        private Long tutorProfileId;
+        private TutoringSession session;
+        private User student;
+        private TutorProfile tutorProfile;
         private int rating;
         private String comment;
         private String strengths;
@@ -110,18 +110,18 @@ public class TutorReview {
             return this;
         }
 
-        public Builder setSessionId(Long sessionId) {
-            this.sessionId = sessionId;
+        public Builder setSession(TutoringSession session) {
+            this.session = session;
             return this;
         }
 
-        public Builder setStudentId(Long studentId) {
-            this.studentId = studentId;
+        public Builder setStudent(User student) {
+            this.student = student;
             return this;
         }
 
-        public Builder setTutorProfileId(Long tutorProfileId) {
-            this.tutorProfileId = tutorProfileId;
+        public Builder setTutorProfile(TutorProfile tutorProfile) {
+            this.tutorProfile = tutorProfile;
             return this;
         }
 
@@ -160,9 +160,9 @@ public class TutorReview {
 
         public Builder copy(TutorReview review) {
             this.reviewId = review.reviewId;
-            this.sessionId = review.sessionId;
-            this.studentId = review.studentId;
-            this.tutorProfileId = review.tutorProfileId;
+            this.session = review.session;
+            this.student = review.student;
+            this.tutorProfile = review.tutorProfile;
             this.rating = review.rating;
             this.comment = review.comment;
             this.strengths = review.strengths;
