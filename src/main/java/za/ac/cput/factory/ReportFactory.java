@@ -28,11 +28,10 @@ public class ReportFactory {
         if (reporter == null ||
                 reportedUser == null ||
                 session == null ||
-                HelperUtil.isNullOrEmpty(reason) ||
-                HelperUtil.isNullOrEmpty(description) ||
+                !HelperUtil.isNullOrEmpty(reason) ||
+                !HelperUtil.isNullOrEmpty(description) ||
                 status == null ||
-                reportedAt == null ||
-                resolvedAt == null) {
+                reportedAt == null) {
             return null;
         }
         Long id = HelperUtil.generateId();
