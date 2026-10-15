@@ -1,23 +1,25 @@
 /*
-    NotificationFactoryTest.java
-    Notification Factory Test class
+    ReportFactoryTest.java
+    Report Factory Test class
     Author: Nolwazi Zulu (220118876)
     Date: 09 September 2026
 */
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.Notification;
+import za.ac.cput.domain.Report;
+import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
-import za.ac.cput.enums.NotificationType;
+import za.ac.cput.enums.ReportStatus;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NotificationFactoryTest {
+class ReportFactoryTest {
 
-    User user = new User.Builder()
+    User reporter = new User.Builder()
+            .setUserId(1L)
             .setName("Nolwazi")
             .setSurname("Zulu")
             .setStudentNumber("220118876")
@@ -28,110 +30,164 @@ class NotificationFactoryTest {
             .setIsStudent(true)
             .build();
 
-    String title = "Notification title";
-    String message = "Your tutoring session has been approved.";
-    NotificationType type = NotificationType.BOOKING_CONFIRMATION;
-    LocalDateTime readAt = LocalDateTime.now();
+    User reportedUser = new User.Builder()
+            .setUserId(2L)
+            .setName("Test")
+            .setSurname("User")
+            .setStudentNumber("220118877")
+            .setEmail("test@example.com")
+            .setContactNumber("0723456789")
+            .setCreatedAt(LocalDateTime.now())
+            .setIsTutor(true)
+            .setIsStudent(false)
+            .build();
 
-    private Notification notification = NotificationFactory.createNotification(user,
-            title,
-            message,
-            type,
-            false,
-            readAt);
+    TutoringSession session =  new TutoringSession.Builder().setSessionId(1L).build();
+    
+    String reason = "Inappropriate behaviour";
+    String description = "Inappropriate conduct";
+    ReportStatus status = ReportStatus.INVESTIGATING;
+    LocalDateTime reportedAt = LocalDateTime.now();
+    LocalDateTime resolvedAt = reportedAt.plusHours(2);
+    LocalDateTime reportDate = LocalDateTime.now();
 
     @Test
-    void createNotification() {
+    void createReport() {
 
-        assertNotNull(notification);
-        assertNotNull(notification.getNotificationId());
-        assertEquals(message, notification.getMessage());
-        assertFalse(notification.isRead());
-        assertEquals(user, notification.getUser());
-        assertNotNull(notification.getNotificationId());
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
+                reason,
+                description,
+                status,
+                reportDate,
+                resolvedAt);
+
+        assertNotNull(report);
+        assertNotNull(report.getReportId());
+        assertEquals(reporter, report.getReporter());
+        assertEquals(reportedUser, report.getReportedUser());
+        assertEquals(session, report.getSession());
+        assertEquals(reason, report.getReason());
+        assertEquals(description, report.getDescription());
+        assertEquals(reportDate, report.getReportAt());
+        assertEquals(resolvedAt, report.getResolvedAt());
     }
 
     @Test
-    void createNotificationWithNullUser() {
-
-        Notification notification = NotificationFactory.createNotification(null,
-                title,
-                message,
-                type,
-                false,
-                readAt);
-
-        assertNull(notification);
-
+    void createReportWithNullReporter() {
+        Report report = ReportFactory.createReport(null,
+                reportedUser,
+                session,
+                reason,
+                description,
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
     }
 
     @Test
-    void createNotificationWithNullTitle() {
-
-        Notification notification = NotificationFactory.createNotification(user,
+    void createReportWithNullReportedUser() {
+        Report report = ReportFactory.createReport(reporter,
                 null,
-                message,
-                type,
-                false,
-                readAt);
-
-        assertNull(notification);
-
+                session,
+                reason,
+                description,
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
     }
 
     @Test
-    void createNotificationWithEmptyTitle() {
+    void createReportWithNullTutoringSession() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                null,
+                reason,
+                description,
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
+    }
 
-        Notification notification = NotificationFactory.createNotification(user,
+    @Test
+    void createReportWithNullReason() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
+                null,
+                description,
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
+    }
+
+    @Test
+    void createReportWithEmptyReason() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
                 "",
-                message,
-                type,
-                false,
-                readAt);
-
-        assertNull(notification);
-
+                description,
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
     }
 
     @Test
-    void createNotificationWithNullMessage() {
-
-        Notification notification = NotificationFactory.createNotification(user,
-                title,
+    void createReportWithNullDescription() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
+                reason,
                 null,
-                type,
-                false,
-                readAt);
-
-        assertNull(notification);
-
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
     }
 
     @Test
-    void createNotificationWithEmptyMessage() {
-
-        Notification notification = NotificationFactory.createNotification(user,
-                title,
+    void createReportWithEmptyDescription() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
+                reason,
                 "",
-                type,
-                false,
-                readAt);
-
-        assertNull(notification);
-
+                status,
+                reportDate,
+                resolvedAt);
+        assertNull(report);
     }
 
     @Test
-    void createNotificationWithNullType() {
-
-        Notification notification = NotificationFactory.createNotification(user,
-                title,
-                message,
+    void createReportWithNullStatus() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
+                reason,
+                description,
                 null,
-                false,
-                readAt);
+                reportDate,
+                resolvedAt);
+        assertNull(report);
+    }
 
-        assertNull(notification);
-
+    @Test
+    void createReportWithNullReportedAt() {
+        Report report = ReportFactory.createReport(reporter,
+                reportedUser,
+                session,
+                reason,
+                description,
+                status,
+                null,
+                resolvedAt);
+        assertNull(report);
     }
 }
