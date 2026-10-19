@@ -2,6 +2,11 @@ package za.ac.cput.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,9 +19,14 @@ import lombok.Data;
 
 @Data 
 @Builder
+@Entity
+@Table(name = "user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+    
     private String name;
     private String surname;
     private String studentNumber;

@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 // import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,11 +18,16 @@ import lombok.Data;
     Date: 19 July 2026
 */
 
-@Data 
+@Data
 @Builder
+@Entity
+@Table(name = "invoice")
 public class Invoice {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long invoiceId;
+
     private Payment payment;
     private String invoiceNumber;
     private LocalDateTime issuedDate;
