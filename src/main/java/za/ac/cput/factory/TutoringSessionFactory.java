@@ -31,7 +31,7 @@ public class TutoringSessionFactory {
                 startTime == null ||
                 endTime == null ||
                 status == null ||
-                !HelperUtil.isNullOrEmpty(sessionNotes) ||
+                HelperUtil.isNullOrEmpty(sessionNotes) ||
                 createdAt == null ||
                 updatedAt == null) {
             return null;

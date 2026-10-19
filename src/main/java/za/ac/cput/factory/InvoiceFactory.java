@@ -23,7 +23,7 @@ public class InvoiceFactory {
 
         Long invoiceId = HelperUtil.generateId();
         if (payment == null
-                || !HelperUtil.isNullOrEmpty(invoiceNumber)
+                || HelperUtil.isNullOrEmpty(invoiceNumber)
                 || issuedDate == null
                 || dueDate == null
                 || !HelperUtil.isZeroOrPositiveBigDecimal(totalAmount)
