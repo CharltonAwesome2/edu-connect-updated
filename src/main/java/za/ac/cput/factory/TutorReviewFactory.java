@@ -27,28 +27,27 @@ public class TutorReviewFactory {
             boolean isPublic) {
 
         Long reviewId = HelperUtil.generateId();
+        System.out.println("HelperUtil.isValidRating(rating):\t" + HelperUtil.isValidRating(rating));
 
         if (session == null
                 || student == null
                 || tutorProfile == null
-                || comment == null
-                || strengths == null
-                || improvements == null ||
-                reviewedAt == null) {
+                || !HelperUtil.isValidRating(rating)
+                || reviewedAt == null) {
             return null;
         }
 
-        return new TutorReview.Builder()
-                .setReviewId(reviewId)
-                .setSession(session)
-                .setStudent(student)
-                .setTutorProfile(tutorProfile)
-                .setRating(rating)
-                .setComment(comment)
-                .setStrengths(strengths)
-                .setImprovements(improvements)
-                .setReviewedAt(reviewedAt)
-                .setIsPublic(isPublic)
+        return TutorReview.builder()
+                .tutorReviewId(reviewId)
+                .session(session)
+                .student(student)
+                .tutorProfile(tutorProfile)
+                .rating(rating)
+                .comment(comment)
+                .strengths(strengths)
+                .improvements(improvements)
+                .reviewedAt(reviewedAt)
+                .isPublic(isPublic)
                 .build();
     }
 }

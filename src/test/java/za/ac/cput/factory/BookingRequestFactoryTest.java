@@ -6,6 +6,12 @@
 */
 package za.ac.cput.factory;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import za.ac.cput.domain.BookingRequest;
@@ -21,39 +27,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookingRequestFactoryTest {
 
     LocalDateTime requestedStartTime = LocalDateTime.now();
-    int durationMinutes = 60;
-    BookingStatus status = BookingStatus.PENDING;
-
-    User student = new User.Builder()
-            .setUserId(1L)
-            .setName("Reotshepile")
-            .setSurname("Stock")
-            .setStudentNumber("230875807")
-            .setEmail("reotshepile@example.com")
-            .setContactNumber("0712345678")
-            .setCreatedAt(LocalDateTime.now())
-            .setIsTutor(false)
-            .setIsStudent(true)
-            .build();
-
-    TutorProfile tutorProfile = new TutorProfile.Builder()
-            .setTutorId(2L)
-            .setUser(student)
-            .build();
-
-    Subject subject = new Subject.Builder()
-            .setSubjectId(3L)
-            .setSubjectName("Software Development")
-            .setDepartment("ICT")
-            .build();
-
-    String studentNotes = "I need help with Java.";
+    int durationMinutes = 90;
+    BookingStatus status = BookingStatus.APPROVED;
+    User student = User.builder().build();
+    TutorProfile tutorProfile = TutorProfile.builder().build();
+    Subject subject = Subject.builder().build();
+    String studentNotes = "Student note";
 
     @Test
     void createBookingRequest() {
-
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
                 durationMinutes,
                 status,
                 student,
@@ -62,7 +45,9 @@ class BookingRequestFactoryTest {
                 studentNotes);
 
         assertNotNull(bookingRequest);
-        assertNotNull(bookingRequest.getRequestId());
+        assertNotNull(bookingRequest.getBookingRequestId());
+
+        assertEquals(requestedStartTime, bookingRequest.getRequestedStartTime());
         assertEquals(durationMinutes, bookingRequest.getDurationMinutes());
         assertEquals(status, bookingRequest.getStatus());
         assertEquals(student, bookingRequest.getStudent());
@@ -72,93 +57,82 @@ class BookingRequestFactoryTest {
     }
 
     @Test
-    void createBookingRequestWithNullStatus() {
-
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
+    void createBookingRequestWithNullStartTime() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(null,
                 durationMinutes,
-                null,
+                status,
                 student,
                 tutorProfile,
                 subject,
                 studentNotes);
 
         assertNull(bookingRequest);
+    }
+
+    @Test
+    void createBookingRequestWithNegativeDuration() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                -1,
+                status,
+                student,
+                tutorProfile,
+                subject,
+                studentNotes);
+        assertNull(bookingRequest);
+
+    }
+
+    @Test
+    void createBookingRequestWithNullStatus() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                durationMinutes,
+                null,
+                student,
+                tutorProfile,
+                subject,
+                studentNotes);
+        assertNull(bookingRequest);
+
     }
 
     @Test
     void createBookingRequestWithNullStudent() {
-
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
                 durationMinutes,
                 status,
                 null,
                 tutorProfile,
                 subject,
                 studentNotes);
-
         assertNull(bookingRequest);
+
     }
 
     @Test
     void createBookingRequestWithNullTutorProfile() {
-
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
                 durationMinutes,
                 status,
                 student,
                 null,
                 subject,
                 studentNotes);
-
         assertNull(bookingRequest);
+
     }
 
     @Test
     void createBookingRequestWithNullSubject() {
 
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
                 durationMinutes,
                 status,
                 student,
                 tutorProfile,
                 null,
                 studentNotes);
-
         assertNull(bookingRequest);
-    }
 
-    @Test
-    void createBookingRequestWithNullStudentNotes() {
-
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
-                durationMinutes,
-                status,
-                student,
-                tutorProfile,
-                subject,
-                null);
-
-        assertNull(bookingRequest);
-    }
-
-    @Test
-    void createBookingRequestWithEmptyStudentNotes() {
-
-        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(
-                requestedStartTime,
-                durationMinutes,
-                status,
-                student,
-                tutorProfile,
-                subject,
-                "");
-
-        assertNull(bookingRequest);
     }
 }
 ```

@@ -26,24 +26,24 @@ public class PaymentFactory {
 
         Long paymentId = HelperUtil.generateId();
         if (session == null
-                || amount == null
-                || tutorEarnings == null
-                || platformFee == null
+                || !HelperUtil.isZeroOrPositiveBigDecimal(amount)
+                || !HelperUtil.isZeroOrPositiveBigDecimal(tutorEarnings)
+                || !HelperUtil.isZeroOrPositiveBigDecimal(platformFee)
                 || status == null
                 || paidAt == null
                 || paymentMethod == null) {
             return null;
         }
 
-        return new Payment.Builder()
-                .setPaymentId(paymentId)
-                .setSession(session)
-                .setAmount(amount)
-                .setTutorEarnings(tutorEarnings)
-                .setPlatformFee(platformFee)
-                .setStatus(status)
-                .setPaidAt(paidAt)
-                .setPaymentMethod(paymentMethod)
+        return Payment.builder()
+                .paymentId(paymentId)
+                .session(session)
+                .amount(amount)
+                .tutorEarnings(tutorEarnings)
+                .platformFee(platformFee)
+                .status(status)
+                .paidAt(paidAt)
+                .paymentMethod(paymentMethod)
                 .build();
     }
 }

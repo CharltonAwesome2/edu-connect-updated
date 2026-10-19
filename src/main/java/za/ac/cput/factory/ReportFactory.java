@@ -28,25 +28,24 @@ public class ReportFactory {
         if (reporter == null ||
                 reportedUser == null ||
                 session == null ||
-                HelperUtil.isNullOrEmpty(reason) ||
-                HelperUtil.isNullOrEmpty(description) ||
+                !HelperUtil.isNullOrEmpty(reason) ||
+                !HelperUtil.isNullOrEmpty(description) ||
                 status == null ||
-                reportedAt == null ||
-                resolvedAt == null) {
+                reportedAt == null) {
             return null;
         }
         Long id = HelperUtil.generateId();
 
-        return new Report.Builder()
-                .setReportId(id)
-                .setReporter(reporter)
-                .setReportedUser(reportedUser)
-                .setSession(session)
-                .setReason(reason)
-                .setDescription(description)
-                .setStatus(status)
-                .setReportedAt(reportedAt)
-                .setResolvedAt(resolvedAt)
+        return Report.builder()
+                .reportId(id)
+                .reporter(reporter)
+                .reportedUser(reportedUser)
+                .session(session)
+                .reason(reason)
+                .description(description)
+                .status(status)
+                .reportAt(reportedAt)
+                .resolvedAt(resolvedAt)
                 .build();
     }
 }

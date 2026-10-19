@@ -23,22 +23,22 @@ public class InvoiceFactory {
 
         Long invoiceId = HelperUtil.generateId();
         if (payment == null
-                || invoiceNumber == null
+                || !HelperUtil.isNullOrEmpty(invoiceNumber)
                 || issuedDate == null
                 || dueDate == null
-                || totalAmount == null
-                || taxAmount == null) {
+                || !HelperUtil.isZeroOrPositiveBigDecimal(totalAmount)
+                || !HelperUtil.isZeroOrPositiveBigDecimal(taxAmount)) {
             return null;
         }
 
-        return new Invoice.Builder()
-                .setInvoiceId(invoiceId)
-                .setPayment(payment)
-                .setInvoiceNumber(invoiceNumber)
-                .setIssuedDate(issuedDate)
-                .setDueDate(dueDate)
-                .setTotalAmount(totalAmount)
-                .setTaxAmount(taxAmount)
+        return Invoice.builder()
+                .invoiceId(invoiceId)
+                .payment(payment)
+                .invoiceNumber(invoiceNumber)
+                .issuedDate(issuedDate)
+                .dueDate(dueDate)
+                .totalAmount(totalAmount)
+                .taxAmount(taxAmount)
                 .build();
 
     }

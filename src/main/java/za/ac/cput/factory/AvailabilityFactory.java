@@ -22,13 +22,13 @@ public class AvailabilityFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new Availability.Builder()
-                .setId(id)
-                .setTutorProfile(profile)
-                .setDayOfWeek(dayOfWeek)
-                .setStartTime(startTime)
-                .setEndTime(endTime)
-                .setRecurring(isRecurring)
+        return Availability.builder()
+                .availibilityId(id)
+                .tutorProfile(profile)
+                .dayOfWeek(dayOfWeek)
+                .startTime(startTime)
+                .endTime(endTime)
+                .isRecurring(isRecurring)
                 .build();
 
     }

@@ -20,24 +20,26 @@ public class BookingRequestFactory {
             Subject subject,
             String studentNotes) {
 
-        if (status == null |
+        if (requestedStartTime == null ||
+                HelperUtil.isZeroOrPositiveInteger(durationMinutes) ||
+                status == null ||
                 student == null ||
                 tutorProfile == null ||
-                subject == null ||
-                HelperUtil.isNullOrEmpty(studentNotes)) {
+                subject == null) {
             return null;
         }
 
         Long id = HelperUtil.generateId();
 
-        return new BookingRequest.Builder()
-                .setRequestId(id)
-                .setDurationMinutes(durationMinutes)
-                .setStatus(status)
-                .setStudent(student)
-                .setTutorProfile(tutorProfile)
-                .setSubject(subject)
-                .setStudentNotes(studentNotes)
+        return BookingRequest.builder()
+                .bookingRequestId(id)
+                .requestedStartTime(requestedStartTime)
+                .durationMinutes(durationMinutes)
+                .status(status)
+                .student(student)
+                .tutorProfile(tutorProfile)
+                .subject(subject)
+                .studentNotes(studentNotes)
                 .build();
     }
 }

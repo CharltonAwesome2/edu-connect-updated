@@ -2,6 +2,8 @@ package za.ac.cput.util;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class HelperUtil {
@@ -45,6 +47,10 @@ public class HelperUtil {
 
     public static String extractSalt(String hash) {
         return hash.substring(7, 29);
+    }
+
+    public static boolean isZeroOrPositiveBigDecimal(BigDecimal inputBigDecimal) {
+        return inputBigDecimal != null && inputBigDecimal.intValue() >= 0;
     }
 
     /*

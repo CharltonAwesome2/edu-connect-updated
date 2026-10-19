@@ -16,19 +16,20 @@ import java.time.LocalDateTime;
 public class UserAuthFactory {
     public static UserAuth createUserAuth(String password, User user, LocalDateTime lastLogin) {
 
-        if (HelperUtil.isNullOrEmpty(password) ||
+        if (!HelperUtil.isNullOrEmpty(password) ||
                 user == null ||
                 lastLogin == null) {
             return null;
         }
 
         String hashedPassword = HelperUtil.hashPassword(password);
+        Long id = HelperUtil.generateId();
 
-        return new UserAuth.Builder()
-                .setAuthId(HelperUtil.generateId())
+        return UserAuth.builder()
+                .userAuthId(id)
                 .passwordHash(hashedPassword)
-                .setLastLogin(lastLogin)
-                .setUser(user)
+                .lastLogin(lastLogin)
+                .user(user)
                 .build();
     }
 }

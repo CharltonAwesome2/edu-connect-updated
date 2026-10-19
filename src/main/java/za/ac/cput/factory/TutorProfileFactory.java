@@ -17,22 +17,23 @@ public class TutorProfileFactory {
             LocalDateTime createdAt) {
 
         if (user == null ||
-                createdAt == null ||
-                HelperUtil.isNullOrEmpty(bio) ||
+                !HelperUtil.isZeroOrPositiveInteger(yearsExperience) ||
+                !HelperUtil.isZeroOrPositiveBigDecimal(hourlyRate) ||
+                !HelperUtil.isPositiveDouble(averageRating) ||
                 createdAt == null) {
             return null;
         }
 
         Long id = HelperUtil.generateId();
 
-        return new TutorProfile.Builder()
-                .setTutorProfileId(id)
-                .setUser(user)
-                .setBio(bio)
-                .setYearsExperience(yearsExperience)
-                .setHourlyRate(hourlyRate)
-                .setAverageRating(averageRating)
-                .setCreatedAt(createdAt)
+        return TutorProfile.builder()
+                .tutorProfileId(id)
+                .user(user)
+                .bio(bio)
+                .yearsExperience(yearsExperience)
+                .hourlyRate(hourlyRate)
+                .averageRating(averageRating)
+                .createdAt(createdAt)
                 .build();
     }
 }

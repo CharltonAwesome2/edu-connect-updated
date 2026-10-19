@@ -7,18 +7,19 @@ public class SubjectFactory {
 
     public static Subject createSubjectFactory(String subjectName, String subjectCode, String department) {
 
-        if (HelperUtil.isNullOrEmpty(subjectName) ||
-                HelperUtil.isNullOrEmpty(subjectCode) ||
-                HelperUtil.isNullOrEmpty(department)) {
+        if (!HelperUtil.isNullOrEmpty(subjectName) ||
+                !HelperUtil.isNullOrEmpty(subjectCode) ||
+                !HelperUtil.isNullOrEmpty(department)) {
             return null;
         }
 
         Long id = HelperUtil.generateId();
 
-        return new Subject.Builder()
-                .setSubjectId(id)
-                .setSubjectName(subjectName)
-                .setDepartment(department)
-                .build();   
+        return Subject.builder()
+                .subjectId(id)
+                .subjectName(subjectName)
+                .subjectCode(subjectCode)
+                .department(department)
+                .build();
     }
 }

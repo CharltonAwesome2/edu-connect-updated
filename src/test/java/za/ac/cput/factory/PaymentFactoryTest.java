@@ -5,6 +5,7 @@ import za.ac.cput.domain.Payment;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.enums.PaymentMethod;
 import za.ac.cput.enums.PaymentStatus;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 */
 class PaymentFactoryTest {
 
-    TutoringSession session = new TutoringSession.Builder().build();
+    TutoringSession session = TutoringSession.builder().build();
 
     BigDecimal amount = new BigDecimal("3750.00");
     BigDecimal tutorEarnings = new BigDecimal("25000.00");
@@ -25,16 +26,121 @@ class PaymentFactoryTest {
     LocalDateTime paidAt = LocalDateTime.now();
     PaymentMethod paymentMethod = PaymentMethod.PAYPAL;
 
-    private Payment payment = PaymentFactory.createPayment(session,
-            amount,
-            tutorEarnings,
-            platformFee,
-            status,
-            paidAt,
-            paymentMethod);
-
     @Test
     void createPayment() {
-        System.out.println(payment);
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                platformFee,
+                status,
+                paidAt,
+                paymentMethod);
+
+        assertNotNull(payment);
+        assertNotNull(payment.getPaymentId());
+
+        assertEquals(amount, payment.getAmount());
+        assertEquals(tutorEarnings, payment.getTutorEarnings());
+        assertEquals(status, payment.getStatus());
+        assertEquals(paidAt, payment.getPaidAt());
+        assertEquals(paymentMethod, payment.getPaymentMethod());
+    }
+
+    @Test
+    void createPaymentWithNullSession() {
+        Payment payment = PaymentFactory.createPayment(null,
+                amount,
+                tutorEarnings,
+                platformFee,
+                status,
+                paidAt,
+                paymentMethod);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullAmount() {
+        Payment payment = PaymentFactory.createPayment(session,
+                null,
+                tutorEarnings,
+                platformFee,
+                status,
+                paidAt,
+                paymentMethod);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullTutorEarnings() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                null,
+                platformFee,
+                status,
+                paidAt,
+                paymentMethod);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullPlatformFee() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                null,
+                status,
+                paidAt,
+                paymentMethod);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullStatus() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                platformFee,
+                null,
+                paidAt,
+                paymentMethod);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullPaidAt() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                platformFee,
+                status,
+                null,
+                paymentMethod);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullPaymentMethod() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                platformFee,
+                status,
+                paidAt,
+                null);
+
+        assertNull(payment);
+
     }
 }

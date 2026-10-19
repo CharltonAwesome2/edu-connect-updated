@@ -22,27 +22,29 @@ public class UserFactory {
             Boolean isTutor,
             Boolean isStudent) {
 
-        if (HelperUtil.isNullOrEmpty(name) ||
-                HelperUtil.isNullOrEmpty(surname) ||
-                HelperUtil.isNullOrEmpty(studentNumber) ||
-                HelperUtil.isNullOrEmpty(email) ||
-                HelperUtil.isNullOrEmpty(contactNumber) ||
-                createdAt == null) {
+        if (!HelperUtil.isNullOrEmpty(name) ||
+                !HelperUtil.isNullOrEmpty(surname) ||
+                !HelperUtil.isNullOrEmpty(studentNumber) ||
+                !HelperUtil.isNullOrEmpty(email) ||
+                !HelperUtil.isNullOrEmpty(contactNumber) ||
+                createdAt == null ||
+                isTutor == null ||
+                isStudent == null) {
             return null;
         }
 
         Long id = HelperUtil.generateId();
 
-        return new User.Builder()
-                .setUserId(id)
-                .setName(name)
-                .setSurname(surname)
-                .setStudentNumber(studentNumber)
-                .setEmail(email)
-                .setContactNumber(contactNumber)
-                .setCreatedAt(createdAt)
-                .setIsTutor(isTutor)
-                .setIsStudent(isStudent)
+        return User.builder()
+                .userId(id)
+                .name(name)
+                .surname(surname)
+                .studentNumber(studentNumber)
+                .email(email)
+                .contactNumber(contactNumber)
+                .createdAt(createdAt)
+                .isTutor(isTutor)
+                .isStudent(isStudent)
                 .build();
     }
 }
