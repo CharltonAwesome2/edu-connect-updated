@@ -22,12 +22,14 @@ public class UserFactory {
             Boolean isTutor,
             Boolean isStudent) {
 
-        if (HelperUtil.isNullOrEmpty(name) ||
-                HelperUtil.isNullOrEmpty(surname) ||
-                HelperUtil.isNullOrEmpty(studentNumber) ||
-                HelperUtil.isNullOrEmpty(email) ||
-                HelperUtil.isNullOrEmpty(contactNumber) ||
-                createdAt == null) {
+        if (!HelperUtil.isNullOrEmpty(name) ||
+                !HelperUtil.isNullOrEmpty(surname) ||
+                !HelperUtil.isNullOrEmpty(studentNumber) ||
+                !HelperUtil.isNullOrEmpty(email) ||
+                !HelperUtil.isNullOrEmpty(contactNumber) ||
+                createdAt == null ||
+                isTutor == null ||
+                isStudent == null) {
             return null;
         }
 

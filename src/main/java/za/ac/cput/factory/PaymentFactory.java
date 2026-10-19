@@ -26,9 +26,9 @@ public class PaymentFactory {
 
         Long paymentId = HelperUtil.generateId();
         if (session == null
-                || amount == null
-                || tutorEarnings == null
-                || platformFee == null
+                || !HelperUtil.isZeroOrPositiveBigDecimal(amount)
+                || !HelperUtil.isZeroOrPositiveBigDecimal(tutorEarnings)
+                || !HelperUtil.isZeroOrPositiveBigDecimal(platformFee)
                 || status == null
                 || paidAt == null
                 || paymentMethod == null) {

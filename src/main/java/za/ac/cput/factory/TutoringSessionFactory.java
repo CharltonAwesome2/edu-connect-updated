@@ -28,8 +28,10 @@ public class TutoringSessionFactory {
                 student == null ||
                 tutorProfile == null ||
                 subject == null ||
+                startTime == null ||
+                endTime == null ||
                 status == null ||
-                HelperUtil.isNullOrEmpty(sessionNotes) ||
+                !HelperUtil.isNullOrEmpty(sessionNotes) ||
                 createdAt == null ||
                 updatedAt == null) {
             return null;
@@ -39,6 +41,7 @@ public class TutoringSessionFactory {
 
         return new TutoringSession.Builder()
                 .setSessionId(id)
+                .setBookingRequest(bookingRequest)
                 .setStudent(student)
                 .setTutorProfile(tutorProfile)
                 .setSubject(subject)
