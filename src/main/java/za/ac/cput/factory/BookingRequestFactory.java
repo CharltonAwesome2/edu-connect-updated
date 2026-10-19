@@ -20,11 +20,12 @@ public class BookingRequestFactory {
             Subject subject,
             String studentNotes) {
 
-        if (status == null |
+        if (requestedStartTime == null ||
+                HelperUtil.isZeroOrPositiveInteger(durationMinutes)||
+                status == null ||
                 student == null ||
                 tutorProfile == null ||
-                subject == null ||
-                HelperUtil.isNullOrEmpty(studentNotes)) {
+                subject == null) {
             return null;
         }
 
@@ -32,6 +33,7 @@ public class BookingRequestFactory {
 
         return new BookingRequest.Builder()
                 .setRequestId(id)
+                .setRequestedStartTime(requestedStartTime)
                 .setDurationMinutes(durationMinutes)
                 .setStatus(status)
                 .setStudent(student)

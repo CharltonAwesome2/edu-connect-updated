@@ -17,8 +17,9 @@ public class TutorProfileFactory {
             LocalDateTime createdAt) {
 
         if (user == null ||
-                createdAt == null ||
-                HelperUtil.isNullOrEmpty(bio) ||
+            !HelperUtil.isZeroOrPositiveInteger(yearsExperience) ||
+                !HelperUtil.isZeroOrPositiveBigDecimal(hourlyRate) ||
+                !HelperUtil.isPositiveDouble(averageRating) ||
                 createdAt == null) {
             return null;
         }

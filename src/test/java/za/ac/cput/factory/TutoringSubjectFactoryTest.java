@@ -1,5 +1,9 @@
 package za.ac.cput.factory;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.junit.jupiter.api.Test;
 
 import za.ac.cput.domain.Subject;
@@ -11,10 +15,26 @@ public class TutoringSubjectFactoryTest {
     TutorProfile tutorProfile = new TutorProfile.Builder().build();
     Subject subject = new Subject.Builder().build();
 
-    private TutorSubject tutorSubject = TutorSubjectFactory.creatTutorSubject(tutorProfile, subject);
-
     @Test
     void creatTutorSubject() {
-        System.out.println(tutorSubject);
+        TutorSubject tutorSubject = TutorSubjectFactory.creatTutorSubject(tutorProfile, subject);
+
+        assertNotNull(tutorSubject);
+        assertNotNull(tutorSubject.getTutorSubjectId());
+
+        assertEquals(tutorProfile, tutorSubject.getTutorProfile());
+        assertEquals(subject, tutorSubject.getSubject());
+    }
+
+    @Test
+    void creatTutorSubjectWithNullTutorProfile() {
+        TutorSubject tutorSubject = TutorSubjectFactory.creatTutorSubject(null, subject);
+        assertNull(tutorSubject);
+    }
+
+        @Test
+    void creatTutorSubjectWithNullSubject() {
+        TutorSubject tutorSubject = TutorSubjectFactory.creatTutorSubject(tutorProfile, null);
+        assertNull(tutorSubject);
     }
 }

@@ -1,5 +1,9 @@
 package za.ac.cput.factory;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
@@ -20,16 +24,104 @@ public class BookingRequestFactoryTest {
     Subject subject = new Subject.Builder().build();
     String studentNotes = "Student note";
 
-    private BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
-            durationMinutes,
-            status,
-            student,
-            tutorProfile,
-            subject,
-            studentNotes);
-
     @Test
     void createBookingRequest() {
-        System.out.println(bookingRequest);
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                durationMinutes,
+                status,
+                student,
+                tutorProfile,
+                subject,
+                studentNotes);
+
+        assertNotNull(bookingRequest);
+        assertNotNull(bookingRequest.getRequestId());
+
+        assertEquals(requestedStartTime, bookingRequest.getRequestedStartTime());
+        assertEquals(durationMinutes, bookingRequest.getDurationMinutes());
+        assertEquals(status, bookingRequest.getStatus());
+        assertEquals(student, bookingRequest.getStudent());
+        assertEquals(tutorProfile, bookingRequest.getTutorProfile());
+        assertEquals(subject, bookingRequest.getSubject());
+        assertEquals(studentNotes, bookingRequest.getStudentNotes());
+    }
+
+    @Test
+    void createBookingRequestWithNullStartTime() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(null,
+                durationMinutes,
+                status,
+                student,
+                tutorProfile,
+                subject,
+                studentNotes);
+
+        assertNull(bookingRequest);
+    }
+
+    @Test
+    void createBookingRequestWithNegativeDuration() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                -1,
+                status,
+                student,
+                tutorProfile,
+                subject,
+                studentNotes);
+        assertNull(bookingRequest);
+
+    }
+
+    @Test
+    void createBookingRequestWithNullStatus() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                durationMinutes,
+                null,
+                student,
+                tutorProfile,
+                subject,
+                studentNotes);
+        assertNull(bookingRequest);
+
+    }
+
+    @Test
+    void createBookingRequestWithNullStudent() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                durationMinutes,
+                status,
+                null,
+                tutorProfile,
+                subject,
+                studentNotes);
+        assertNull(bookingRequest);
+
+    }
+
+    @Test
+    void createBookingRequestWithNullTutorProfile() {
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                durationMinutes,
+                status,
+                student,
+                null,
+                subject,
+                studentNotes);
+        assertNull(bookingRequest);
+
+    }
+
+    @Test
+    void createBookingRequestWithNullSubject() {
+
+        BookingRequest bookingRequest = BookingRequestFactory.createBookingRequest(requestedStartTime,
+                durationMinutes,
+                status,
+                student,
+                tutorProfile,
+                null,
+                studentNotes);
+        assertNull(bookingRequest);
+
     }
 }

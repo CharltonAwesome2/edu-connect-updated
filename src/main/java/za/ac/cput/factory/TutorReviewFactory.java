@@ -27,14 +27,13 @@ public class TutorReviewFactory {
             boolean isPublic) {
 
         Long reviewId = HelperUtil.generateId();
+        System.out.println("HelperUtil.isValidRating(rating):\t" + HelperUtil.isValidRating(rating));
 
         if (session == null
                 || student == null
                 || tutorProfile == null
-                || comment == null
-                || strengths == null
-                || improvements == null ||
-                reviewedAt == null) {
+                || !HelperUtil.isValidRating(rating)
+                || reviewedAt == null) {
             return null;
         }
 

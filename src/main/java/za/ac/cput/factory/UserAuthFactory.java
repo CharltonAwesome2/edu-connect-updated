@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class UserAuthFactory {
     public static UserAuth createUserAuth(String password, User user, LocalDateTime lastLogin) {
 
-        if (HelperUtil.isNullOrEmpty(password) ||
+        if (!HelperUtil.isNullOrEmpty(password) ||
                 user == null ||
                 lastLogin == null) {
             return null;
