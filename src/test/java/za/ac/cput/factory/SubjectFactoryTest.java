@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import za.ac.cput.domain.Subject;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class SubjectFactoryTest {
 
     String subjectName = "Software Development";

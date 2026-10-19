@@ -20,19 +20,36 @@ import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.BookingStatus;
 
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class BookingRequestFactoryTest {
 
     LocalDateTime requestedStartTime = LocalDateTime.now();
     int durationMinutes = 90;
     BookingStatus status = BookingStatus.APPROVED;
-    User student = User.builder().build();
-    TutorProfile tutorProfile = TutorProfile.builder().build();
-    Subject subject = Subject.builder().build();
-    String studentNotes = "Student note";
+
+    User student = User.builder()
+            .userId(1L)
+            .name("Reotshepile")
+            .surname("Stock")
+            .studentNumber("230875807")
+            .email("reotshepile@example.com")
+            .contactNumber("0712345678")
+            .createdAt(LocalDateTime.now())
+            .isTutor(false)
+            .isStudent(true)
+            .build();
+
+    TutorProfile tutorProfile = TutorProfile.builder()
+            .tutorProfileId(2L)
+            .user(student)
+            .build();
+
+    Subject subject = Subject.builder()
+            .subjectId(3L)
+            .subjectName("Software Development")
+            .department("ICT")
+            .build();
+            
+    String studentNotes = "I need help with Java.";
 
     @Test
     void createBookingRequest() {
@@ -135,4 +152,3 @@ class BookingRequestFactoryTest {
 
     }
 }
-```
