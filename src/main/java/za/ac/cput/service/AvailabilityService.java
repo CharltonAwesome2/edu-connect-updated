@@ -19,6 +19,11 @@ public class AvailabilityService implements IAvailabilityService {
 
     @Override
     public Availability create(Availability availability) {
+        
+        if (availability == null) {
+            return null;
+        }
+
         return availabilityRepository.save(availability);
     }
 
@@ -29,6 +34,11 @@ public class AvailabilityService implements IAvailabilityService {
 
     @Override
     public Availability update(Availability availability) {
+        
+        if (availability == null) {
+            return null;
+        }
+        
         return availabilityRepository.save(availability);
     }
 
