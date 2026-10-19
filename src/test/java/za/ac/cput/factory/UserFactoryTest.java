@@ -13,8 +13,6 @@ import za.ac.cput.domain.User;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UserFactoryTest {
 
     String name = "Nolwazi";
