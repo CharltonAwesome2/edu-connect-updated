@@ -1,3 +1,9 @@
+/*
+    UserAuthFactoryTest.java
+    UserAuth Factory Test class
+    Author: Lesego Kutlwano Tshabalala (240263952)
+    Date: 26 September 2026
+*/
 package za.ac.cput.factory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,9 +21,20 @@ import za.ac.cput.util.HelperUtil;
 
 class UserAuthFactoryTest {
 
-    private String passwordHash = "HashedPassword";
-    private User user = User.builder().build();
-    private LocalDateTime lastLogin = LocalDateTime.now();
+    User user = new User.Builder()
+            .setUserId(1L)
+            .setName("Nolwazi")
+            .setSurname("Zulu")
+            .setStudentNumber("220118876")
+            .setEmail("nolwazi@example.com")
+            .setContactNumber("0712345678")
+            .setCreatedAt(LocalDateTime.now())
+            .setIsTutor(false)
+            .setIsStudent(true)
+            .build();
+
+    String password = "Password123!";
+    LocalDateTime lastLogin = LocalDateTime.now();
 
     @Test
     void createUserAuth() {

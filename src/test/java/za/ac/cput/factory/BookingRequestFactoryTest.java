@@ -1,3 +1,9 @@
+/*
+    BookingRequestFactoryTest.java
+    Booking Request Factory Test class
+    Author: Reotshepile Stock
+    Date: 02 October 2026
+*/
 package za.ac.cput.factory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +20,11 @@ import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.BookingStatus;
 
-public class BookingRequestFactoryTest {
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class BookingRequestFactoryTest {
 
     LocalDateTime requestedStartTime = LocalDateTime.now();
     int durationMinutes = 90;
@@ -125,3 +135,4 @@ public class BookingRequestFactoryTest {
 
     }
 }
+```

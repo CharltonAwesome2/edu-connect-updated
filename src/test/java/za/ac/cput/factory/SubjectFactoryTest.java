@@ -1,3 +1,9 @@
+/*
+    SubjectFactoryTest.java
+    Subject Factory Test class
+    Author: Reotshepile Stock
+    Date: 02 October 2026
+*/
 package za.ac.cput.factory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,11 +14,13 @@ import org.junit.jupiter.api.Test;
 
 import za.ac.cput.domain.Subject;
 
-public class SubjectFactoryTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    String subjectName = "Application Development";
-    String subjectCode = "AppDev";
-    String department = "Engineering";
+class SubjectFactoryTest {
+
+    String subjectName = "Software Development";
+    String subjectCode = "ADP372S";
+    String department = "ICT";
 
     @Test
     void createSubject() {

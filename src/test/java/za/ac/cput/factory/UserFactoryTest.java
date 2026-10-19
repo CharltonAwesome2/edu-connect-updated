@@ -1,19 +1,27 @@
+/*
+    UserFactoryTest.java
+    User Factory Test class
+    Author: Lesego Kutlwano Tshabalala (240263952)
+    Date: 26 September 2026
+*/
 package za.ac.cput.factory;
-
-import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import za.ac.cput.domain.User;
 
-public class UserFactoryTest {
+import java.time.LocalDateTime;
 
-    String name = "Peter";
-    String surname = "Parker";
-    String studentNumber = "STUD123";
-    String email = "pparker@university.com";
-    String contactNumber = "0861234567";
+import static org.junit.jupiter.api.Assertions.*;
+
+class UserFactoryTest {
+
+    String name = "Nolwazi";
+    String surname = "Zulu";
+    String studentNumber = "220118876";
+    String email = "nolwazi@example.com";
+    String contactNumber = "0712345678";
     LocalDateTime createdAt = LocalDateTime.now();
     boolean isTutor = true;
     boolean isStudent = false;
