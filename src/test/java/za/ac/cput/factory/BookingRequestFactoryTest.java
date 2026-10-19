@@ -19,9 +19,9 @@ public class BookingRequestFactoryTest {
     LocalDateTime requestedStartTime = LocalDateTime.now();
     int durationMinutes = 90;
     BookingStatus status = BookingStatus.APPROVED;
-    User student = new User.Builder().build();
-    TutorProfile tutorProfile = new TutorProfile.Builder().build();
-    Subject subject = new Subject.Builder().build();
+    User student = User.builder().build();
+    TutorProfile tutorProfile = TutorProfile.builder().build();
+    Subject subject = Subject.builder().build();
     String studentNotes = "Student note";
 
     @Test
@@ -35,7 +35,7 @@ public class BookingRequestFactoryTest {
                 studentNotes);
 
         assertNotNull(bookingRequest);
-        assertNotNull(bookingRequest.getRequestId());
+        assertNotNull(bookingRequest.getBookingRequestId());
 
         assertEquals(requestedStartTime, bookingRequest.getRequestedStartTime());
         assertEquals(durationMinutes, bookingRequest.getDurationMinutes());

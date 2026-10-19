@@ -35,15 +35,15 @@ public class PaymentFactory {
             return null;
         }
 
-        return new Payment.Builder()
-                .setPaymentId(paymentId)
-                .setSession(session)
-                .setAmount(amount)
-                .setTutorEarnings(tutorEarnings)
-                .setPlatformFee(platformFee)
-                .setStatus(status)
-                .setPaidAt(paidAt)
-                .setPaymentMethod(paymentMethod)
+        return Payment.builder()
+                .paymentId(paymentId)
+                .session(session)
+                .amount(amount)
+                .tutorEarnings(tutorEarnings)
+                .platformFee(platformFee)
+                .status(status)
+                .paidAt(paidAt)
+                .paymentMethod(paymentMethod)
                 .build();
     }
 }

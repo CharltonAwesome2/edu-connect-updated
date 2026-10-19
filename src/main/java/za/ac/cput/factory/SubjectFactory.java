@@ -15,11 +15,11 @@ public class SubjectFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new Subject.Builder()
-                .setSubjectId(id)
-                .setSubjectName(subjectName)
-                .setSubjectCode(subjectCode)
-                .setDepartment(department)
-                .build();   
+        return Subject.builder()
+                .subjectId(id)
+                .subjectName(subjectName)
+                .subjectCode(subjectCode)
+                .department(department)
+                .build();
     }
 }

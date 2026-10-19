@@ -12,22 +12,22 @@ import za.ac.cput.domain.UserRole;
 
 public class UserRoleFactoryTest {
 
-    User user = new User.Builder()
-            .setUserId(1L)
-            .setName("John")
-            .setSurname("Doe").build();
+    User user = User.builder()
+            .userId(1L)
+            .name("John")
+            .surname("Doe").build();
 
-    Role role = new Role.Builder()
-            .setId(2L)
-            .setRoleName("Student")
-            .setDescription("Student user role").build();
+    Role role = Role.builder()
+            .roleId(2L)
+            .roleName("Student")
+            .description("Student user role").build();
 
     @Test
     void createUserRole() {
         UserRole userRole = UserRoleFactory.creatUserRole(role, user);
 
         assertNotNull(userRole);
-        assertNotNull(userRole.getId());
+        assertNotNull(userRole.getUserRoleId());
         assertEquals(user, userRole.getUser());
         assertEquals(role, userRole.getRole());
     }

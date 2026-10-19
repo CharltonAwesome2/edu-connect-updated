@@ -36,16 +36,16 @@ public class ReportFactory {
         }
         Long id = HelperUtil.generateId();
 
-        return new Report.Builder()
-                .setReportId(id)
-                .setReporter(reporter)
-                .setReportedUser(reportedUser)
-                .setSession(session)
-                .setReason(reason)
-                .setDescription(description)
-                .setStatus(status)
-                .setReportedAt(reportedAt)
-                .setResolvedAt(resolvedAt)
+        return Report.builder()
+                .reportId(id)
+                .reporter(reporter)
+                .reportedUser(reportedUser)
+                .session(session)
+                .reason(reason)
+                .description(description)
+                .status(status)
+                .reportAt(reportedAt)
+                .resolvedAt(resolvedAt)
                 .build();
     }
 }

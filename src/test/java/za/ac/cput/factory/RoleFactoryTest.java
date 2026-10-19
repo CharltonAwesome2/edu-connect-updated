@@ -15,7 +15,7 @@ public class RoleFactoryTest {
         Role role = RoleFactory.createRole(roleName, description);
 
         assertNotNull(role);
-        assertNotNull(role.getId());
+        assertNotNull(role.getRoleId());
         assertEquals(roleName, role.getRoleName());
         assertEquals(description, role.getDescription());
     }

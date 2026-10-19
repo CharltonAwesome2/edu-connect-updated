@@ -15,10 +15,10 @@ public class TutorSubjectFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new TutorSubject.Builder()
-                .setTutorSubjectId(id)
-                .setTutorProfile(tutorProfile)
-                .setSubject(subject)
+        return TutorSubject.builder()
+                .tutorSubjectId(id)
+                .tutorProfile(tutorProfile)
+                .subject(subject)
                 .build();
 
     }

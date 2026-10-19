@@ -17,10 +17,10 @@ import za.ac.cput.enums.SessionStatus;
 
 public class TutoringSessionFactoryTest {
 
-    BookingRequest bookingRequest = new BookingRequest.Builder().build();
-    User student = new User.Builder().build();
-    TutorProfile tutorProfile = new TutorProfile.Builder().build();
-    Subject subject = new Subject.Builder().build();
+    BookingRequest bookingRequest = BookingRequest.builder().build();
+    User student = User.builder().build();
+    TutorProfile tutorProfile = TutorProfile.builder().build();
+    Subject subject = Subject.builder().build();
     LocalDateTime startTime = LocalDateTime.now();
     LocalDateTime endTime = LocalDateTime.now().plusMinutes(90);
     SessionStatus status = SessionStatus.SCHEDULED;
@@ -42,7 +42,7 @@ public class TutoringSessionFactoryTest {
                 updatedAt);
 
         assertNotNull(tutoringSession);
-        assertNotNull(tutoringSession.getSessionId());
+        assertNotNull(tutoringSession.getTutoringSessionId());
 
         assertEquals(bookingRequest, tutoringSession.getBookingRequest());
         assertEquals(student, tutoringSession.getStudent());

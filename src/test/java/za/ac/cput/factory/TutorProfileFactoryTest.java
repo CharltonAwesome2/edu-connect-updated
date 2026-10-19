@@ -14,7 +14,7 @@ import za.ac.cput.domain.User;
 
 public class TutorProfileFactoryTest {
 
-    User user = new User.Builder().build();
+    User user = User.builder().build();
     String bio = "Tutor profile biography";
     int yearsExperience = 2;
     BigDecimal hourlyRate = new BigDecimal(25.00);

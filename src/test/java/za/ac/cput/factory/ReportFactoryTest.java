@@ -18,32 +18,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReportFactoryTest {
 
-    User reporter = new User.Builder()
-            .setUserId(1L)
-            .setName("Nolwazi")
-            .setSurname("Zulu")
-            .setStudentNumber("220118876")
-            .setEmail("nolwazi@example.com")
-            .setContactNumber("0712345678")
-            .setCreatedAt(LocalDateTime.now())
-            .setIsTutor(false)
-            .setIsStudent(true)
+    User reporter = User.builder()
+            .userId(1L)
+            .name("Nolwazi")
+            .surname("Zulu")
+            .studentNumber("220118876")
+            .email("nolwazi@example.com")
+            .contactNumber("0712345678")
+            .createdAt(LocalDateTime.now())
+            .isTutor(false)
+            .isStudent(true)
             .build();
 
-    User reportedUser = new User.Builder()
-            .setUserId(2L)
-            .setName("Test")
-            .setSurname("User")
-            .setStudentNumber("220118877")
-            .setEmail("test@example.com")
-            .setContactNumber("0723456789")
-            .setCreatedAt(LocalDateTime.now())
-            .setIsTutor(true)
-            .setIsStudent(false)
+    User reportedUser = User.builder()
+            .userId(2L)
+            .name("Test")
+            .surname("User")
+            .studentNumber("220118877")
+            .email("test@example.com")
+            .contactNumber("0723456789")
+            .createdAt(LocalDateTime.now())
+            .isTutor(true)
+            .isStudent(false)
             .build();
 
-    TutoringSession session =  new TutoringSession.Builder().setSessionId(1L).build();
-    
+    TutoringSession session = TutoringSession.builder()
+            .tutoringSessionId(1L)
+            .build();
+
     String reason = "Inappropriate behaviour";
     String description = "Inappropriate conduct";
     ReportStatus status = ReportStatus.INVESTIGATING;

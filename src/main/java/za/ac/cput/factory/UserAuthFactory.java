@@ -23,12 +23,13 @@ public class UserAuthFactory {
         }
 
         String hashedPassword = HelperUtil.hashPassword(password);
+        Long id = HelperUtil.generateId();
 
-        return new UserAuth.Builder()
-                .setAuthId(HelperUtil.generateId())
+        return UserAuth.builder()
+                .userAuthId(id)
                 .passwordHash(hashedPassword)
-                .setLastLogin(lastLogin)
-                .setUser(user)
+                .lastLogin(lastLogin)
+                .user(user)
                 .build();
     }
 }

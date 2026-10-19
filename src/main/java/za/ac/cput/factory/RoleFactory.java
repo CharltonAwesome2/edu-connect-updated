@@ -11,11 +11,11 @@ public class RoleFactory {
         }
 
         Long id = HelperUtil.generateId();
-        
-        return new Role.Builder()
-                .setId(id)
-                .setRoleName(roleName)
-                .setDescription(description)
+
+        return Role.builder()
+                .roleId(id)
+                .roleName(roleName)
+                .description(description)
                 .build();
     }
 }
