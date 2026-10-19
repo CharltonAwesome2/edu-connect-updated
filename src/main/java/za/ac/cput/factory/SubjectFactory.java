@@ -7,9 +7,9 @@ public class SubjectFactory {
 
     public static Subject createSubjectFactory(String subjectName, String subjectCode, String department) {
 
-        if (!HelperUtil.isNullOrEmpty(subjectName) ||
-                !HelperUtil.isNullOrEmpty(subjectCode) ||
-                !HelperUtil.isNullOrEmpty(department)) {
+        if (HelperUtil.isNullOrEmpty(subjectName) ||
+                HelperUtil.isNullOrEmpty(subjectCode) ||
+                HelperUtil.isNullOrEmpty(department)) {
             return null;
         }
 

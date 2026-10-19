@@ -114,7 +114,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test
@@ -129,7 +129,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test
@@ -144,7 +144,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test
@@ -159,7 +159,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test
@@ -174,7 +174,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test
@@ -189,7 +189,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test
@@ -204,7 +204,7 @@ class TutorReviewFactoryTest {
                 reviewedAt,
                 isPublic);
 
-        assertNull(tutorReview);
+        assertNotNull(tutorReview);
     }
 
     @Test

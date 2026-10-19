@@ -60,7 +60,7 @@ class NotificationFactoryTest {
     void createNotificationWithNullUser() {
 
         Notification notification = NotificationFactory.createNotification(
-                user,
+                null,
                 title,
                 message,
                 type,

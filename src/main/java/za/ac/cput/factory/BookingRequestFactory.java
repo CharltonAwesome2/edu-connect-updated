@@ -21,7 +21,7 @@ public class BookingRequestFactory {
             String studentNotes) {
 
         if (requestedStartTime == null ||
-                HelperUtil.isZeroOrPositiveInteger(durationMinutes) ||
+                !HelperUtil.isZeroOrPositiveInteger(durationMinutes) ||
                 status == null ||
                 student == null ||
                 tutorProfile == null ||
