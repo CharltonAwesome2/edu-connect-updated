@@ -12,8 +12,8 @@ import za.ac.cput.domain.TutorSubject;
 
 public class TutoringSubjectFactoryTest {
 
-    TutorProfile tutorProfile = new TutorProfile.Builder().build();
-    Subject subject = new Subject.Builder().build();
+    TutorProfile tutorProfile = TutorProfile.builder().build();
+    Subject subject = Subject.builder().build();
 
     @Test
     void creatTutorSubject() {
@@ -32,7 +32,7 @@ public class TutoringSubjectFactoryTest {
         assertNull(tutorSubject);
     }
 
-        @Test
+    @Test
     void creatTutorSubjectWithNullSubject() {
         TutorSubject tutorSubject = TutorSubjectFactory.creatTutorSubject(tutorProfile, null);
         assertNull(tutorSubject);

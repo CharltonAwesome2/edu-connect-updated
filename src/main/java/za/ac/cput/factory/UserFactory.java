@@ -35,16 +35,16 @@ public class UserFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new User.Builder()
-                .setUserId(id)
-                .setName(name)
-                .setSurname(surname)
-                .setStudentNumber(studentNumber)
-                .setEmail(email)
-                .setContactNumber(contactNumber)
-                .setCreatedAt(createdAt)
-                .setIsTutor(isTutor)
-                .setIsStudent(isStudent)
+        return User.builder()
+                .userId(id)
+                .name(name)
+                .surname(surname)
+                .studentNumber(studentNumber)
+                .email(email)
+                .contactNumber(contactNumber)
+                .createdAt(createdAt)
+                .isTutor(isTutor)
+                .isStudent(isStudent)
                 .build();
     }
 }

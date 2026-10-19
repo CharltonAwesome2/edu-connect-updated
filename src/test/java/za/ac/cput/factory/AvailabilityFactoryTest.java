@@ -11,7 +11,7 @@ import za.ac.cput.domain.TutorProfile;
 
 public class AvailabilityFactoryTest {
 
-    TutorProfile profile = new TutorProfile();
+    TutorProfile profile = TutorProfile.builder().build();
     DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
     LocalDateTime starTime = LocalDateTime.now();
     LocalDateTime endTime = starTime.plusHours(1);
@@ -26,7 +26,7 @@ public class AvailabilityFactoryTest {
                 false);
 
         assertNotNull(availability);
-        assertNotNull(availability.getId());
+        assertNotNull(availability.getAvailibilityId());
 
         assertEquals(profile, availability.getTutorProfile());
         assertEquals(dayOfWeek, availability.getDayOfWeek());

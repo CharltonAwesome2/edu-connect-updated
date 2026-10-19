@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 */
 class PaymentFactoryTest {
 
-    TutoringSession session = new TutoringSession.Builder().build();
+    TutoringSession session = TutoringSession.builder().build();
 
     BigDecimal amount = new BigDecimal("3750.00");
     BigDecimal tutorEarnings = new BigDecimal("25000.00");

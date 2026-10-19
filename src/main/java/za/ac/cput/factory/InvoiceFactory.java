@@ -31,14 +31,14 @@ public class InvoiceFactory {
             return null;
         }
 
-        return new Invoice.Builder()
-                .setInvoiceId(invoiceId)
-                .setPayment(payment)
-                .setInvoiceNumber(invoiceNumber)
-                .setIssuedDate(issuedDate)
-                .setDueDate(dueDate)
-                .setTotalAmount(totalAmount)
-                .setTaxAmount(taxAmount)
+        return Invoice.builder()
+                .invoiceId(invoiceId)
+                .payment(payment)
+                .invoiceNumber(invoiceNumber)
+                .issuedDate(issuedDate)
+                .dueDate(dueDate)
+                .totalAmount(totalAmount)
+                .taxAmount(taxAmount)
                 .build();
 
     }

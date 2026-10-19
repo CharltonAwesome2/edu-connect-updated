@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 
 class InvoiceFactoryTest {
 
-    Payment payment = new Payment.Builder().build();
+    Payment payment = Payment.builder().build();
     LocalDateTime issuedDate = LocalDateTime.now();
     String invoiceNumber = "INV-001";
     LocalDateTime dueDate = LocalDateTime.now().plusDays(30);
@@ -46,9 +46,6 @@ class InvoiceFactoryTest {
         assertEquals(taxAmount, invoice.getTaxAmount());
     }
 
-    
-
-    
     @Test
     void createInvoiceWithNullPayment() {
         Invoice invoice = InvoiceFactory.createInvoice(null,
@@ -61,7 +58,7 @@ class InvoiceFactoryTest {
         assertNull(invoice);
     }
 
-       @Test
+    @Test
     void createInvoiceWithNullIssuedDate() {
         Invoice invoice = InvoiceFactory.createInvoice(payment,
                 invoiceNumber,
@@ -73,7 +70,7 @@ class InvoiceFactoryTest {
         assertNull(invoice);
     }
 
-       @Test
+    @Test
     void createInvoiceWithNullInvoiceNumber() {
         Invoice invoice = InvoiceFactory.createInvoice(payment,
                 null,
@@ -85,7 +82,7 @@ class InvoiceFactoryTest {
         assertNull(invoice);
     }
 
-       @Test
+    @Test
     void createInvoiceWithNullDueDate() {
         Invoice invoice = InvoiceFactory.createInvoice(payment,
                 invoiceNumber,
@@ -97,7 +94,7 @@ class InvoiceFactoryTest {
         assertNull(invoice);
     }
 
-       @Test
+    @Test
     void createInvoiceWithNullTotalAmount() {
         Invoice invoice = InvoiceFactory.createInvoice(payment,
                 invoiceNumber,
@@ -109,7 +106,7 @@ class InvoiceFactoryTest {
         assertNull(invoice);
     }
 
-       @Test
+    @Test
     void createInvoiceWithNulltaxAmount() {
         Invoice invoice = InvoiceFactory.createInvoice(payment,
                 invoiceNumber,

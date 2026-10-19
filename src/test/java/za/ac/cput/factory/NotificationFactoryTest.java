@@ -18,16 +18,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NotificationFactoryTest {
 
-    User user = new User.Builder()
-            .setUserId(1L)
-            .setName("Nolwazi")
-            .setSurname("Zulu")
-            .setStudentNumber("220118876")
-            .setEmail("nolwazi@example.com")
-            .setContactNumber("0712345678")
-            .setCreatedAt(LocalDateTime.now())
-            .setIsTutor(false)
-            .setIsStudent(true)
+    User user = User.builder()
+            .userId(1L)
+            .name("Nolwazi")
+            .surname("Zulu")
+            .studentNumber("220118876")
+            .email("nolwazi@example.com")
+            .contactNumber("0712345678")
+            .createdAt(LocalDateTime.now())
+            .isTutor(false)
+            .isStudent(true)
             .build();
 
     String title = "Notification of approval";

@@ -39,18 +39,18 @@ public class TutoringSessionFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new TutoringSession.Builder()
-                .setSessionId(id)
-                .setBookingRequest(bookingRequest)
-                .setStudent(student)
-                .setTutorProfile(tutorProfile)
-                .setSubject(subject)
-                .setStartTime(startTime)
-                .setEndTime(endTime)
-                .setStatus(status)
-                .setSessionNotes(sessionNotes)
-                .setCreatedAt(createdAt)
-                .setUpdatedAt(updatedAt)
+        return TutoringSession.builder()
+                .tutoringSessionId(id)
+                .bookingRequest(bookingRequest)
+                .student(student)
+                .tutorProfile(tutorProfile)
+                .subject(subject)
+                .startTime(startTime)
+                .endTime(endTime)
+                .status(status)
+                .sessionNotes(sessionNotes)
+                .createdAt(createdAt)
+                .updatedAt(updatedAt)
                 .build();
     }
 }

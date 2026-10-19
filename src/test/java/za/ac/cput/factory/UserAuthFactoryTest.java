@@ -16,7 +16,7 @@ import za.ac.cput.util.HelperUtil;
 class UserAuthFactoryTest {
 
     private String passwordHash = "HashedPassword";
-    private User user = new User.Builder().build();
+    private User user = User.builder().build();
     private LocalDateTime lastLogin = LocalDateTime.now();
 
     @Test
@@ -24,7 +24,7 @@ class UserAuthFactoryTest {
         UserAuth userAuth = UserAuthFactory.createUserAuth(passwordHash, user, lastLogin);
 
         assertNotNull(userAuth);
-        assertNotNull(userAuth.getAuthId());
+        assertNotNull(userAuth.getUserAuthId());
 
         assertTrue(HelperUtil.verifyPassword(passwordHash, userAuth.getPasswordHash()));
         assertEquals(user, userAuth.getUser());
@@ -37,19 +37,19 @@ class UserAuthFactoryTest {
         assertNull(userAuth);
     }
 
-        @Test
+    @Test
     void createUserAuthWithEmptyPassword() {
         UserAuth userAuth = UserAuthFactory.createUserAuth("", user, lastLogin);
         assertNull(userAuth);
     }
 
-        @Test
+    @Test
     void createUserAuthWithNullUser() {
         UserAuth userAuth = UserAuthFactory.createUserAuth(passwordHash, null, lastLogin);
         assertNull(userAuth);
     }
 
-        @Test
+    @Test
     void createUserAuthWithNullLastLogin() {
         UserAuth userAuth = UserAuthFactory.createUserAuth(passwordHash, user, null);
         assertNull(userAuth);

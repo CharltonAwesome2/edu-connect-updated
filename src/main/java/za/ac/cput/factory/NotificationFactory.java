@@ -33,14 +33,14 @@ public class NotificationFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new Notification.Builder()
-                .setNotificationId(id)
-                .setUser(user)
-                .setTitle(title)
-                .setMessage(message)
-                .setType(type)
-                .setRead(isRead)
-                .setRead(isRead)
+        return Notification.builder()
+                .notificationId(id)
+                .user(user)
+                .title(title)
+                .message(message)
+                .type(type)
+                .isRead(isRead)
+                .readAt(readAt)
                 .build();
     }
 }

@@ -21,7 +21,7 @@ public class BookingRequestFactory {
             String studentNotes) {
 
         if (requestedStartTime == null ||
-                HelperUtil.isZeroOrPositiveInteger(durationMinutes)||
+                HelperUtil.isZeroOrPositiveInteger(durationMinutes) ||
                 status == null ||
                 student == null ||
                 tutorProfile == null ||
@@ -31,15 +31,15 @@ public class BookingRequestFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new BookingRequest.Builder()
-                .setRequestId(id)
-                .setRequestedStartTime(requestedStartTime)
-                .setDurationMinutes(durationMinutes)
-                .setStatus(status)
-                .setStudent(student)
-                .setTutorProfile(tutorProfile)
-                .setSubject(subject)
-                .setStudentNotes(studentNotes)
+        return BookingRequest.builder()
+                .bookingRequestId(id)
+                .requestedStartTime(requestedStartTime)
+                .durationMinutes(durationMinutes)
+                .status(status)
+                .student(student)
+                .tutorProfile(tutorProfile)
+                .subject(subject)
+                .studentNotes(studentNotes)
                 .build();
     }
 }

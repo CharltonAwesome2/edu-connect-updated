@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 */
 class TutorReviewFactoryTest {
 
-    TutoringSession tutoringSession = new TutoringSession.Builder().build();
-    User student = new User.Builder().build();
-    TutorProfile tutorProfile = new TutorProfile.Builder().build();
+    TutoringSession tutoringSession = TutoringSession.builder().build();
+    User student = User.builder().build();
+    TutorProfile tutorProfile = TutorProfile.builder().build();
     int rating = 5;
     String comment = "Excellent tutoring session.";
     String strengths = "Clear explanations and good communication.";
@@ -44,7 +44,7 @@ class TutorReviewFactoryTest {
                 isPublic);
 
         assertNotNull(tutorReview);
-        assertNotNull(tutorReview.getReviewId());
+        assertNotNull(tutorReview.getTutorReviewId());
 
         assertEquals(tutoringSession, tutorReview.getSession());
         assertEquals(student, tutorReview.getStudent());
@@ -72,7 +72,7 @@ class TutorReviewFactoryTest {
         assertNull(tutorReview);
     }
 
-        @Test
+    @Test
     void createTutorReviewWithNullStudent() {
         TutorReview tutorReview = TutorReviewFactory.createTutorReview(tutoringSession,
                 null,
