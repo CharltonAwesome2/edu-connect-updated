@@ -1,5 +1,6 @@
 package za.ac.cput.factory;
 
+import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorReview;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
@@ -15,40 +16,37 @@ import java.time.LocalDateTime;
 
 public class TutorReviewFactory {
 
-    public static TutorReview createTutorReview(Long sessionId, Long studentId, Long tutorProfileId, int rating, String comment, String strengths, String improvements, LocalDateTime reviewedAt, boolean isPublic) {
+    public static TutorReview createTutorReview(TutoringSession session,
+            User student,
+            TutorProfile tutorProfile,
+            int rating,
+            String comment,
+            String strengths,
+            String improvements,
+            LocalDateTime reviewedAt,
+            boolean isPublic) {
+
         Long reviewId = HelperUtil.generateId();
 
-        if (sessionId == null
-                || studentId == null
-                || tutorProfileId == null
-                || comment == null
-                || strengths == null
-                || improvements == null) {
+        if (session == null
+                || student == null
+                || tutorProfile == null
+                || !HelperUtil.isValidRating(rating)
+                || reviewedAt == null) {
             return null;
         }
 
-        if (reviewedAt == null) {
-            reviewedAt = LocalDateTime.now();
-        }
-
-        return new TutorReview.Builder()
-                .setReviewId(reviewId)
-                .setSessionId(sessionId)
-                .setStudentId(studentId)
-                .setTutorProfileId(tutorProfileId)
-                .setRating(rating)
-                .setComment(comment)
-                .setStrengths(strengths)
-                .setImprovements(improvements)
-                .setReviewedAt(reviewedAt)
-                .setIsPublic(isPublic)
+        return TutorReview.builder()
+                .tutorReviewId(reviewId)
+                .session(session)
+                .student(student)
+                .tutorProfile(tutorProfile)
+                .rating(rating)
+                .comment(comment)
+                .strengths(strengths)
+                .improvements(improvements)
+                .reviewedAt(reviewedAt)
+                .isPublic(isPublic)
                 .build();
     }
 }
-
-
-
-
-
-
-

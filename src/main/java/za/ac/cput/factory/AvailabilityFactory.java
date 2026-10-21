@@ -10,8 +10,10 @@ import za.ac.cput.util.HelperUtil;
 public class AvailabilityFactory {
 
     public static Availability createAvailability(
-            TutorProfile profile, DayOfWeek dayOfWeek,
-            LocalDateTime startTime, LocalDateTime endTime,
+            TutorProfile profile,
+            DayOfWeek dayOfWeek,
+            LocalDateTime startTime,
+            LocalDateTime endTime,
             boolean isRecurring) {
 
         if (profile == null || dayOfWeek == null || startTime == null || endTime == null) {
@@ -20,13 +22,13 @@ public class AvailabilityFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new Availability.Builder()
-                .setId(id)
-                .setTutorProfile(profile)
-                .setDayOfWeek(dayOfWeek)
-                .setStartTime(startTime)
-                .setEndTime(endTime)
-                .setRecurring(isRecurring)
+        return Availability.builder()
+                .availibilityId(id)
+                .tutorProfile(profile)
+                .dayOfWeek(dayOfWeek)
+                .startTime(startTime)
+                .endTime(endTime)
+                .isRecurring(isRecurring)
                 .build();
 
     }

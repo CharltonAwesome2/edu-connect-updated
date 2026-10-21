@@ -7,7 +7,7 @@ import za.ac.cput.util.HelperUtil;
 
 public class TutorSubjectFactory {
 
-    public TutorSubject creatTutorSubject(TutorProfile tutorProfile, Subject subject) {
+    public static TutorSubject creatTutorSubject(TutorProfile tutorProfile, Subject subject) {
 
         if (tutorProfile == null || subject == null) {
             return null;
@@ -15,10 +15,10 @@ public class TutorSubjectFactory {
 
         Long id = HelperUtil.generateId();
 
-        return new TutorSubject.Builder()
-                .setTutorSubjectId(id)
-                .setTutorProfile(tutorProfile)
-                .setSubject(subject)
+        return TutorSubject.builder()
+                .tutorSubjectId(id)
+                .tutorProfile(tutorProfile)
+                .subject(subject)
                 .build();
 
     }

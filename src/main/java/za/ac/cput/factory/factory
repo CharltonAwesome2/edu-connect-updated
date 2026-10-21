@@ -1,0 +1,71 @@
+package za.ac.cput.factory;
+
+// BookingRequestFactory.java
+// Factory class for creating BookingRequest objects
+// Author: Reotshepile Stock (230875807)
+// Date: 10 September 2026
+
+import za.ac.cput.domain.BookingRequest;
+import za.ac.cput.domain.BookingStatus;
+
+import java.time.LocalDateTime;
+
+public class BookingRequestFactory {
+
+    public static BookingRequest createBookingRequest(
+            Long requestId,
+            Long studentId,
+            Long tutorProfileId,
+            Long subjectId,
+            LocalDateTime requestedStartTime,
+            int durationMinutes,
+            BookingStatus status,
+            String studentNotes,
+            LocalDateTime updatedAt) {
+
+        if (studentId == null) {
+            throw new IllegalArgumentException(
+                    "Student ID cannot be null");
+        }
+
+        if (tutorProfileId == null) {
+            throw new IllegalArgumentException(
+                    "Tutor profile ID cannot be null");
+        }
+
+        if (subjectId == null) {
+            throw new IllegalArgumentException(
+                    "Subject ID cannot be null");
+        }
+
+        if (requestedStartTime == null) {
+            throw new IllegalArgumentException(
+                    "Requested start time cannot be null");
+        }
+
+        if (durationMinutes <= 0) {
+            throw new IllegalArgumentException(
+                    "Duration must be greater than zero");
+        }
+
+        if (status == null) {
+            status = BookingStatus.PENDING;
+        }
+
+        if (updatedAt == null) {
+            updatedAt = LocalDateTime.now();
+        }
+
+        return new BookingRequest.Builder()
+                .setRequestId(requestId)
+                .setStudentId(studentId)
+                .setTutorProfileId(tutorProfileId)
+                .setSubjectId(subjectId)
+                .setRequestedStartTime(requestedStartTime)
+                .setDurationMinutes(durationMinutes)
+                .setStatus(status)
+                .setStudentNotes(studentNotes)
+                .setUpdatedAt(updatedAt)
+                .build();
+    }
+}

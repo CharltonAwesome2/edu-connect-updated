@@ -13,24 +13,23 @@ import java.time.LocalDateTime;
  * Date: 06 August 2026
  */
 
-public class userAuthFactory {
-    public static UserAuth createUserAuth(String password, User user) {
+public class UserAuthFactory {
+    public static UserAuth createUserAuth(String password, User user, LocalDateTime lastLogin) {
 
-        if (!HelperUtil.isNullOrEmpty(password)) {
-            return null;
-        }
-
-        if (user == null) {
+        if (HelperUtil.isNullOrEmpty(password) ||
+                user == null ||
+                lastLogin == null) {
             return null;
         }
 
         String hashedPassword = HelperUtil.hashPassword(password);
+        Long id = HelperUtil.generateId();
 
-        return new UserAuth.Builder()
-                .setAuthId(HelperUtil.generateId())
+        return UserAuth.builder()
+                .userAuthId(id)
                 .passwordHash(hashedPassword)
-                .setLastLogin(LocalDateTime.now())
-                .setUser(user)
+                .lastLogin(lastLogin)
+                .user(user)
                 .build();
     }
 }

@@ -8,16 +8,17 @@ import za.ac.cput.util.HelperUtil;
 public class UserRoleFactory {
 
     public static UserRole creatUserRole(Role role, User user) {
-        
+
         if (role == null || user == null) {
             return null;
         }
 
         Long id = HelperUtil.generateId();
 
-        return new UserRole.Builder()
-                .setId(id)
-                .setRole(role)
-                .setUser(user).build();
+        return UserRole.builder()
+                .userRoleId(id)
+                .role(role)
+                .user(user)
+                .build();
     }
 }

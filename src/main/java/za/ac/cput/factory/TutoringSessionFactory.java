@@ -12,7 +12,7 @@ import za.ac.cput.util.HelperUtil;
 
 public class TutoringSessionFactory {
 
-    public TutoringSession createTutoringSession(
+    public static TutoringSession createTutoringSession(
             BookingRequest bookingRequest,
             User student,
             TutorProfile tutorProfile,
@@ -28,24 +28,29 @@ public class TutoringSessionFactory {
                 student == null ||
                 tutorProfile == null ||
                 subject == null ||
+                startTime == null ||
+                endTime == null ||
                 status == null ||
-                HelperUtil.isNullOrEmpty(sessionNotes)) {
+                HelperUtil.isNullOrEmpty(sessionNotes) ||
+                createdAt == null ||
+                updatedAt == null) {
             return null;
         }
 
         Long id = HelperUtil.generateId();
 
-        return new TutoringSession.Builder()
-                .setSessionId(id)
-                .setStudent(student)
-                .setTutorProfile(tutorProfile)
-                .setSubject(subject)
-                .setStartTime(startTime)
-                .setEndTime(endTime)
-                .setStatus(status)
-                .setSessionNotes(sessionNotes)
-                .setCreatedAt(createdAt)
-                .setUpdatedAt(updatedAt)
+        return TutoringSession.builder()
+                .tutoringSessionId(id)
+                .bookingRequest(bookingRequest)
+                .student(student)
+                .tutorProfile(tutorProfile)
+                .subject(subject)
+                .startTime(startTime)
+                .endTime(endTime)
+                .status(status)
+                .sessionNotes(sessionNotes)
+                .createdAt(createdAt)
+                .updatedAt(updatedAt)
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Invoice;
+import za.ac.cput.domain.Payment;
 import za.ac.cput.util.HelperUtil;
 
 import java.math.BigDecimal;
@@ -13,30 +14,31 @@ import java.time.LocalDateTime;
 */
 
 public class InvoiceFactory {
-    public static Invoice createInvoice(Long paymentId,
-                                        String invoiceNumber,
-                                        LocalDateTime issuedDate,
-                                        LocalDateTime dueDate,
-                                        BigDecimal totalAmount,
-                                        BigDecimal taxAmount){
+    public static Invoice createInvoice(Payment payment,
+            String invoiceNumber,
+            LocalDateTime issuedDate,
+            LocalDateTime dueDate,
+            BigDecimal totalAmount,
+            BigDecimal taxAmount) {
 
         Long invoiceId = HelperUtil.generateId();
-        if (paymentId == null
-                || invoiceNumber == null
+        if (payment == null
+                || HelperUtil.isNullOrEmpty(invoiceNumber)
                 || issuedDate == null
                 || dueDate == null
-                || totalAmount == null
-                || taxAmount == null) {
+                || !HelperUtil.isZeroOrPositiveBigDecimal(totalAmount)
+                || !HelperUtil.isZeroOrPositiveBigDecimal(taxAmount)) {
             return null;
         }
 
-        return new Invoice.Builder()
-                .setPaymentId(paymentId)
-                .setInvoiceNumber(invoiceNumber)
-                .setIssuedDate(issuedDate)
-                .setDueDate(dueDate)
-                .setTotalAmount(totalAmount)
-                .setTaxAmount(taxAmount)
+        return Invoice.builder()
+                .invoiceId(invoiceId)
+                .payment(payment)
+                .invoiceNumber(invoiceNumber)
+                .issuedDate(issuedDate)
+                .dueDate(dueDate)
+                .totalAmount(totalAmount)
+                .taxAmount(taxAmount)
                 .build();
 
     }
