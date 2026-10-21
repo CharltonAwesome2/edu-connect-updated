@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * TutorSubject.java
  * TutorSubject model class
- * Author: Edu Connect Team
+ * Author: Esaile Siani Djiakeng
  * Date: 30 July 2026
  */
 
