@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.User;
-import za.ac.cput.repository.ITutorProfileRepository;
-import za.ac.cput.repository.ITutoringSessionRepository;
+import za.ac.cput.repository.TutorProfileRepository;
 
 import java.util.List;
 
@@ -19,10 +18,10 @@ import java.util.List;
 @Service
 public class TutorProfileService implements ITutorProfileService{
 
-    private final ITutorProfileRepository tutorProfileRepository;
+    private final TutorProfileRepository tutorProfileRepository;
 
     @Autowired
-    public TutorProfileService(ITutorProfileRepository tutorProfileRepository) {
+    public TutorProfileService(TutorProfileRepository tutorProfileRepository) {
         this.tutorProfileRepository = tutorProfileRepository;
     }
 

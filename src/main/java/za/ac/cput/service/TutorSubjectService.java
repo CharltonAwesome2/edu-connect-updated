@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Subject;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorSubject;
-import za.ac.cput.repository.ITutorProfileRepository;
-import za.ac.cput.repository.ITutorSubjectRepository;
+import za.ac.cput.repository.TutorSubjectRepository;
 
 import java.util.List;
 
@@ -20,10 +19,10 @@ import java.util.List;
 @Service
 public class TutorSubjectService implements ITutorSubjectService {
 
-    public ITutorSubjectRepository tutorSubjectRepository;
+    public TutorSubjectRepository tutorSubjectRepository;
 
     @Autowired
-    public TutorSubjectService(ITutorSubjectRepository tutorSubjectRepository) {
+    public TutorSubjectService(TutorSubjectRepository tutorSubjectRepository) {
         this.tutorSubjectRepository = tutorSubjectRepository;
     }
 
