@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
-import za.ac.cput.repository.ITutoringSessionRepository;
+import za.ac.cput.repository.TutoringSessionRepository;
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import java.util.List;
 @Service
 public class TutoringSessionService implements ITutoringSessionService{
 
-    private final ITutoringSessionRepository tutoringSessionRepository;
+    private final TutoringSessionRepository tutoringSessionRepository;
 
     @Autowired
-    public TutoringSessionService(ITutoringSessionRepository tutoringSessionRepository) {
+    public TutoringSessionService(TutoringSessionRepository tutoringSessionRepository) {
         this.tutoringSessionRepository = tutoringSessionRepository;
     }
 
