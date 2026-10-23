@@ -23,7 +23,7 @@ public class AvailabilityFactory {
         Long id = HelperUtil.generateId();
 
         return Availability.builder()
-                .availibilityId(id)
+                .availabilityId(id)
                 .tutorProfile(profile)
                 .dayOfWeek(dayOfWeek)
                 .startTime(startTime)

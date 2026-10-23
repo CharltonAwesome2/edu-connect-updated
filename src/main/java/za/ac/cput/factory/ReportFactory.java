@@ -44,7 +44,7 @@ public class ReportFactory {
                 .reason(reason)
                 .description(description)
                 .status(status)
-                .reportAt(reportedAt)
+                .reportedAt(reportedAt)
                 .resolvedAt(resolvedAt)
                 .build();
     }
