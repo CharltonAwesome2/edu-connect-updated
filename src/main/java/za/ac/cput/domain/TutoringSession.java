@@ -2,6 +2,11 @@ package za.ac.cput.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 import za.ac.cput.enums.SessionStatus;
@@ -13,11 +18,16 @@ import za.ac.cput.enums.SessionStatus;
  * Date: 30 July 2026
  */
 
-@Data 
+@Data
 @Builder
+@Entity
+@Table(name = "tutoring_session")
 public class TutoringSession {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tutoringSessionId;
+
     private BookingRequest bookingRequest;
     private User student;
     private TutorProfile tutorProfile;
@@ -28,5 +38,5 @@ public class TutoringSession {
     private String sessionNotes;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    
+
 }

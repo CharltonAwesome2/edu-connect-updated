@@ -7,6 +7,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 // import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 
@@ -18,9 +23,14 @@ import lombok.Data;
 
 @Data 
 @Builder
+@Entity
+@Table(name = "payment")
 public class Payment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
+
     private TutoringSession session;
     private BigDecimal amount;
     private BigDecimal tutorEarnings;
