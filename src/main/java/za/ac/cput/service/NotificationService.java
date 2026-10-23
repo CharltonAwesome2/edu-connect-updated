@@ -7,38 +7,44 @@
 
 package za.ac.cput.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import za.ac.cput.domain.Notification;
 import za.ac.cput.repository.NotificationRepository;
-import za.ac.cput.repository.NotificationRepositoryImpl;
 
-public class NotificationService {
+public class NotificationService implements INotificationService {
 
-    private final NotificationRepository repository;
+    private final NotificationRepository notificationRepository;
 
-    private static final NotificationService SERVICE =
-            new NotificationService();
-
-    private NotificationService() {
-        repository = NotificationRepositoryImpl.getRepository();
+    @Autowired
+    NotificationService(NotificationRepository notificationRepository) {
+        this.notificationRepository = notificationRepository;
     }
 
-    public static NotificationService getService() {
-        return SERVICE;
-    }
-
+    @Override
     public Notification create(Notification notification) {
-        return repository.create(notification);
+        return notificationRepository.save(notification);
     }
 
+    @Override
     public Notification read(Long id) {
-        return repository.read(id);
+        return notificationRepository.findById(id).orElse(null);
     }
 
+    @Override
     public Notification update(Notification notification) {
-        return repository.update(notification);
+        return notificationRepository.save(notification);
     }
 
-    public boolean delete(Long id) {
-        return repository.delete(id);
+    @Override
+    public void delete(Long id) {
+        notificationRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Notification> getAll() {
+        return notificationRepository.findAll();
     }
 }
