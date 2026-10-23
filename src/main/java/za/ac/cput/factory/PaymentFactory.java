@@ -22,7 +22,8 @@ public class PaymentFactory {
             BigDecimal platformFee,
             PaymentStatus status,
             LocalDateTime paidAt,
-            PaymentMethod paymentMethod) {
+            PaymentMethod paymentMethod,
+            String transactionReference) {
 
         Long paymentId = HelperUtil.generateId();
         if (session == null
@@ -31,7 +32,8 @@ public class PaymentFactory {
                 || !HelperUtil.isZeroOrPositiveBigDecimal(platformFee)
                 || status == null
                 || paidAt == null
-                || paymentMethod == null) {
+                || paymentMethod == null ||
+                HelperUtil.isNullOrEmpty(transactionReference)) {
             return null;
         }
 
@@ -44,6 +46,7 @@ public class PaymentFactory {
                 .status(status)
                 .paidAt(paidAt)
                 .paymentMethod(paymentMethod)
+                .transactionReference(transactionReference)
                 .build();
     }
 }

@@ -72,7 +72,7 @@ class ReportFactoryTest {
         assertEquals(session, report.getSession());
         assertEquals(reason, report.getReason());
         assertEquals(description, report.getDescription());
-        assertEquals(reportDate, report.getReportAt());
+        assertEquals(reportDate, report.getReportedAt());
         assertEquals(resolvedAt, report.getResolvedAt());
     }
 
