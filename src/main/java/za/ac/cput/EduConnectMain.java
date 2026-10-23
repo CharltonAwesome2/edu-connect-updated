@@ -1,11 +1,15 @@
 package za.ac.cput;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class EduConnectMain {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        SpringApplication.run(EduConnectMain.class, args);
     }
 }
-
 /* Team members
     Reotshepile Stock (230875807)
     Nolwazi Zulu (220118876)

@@ -3,6 +3,7 @@ package za.ac.cput.factory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class TutorProfileFactoryTest {
     BigDecimal hourlyRate = new BigDecimal(25.00);
     double averageRating = 4.3;
     LocalDateTime createdAt = LocalDateTime.now();
+    boolean isVerified = true;
 
     @Test
     void createTutorProfile() {
@@ -28,7 +30,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 hourlyRate,
                 averageRating,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNotNull(tutorProfile);
         assertNotNull(tutorProfile.getTutorProfileId());
@@ -39,6 +42,7 @@ public class TutorProfileFactoryTest {
         assertEquals(hourlyRate, tutorProfile.getHourlyRate());
         assertEquals(averageRating, tutorProfile.getAverageRating());
         assertEquals(createdAt, tutorProfile.getCreatedAt());
+        assertTrue(tutorProfile.isVerified());
     }
 
     @Test
@@ -48,7 +52,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 hourlyRate,
                 averageRating,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNull(tutorProfile);
     }
@@ -60,7 +65,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 hourlyRate,
                 averageRating,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNotNull(tutorProfile);
     }
@@ -72,7 +78,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 hourlyRate,
                 averageRating,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNotNull(tutorProfile);
     }
@@ -84,7 +91,8 @@ public class TutorProfileFactoryTest {
                 -1,
                 hourlyRate,
                 averageRating,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNull(tutorProfile);
     }
@@ -96,7 +104,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 new BigDecimal(-25.00),
                 averageRating,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNull(tutorProfile);
     }
@@ -108,7 +117,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 hourlyRate,
                 -1,
-                createdAt);
+                createdAt,
+                isVerified);
 
         assertNull(tutorProfile);
     }
@@ -120,7 +130,8 @@ public class TutorProfileFactoryTest {
                 yearsExperience,
                 hourlyRate,
                 averageRating,
-                null);
+                null,
+                isVerified);
 
         assertNull(tutorProfile);
     }

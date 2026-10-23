@@ -25,6 +25,7 @@ class PaymentFactoryTest {
     PaymentStatus status = PaymentStatus.PENDING;
     LocalDateTime paidAt = LocalDateTime.now();
     PaymentMethod paymentMethod = PaymentMethod.PAYPAL;
+    String transactionReference = "PAY-01";
 
     @Test
     void createPayment() {
@@ -34,7 +35,8 @@ class PaymentFactoryTest {
                 platformFee,
                 status,
                 paidAt,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNotNull(payment);
         assertNotNull(payment.getPaymentId());
@@ -44,6 +46,7 @@ class PaymentFactoryTest {
         assertEquals(status, payment.getStatus());
         assertEquals(paidAt, payment.getPaidAt());
         assertEquals(paymentMethod, payment.getPaymentMethod());
+        assertEquals(transactionReference, payment.getTransactionReference());
     }
 
     @Test
@@ -54,7 +57,8 @@ class PaymentFactoryTest {
                 platformFee,
                 status,
                 paidAt,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNull(payment);
 
@@ -68,7 +72,8 @@ class PaymentFactoryTest {
                 platformFee,
                 status,
                 paidAt,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNull(payment);
 
@@ -82,7 +87,8 @@ class PaymentFactoryTest {
                 platformFee,
                 status,
                 paidAt,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNull(payment);
 
@@ -96,7 +102,8 @@ class PaymentFactoryTest {
                 null,
                 status,
                 paidAt,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNull(payment);
 
@@ -110,7 +117,8 @@ class PaymentFactoryTest {
                 platformFee,
                 null,
                 paidAt,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNull(payment);
 
@@ -124,7 +132,8 @@ class PaymentFactoryTest {
                 platformFee,
                 status,
                 null,
-                paymentMethod);
+                paymentMethod,
+                transactionReference);
 
         assertNull(payment);
 
@@ -138,7 +147,38 @@ class PaymentFactoryTest {
                 platformFee,
                 status,
                 paidAt,
+                null,
+                transactionReference);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithNullTransactionReference() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                platformFee,
+                status,
+                paidAt,
+                paymentMethod,
                 null);
+
+        assertNull(payment);
+
+    }
+
+    @Test
+    void createPaymentWithEmptyTransactionReference() {
+        Payment payment = PaymentFactory.createPayment(session,
+                amount,
+                tutorEarnings,
+                platformFee,
+                status,
+                paidAt,
+                paymentMethod,
+                "");
 
         assertNull(payment);
 

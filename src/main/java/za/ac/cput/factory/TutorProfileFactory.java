@@ -14,7 +14,8 @@ public class TutorProfileFactory {
             int yearsExperience,
             BigDecimal hourlyRate,
             double averageRating,
-            LocalDateTime createdAt) {
+            LocalDateTime createdAt,
+            boolean isVerified) {
 
         if (user == null ||
                 !HelperUtil.isZeroOrPositiveInteger(yearsExperience) ||
@@ -34,6 +35,7 @@ public class TutorProfileFactory {
                 .hourlyRate(hourlyRate)
                 .averageRating(averageRating)
                 .createdAt(createdAt)
+                .isVerified(isVerified)
                 .build();
     }
 }

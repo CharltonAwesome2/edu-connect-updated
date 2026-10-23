@@ -2,8 +2,11 @@ package za.ac.cput.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * User.java
@@ -14,9 +17,16 @@ import lombok.Data;
 
 @Data 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+    
     private String name;
     private String surname;
     private String studentNumber;

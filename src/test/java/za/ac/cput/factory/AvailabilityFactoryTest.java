@@ -26,7 +26,7 @@ public class AvailabilityFactoryTest {
                 false);
 
         assertNotNull(availability);
-        assertNotNull(availability.getAvailibilityId());
+        assertNotNull(availability.getAvailabilityId());
 
         assertEquals(profile, availability.getTutorProfile());
         assertEquals(dayOfWeek, availability.getDayOfWeek());

@@ -2,20 +2,35 @@ package za.ac.cput.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import za.ac.cput.enums.NotificationType;
 
-
-@Data 
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "notification")
 public class Notification {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long notificationId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
+
     private String title;
     private String message;
+
+    @Enumerated(EnumType.STRING)
     private NotificationType type;
+
     private boolean isRead;
     private LocalDateTime readAt;
 

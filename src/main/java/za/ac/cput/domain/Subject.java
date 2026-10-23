@@ -1,7 +1,10 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // Subject.java
 // Subject model class
@@ -10,9 +13,16 @@ import lombok.Data;
 
 @Data 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "subject")
 public class Subject {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long subjectId;
+    
     private String subjectName;
     private String subjectCode;
     private String department;
