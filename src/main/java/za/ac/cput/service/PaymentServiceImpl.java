@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Payment;
 import za.ac.cput.repository.PaymentRepository;
+import za.ac.cput.service.IService.IPaymentService;
 
 import java.util.List;
 

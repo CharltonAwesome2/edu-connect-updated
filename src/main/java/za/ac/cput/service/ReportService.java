@@ -11,10 +11,13 @@ package za.ac.cput.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import za.ac.cput.domain.Report;
 import za.ac.cput.repository.ReportRepository;
+import za.ac.cput.service.IService.IReportService;
 
+@Service
 public class ReportService implements IReportService {
 
     private final ReportRepository reportRepository;

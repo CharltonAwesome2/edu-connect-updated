@@ -9,10 +9,13 @@ package za.ac.cput.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import za.ac.cput.domain.Subject;
 import za.ac.cput.repository.SubjectRepository;
+import za.ac.cput.service.IService.ISubjectService;
 
+@Service
 public class SubjectService implements ISubjectService {
 
     private final SubjectRepository subjectRepository;

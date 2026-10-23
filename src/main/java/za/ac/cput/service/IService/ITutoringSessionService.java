@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.IService;
 
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutoringSession;
@@ -13,10 +13,12 @@ import java.util.List;
          * Date: 21 October 2026
          */
 
-public interface ITutoringSessionService extends service <TutoringSession, Long> {
+public interface ITutoringSessionService extends service<TutoringSession, Long> {
 
     List<TutoringSession> findByTutoringSessionId(Long tutoringSessionId);
     List<TutoringSession> findByTutorProfile(TutorProfile tutorProfile);
+    List<TutoringSession> findByTutorProfileId(Long tutorProfileId);
     List<TutoringSession> findByStudent(User student);
+    List<TutoringSession> findByStudentId(Long studentId);
 
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.TutorReview;
 import za.ac.cput.repository.TutorReviewRepository;
+import za.ac.cput.service.IService.ITutorReviewService;
 
 import java.util.List;
 
@@ -46,5 +47,15 @@ public class TutorReviewServiceImpl implements ITutorReviewService {
     @Override
     public List<TutorReview> getAll() {
         return tutorReviewRepository.findAll();
+    }
+
+    @Override
+    public List<TutorReview> findByTutorId(Long id) {
+        return tutorReviewRepository.findByTutorId(id);
+    }
+
+    @Override
+    public List<TutorReview> findByStudentId(Long id) {
+        return tutorReviewRepository.findByStudentId(id);
     }
 }

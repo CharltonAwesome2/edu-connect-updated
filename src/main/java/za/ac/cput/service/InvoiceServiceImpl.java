@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Invoice;
 import za.ac.cput.repository.InvoiceRepository;
+import za.ac.cput.service.IService.IInvoiceService;
 
 import java.util.List;
 

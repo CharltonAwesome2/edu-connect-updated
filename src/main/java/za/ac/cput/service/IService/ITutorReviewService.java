@@ -1,6 +1,8 @@
-package za.ac.cput.service;
+package za.ac.cput.service.IService;
 
 import za.ac.cput.domain.TutorReview;
+
+import java.util.List;
 
 /* ITutorReviewService.java
     ITutorReviewService interface
@@ -9,4 +11,7 @@ import za.ac.cput.domain.TutorReview;
 */
 
 public interface ITutorReviewService extends service<TutorReview, Long> {
+
+    List<TutorReview> findByTutorId(Long id);
+    List<TutorReview> findByStudentId(Long id);
 }

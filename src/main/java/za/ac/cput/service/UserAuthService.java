@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.User;
 import za.ac.cput.domain.UserAuth;
 import za.ac.cput.repository.UserAuthRepository;
+import za.ac.cput.service.IService.IUserAuthService;
 
 @Service
 public class UserAuthService implements IUserAuthService {
@@ -45,17 +46,17 @@ public class UserAuthService implements IUserAuthService {
     }
 
     @Override
-    public UserAuth getByUser(User user) {
+    public List<UserAuth> getByUser(User user) {
         return userAuthRepository.findByUser(user).orElse(null);
     }
 
     @Override
-    public UserAuth getByUserId(Long userId) {
+    public List<UserAuth> getByUserId(Long userId) {
         return userAuthRepository.findByUser_UserId(userId).orElse(null);
     }
 
     @Override
-    public UserAuth getByEmail(String email) {
+    public List<UserAuth> getByEmail(String email) {
         return userAuthRepository.findByUser_Email(email).orElse(null);
     }
 

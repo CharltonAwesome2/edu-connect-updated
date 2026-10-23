@@ -9,10 +9,13 @@ package za.ac.cput.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import za.ac.cput.domain.BookingRequest;
 import za.ac.cput.repository.BookingRequestRepository;
+import za.ac.cput.service.IService.IBookingRequestService;
 
+@Service
 public class BookingRequestService implements IBookingRequestService {
 
     private final BookingRequestRepository bookingRequestRepository;

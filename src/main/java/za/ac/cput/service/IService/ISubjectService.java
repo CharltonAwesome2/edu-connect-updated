@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.IService;
 
 import za.ac.cput.domain.Subject;
 
