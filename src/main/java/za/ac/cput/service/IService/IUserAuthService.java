@@ -1,9 +1,11 @@
+
 package za.ac.cput.service.IService;
 
 import za.ac.cput.domain.User;
 import za.ac.cput.domain.UserAuth;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IUserAuthService extends service<UserAuth, Long> {
 
@@ -15,4 +17,7 @@ public interface IUserAuthService extends service<UserAuth, Long> {
 
     boolean existsByUser(User user);
 
+    User register(Map<String, Object> body);
+
+    User verifyCredentials(String email, String password);
 }

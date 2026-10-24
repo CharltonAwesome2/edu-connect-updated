@@ -2,9 +2,13 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
+import za.ac.cput.enums.SessionStatus;
 import za.ac.cput.repository.TutoringSessionRepository;
 import za.ac.cput.service.IService.ITutoringSessionService;
 
@@ -21,15 +25,17 @@ import java.util.List;
 public class TutoringSessionService implements ITutoringSessionService {
 
     private final TutoringSessionRepository tutoringSessionRepository;
+    private final NotificationService notificationService;
 
     @Autowired
-    public TutoringSessionService(TutoringSessionRepository tutoringSessionRepository) {
+    public TutoringSessionService(TutoringSessionRepository tutoringSessionRepository,
+                                  NotificationService notificationService) {
         this.tutoringSessionRepository = tutoringSessionRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
     public TutoringSession create(TutoringSession session) {
-
         return tutoringSessionRepository.save(session);
     }
 
@@ -39,8 +45,21 @@ public class TutoringSessionService implements ITutoringSessionService {
     }
 
     @Override
+    @Transactional
     public TutoringSession update(TutoringSession session) {
-        return tutoringSessionRepository.save(session);
+        TutoringSession saved = tutoringSessionRepository.save(session);
+
+        if (saved.getStatus() == SessionStatus.COMPLETED && saved.getStudent() != null) {
+            notificationService.create(Notification.builder()
+                    .user(saved.getStudent())
+                    .title("Session completed")
+                    .message("Your tutoring session has been marked complete. Leave a review to help your tutor.")
+                    .type(NotificationType.SESSION_UPDATE)
+                    .isRead(false)
+                    .build());
+        }
+
+        return saved;
     }
 
     @Override
@@ -70,7 +89,7 @@ public class TutoringSessionService implements ITutoringSessionService {
 
     @Override
     public List<TutoringSession> findByStudent(User student) {
-        return  tutoringSessionRepository.findByStudent(student);
+        return tutoringSessionRepository.findByStudent(student);
     }
 
     @Override
