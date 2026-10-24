@@ -11,12 +11,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.NotificationType;
 import za.ac.cput.repository.NotificationRepository;
+import za.ac.cput.service.IService.INotificationService;
 
 @Service
 public class NotificationService implements INotificationService {

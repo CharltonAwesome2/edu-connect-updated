@@ -6,6 +6,7 @@ import za.ac.cput.domain.Subject;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorSubject;
 import za.ac.cput.repository.TutorSubjectRepository;
+import za.ac.cput.service.IService.ITutorSubjectService;
 
 import java.util.List;
 
@@ -62,7 +63,17 @@ public class TutorSubjectService implements ITutorSubjectService {
     }
 
     @Override
+    public List<TutorSubject> findByTutorProfileId(Long tutorProfileId) {
+        return tutorSubjectRepository.findByTutorProfile_TutorProfileId(tutorProfileId);
+    }
+
+    @Override
     public List<TutorSubject> findBySubject(Subject subject) {
         return tutorSubjectRepository.findBySubject(subject);
+    }
+
+    @Override
+    public List<TutorSubject> findBySubjectId(Long subjectId) {
+        return tutorSubjectRepository.findBySubject_SubjectId(subjectId);
     }
 }

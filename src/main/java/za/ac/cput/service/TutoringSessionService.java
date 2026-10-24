@@ -6,6 +6,7 @@ import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
 import za.ac.cput.repository.TutoringSessionRepository;
+import za.ac.cput.service.IService.ITutoringSessionService;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
          */
 
 @Service
-public class TutoringSessionService implements ITutoringSessionService{
+public class TutoringSessionService implements ITutoringSessionService {
 
     private final TutoringSessionRepository tutoringSessionRepository;
 
@@ -63,7 +64,17 @@ public class TutoringSessionService implements ITutoringSessionService{
     }
 
     @Override
+    public List<TutoringSession> findByTutorProfileId(Long tutorProfileId) {
+        return tutoringSessionRepository.findByTutorProfile_TutorProfileId(tutorProfileId);
+    }
+
+    @Override
     public List<TutoringSession> findByStudent(User student) {
         return  tutoringSessionRepository.findByStudent(student);
+    }
+
+    @Override
+    public List<TutoringSession> findByStudentId(Long studentId) {
+        return tutoringSessionRepository.findByStudent_UserId(studentId);
     }
 }

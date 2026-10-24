@@ -17,5 +17,7 @@ public interface TutorSubjectRepository  extends JpaRepository<TutorSubject, Lon
 
     List<TutorSubject> findByTutorSubjectId(Long tutorSubjectId);
     List<TutorSubject> findByTutorProfile(TutorProfile tutorProfile);
+    List<TutorSubject> findByTutorProfile_TutorProfileId(Long tutorProfileId);
     List<TutorSubject> findBySubject(Subject subject);
+    List<TutorSubject> findBySubject_SubjectId(Long subjectId);
 }

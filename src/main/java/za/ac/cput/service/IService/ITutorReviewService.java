@@ -1,12 +1,15 @@
+package za.ac.cput.service.IService;
+
+import za.ac.cput.domain.TutorReview;
+
+import java.util.List;
+
 /* ITutorReviewService.java
     ITutorReviewService interface
     Author: Ayabonga Jervasio Yawa (221241558)
     Date: 22 July 2026
 */
 
-package za.ac.cput.service;
-
-import java.util.List;
 
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorReview;

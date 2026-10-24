@@ -7,6 +7,7 @@ import za.ac.cput.domain.TutorReview;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
 import za.ac.cput.repository.TutorReviewRepository;
+import za.ac.cput.service.IService.ITutorReviewService;
 
 import java.util.List;
 

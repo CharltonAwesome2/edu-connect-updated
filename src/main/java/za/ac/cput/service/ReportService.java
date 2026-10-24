@@ -18,6 +18,7 @@ import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.ReportStatus;
 import za.ac.cput.repository.ReportRepository;
+import za.ac.cput.service.IService.IReportService;
 
 @Service
 public class ReportService implements IReportService {

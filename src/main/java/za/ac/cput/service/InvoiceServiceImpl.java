@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Invoice;
 import za.ac.cput.domain.Payment;
 import za.ac.cput.repository.InvoiceRepository;
+import za.ac.cput.service.IService.IInvoiceService;
 
 import java.time.LocalDateTime;
 import java.util.List;

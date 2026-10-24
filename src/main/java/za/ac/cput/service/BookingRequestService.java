@@ -18,7 +18,7 @@ import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.BookingStatus;
 import za.ac.cput.repository.BookingRequestRepository;
-
+import za.ac.cput.service.IService.IBookingRequestService;
 
 @Service
 public class BookingRequestService implements IBookingRequestService {

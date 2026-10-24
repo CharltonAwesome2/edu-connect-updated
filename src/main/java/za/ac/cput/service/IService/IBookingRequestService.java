@@ -1,9 +1,4 @@
-// IBookingRequestService.java
-// BookingRequest service interface
-// Author: Reotshepile Stock (230875807)
-// Date: 21 October 2026
-
-package za.ac.cput.service;
+package za.ac.cput.service.IService;
 
 import java.time.LocalDateTime;
 import java.util.List;

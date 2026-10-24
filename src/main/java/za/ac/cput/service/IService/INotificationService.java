@@ -1,12 +1,4 @@
-/*
-    INotificationService.java
-    Notification Service interface
-    Author: Nolwazi Zulu (220118876)
-    Date: 22 October 2026
-*/
-
-package za.ac.cput.service;
-
+package za.ac.cput.service.IService;
 import java.util.List;
 
 import za.ac.cput.domain.Notification;

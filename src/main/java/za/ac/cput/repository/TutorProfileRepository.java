@@ -16,4 +16,5 @@ public interface TutorProfileRepository extends JpaRepository<TutorProfile, Long
 
     List<TutorProfile> findByTutorProfileId(Long tutorProfileId);
     List<TutorProfile> findByUser(User user);
+    List<TutorProfile> findByUser_UserId(Long userId);
 }

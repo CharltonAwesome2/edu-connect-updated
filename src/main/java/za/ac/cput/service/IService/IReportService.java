@@ -1,11 +1,4 @@
-/*
-IReportService.java
-Report Service interface
-Author: Nolwazi Zulu (220118876)
-Date: 22 October 2026
-*/
-
-package za.ac.cput.service;
+package za.ac.cput.service.IService;
 
 import java.time.LocalDateTime;
 import java.util.List;

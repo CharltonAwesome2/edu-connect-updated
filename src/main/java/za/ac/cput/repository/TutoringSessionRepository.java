@@ -17,5 +17,7 @@ public interface TutoringSessionRepository extends JpaRepository<TutoringSession
 
     List<TutoringSession> findByTutoringSessionId(Long tutoringSessionId);
     List<TutoringSession> findByTutorProfile(TutorProfile tutorProfile);
+    List<TutoringSession> findByTutorProfile_TutorProfileId(Long tutorProfileId);
     List<TutoringSession> findByStudent(User student);
+    List<TutoringSession> findByStudent_UserId(Long studentId);
 }
