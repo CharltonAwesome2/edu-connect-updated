@@ -10,8 +10,29 @@ import java.util.List;
     Date: 22 July 2026
 */
 
+
+import za.ac.cput.domain.TutorProfile;
+import za.ac.cput.domain.TutorReview;
+import za.ac.cput.domain.TutoringSession;
+import za.ac.cput.domain.User;
+
 public interface ITutorReviewService extends service<TutorReview, Long> {
 
-    List<TutorReview> findByTutorId(Long id);
-    List<TutorReview> findByStudentId(Long id);
+    TutorReview getBySession(TutoringSession session);
+
+    boolean existsBySession(TutoringSession session);
+
+    List<TutorReview> getAllByStudent(User student);
+
+    List<TutorReview> getAllByStudentId(Long userId);
+
+    List<TutorReview> getAllByTutorProfile(TutorProfile tutorProfile);
+
+    List<TutorReview> getAllPublicByTutorProfile(TutorProfile tutorProfile);
+
+    List<TutorReview> getAllByTutorProfileWithMinRating(TutorProfile tutorProfile, int minRating);
+
+    double getAverageRating(TutorProfile tutorProfile);
+
+    long countByTutorProfile(TutorProfile tutorProfile);
 }
