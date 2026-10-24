@@ -97,4 +97,16 @@ public class TutorReviewServiceImpl implements ITutorReviewService {
     public long countByTutorProfile(TutorProfile tutorProfile) {
         return tutorReviewRepository.countByTutorProfile(tutorProfile);
     }
+
+    @Override
+    public List<TutorReview> findByStudentId(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByStudentId'");
+    }
+
+    @Override
+    public List<TutorReview> findByTutorId(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByTutorId'");
+    }
 }

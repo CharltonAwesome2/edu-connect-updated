@@ -12,7 +12,6 @@ import java.util.List;
 
 
 import za.ac.cput.domain.TutorProfile;
-import za.ac.cput.domain.TutorReview;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
 
@@ -35,4 +34,8 @@ public interface ITutorReviewService extends service<TutorReview, Long> {
     double getAverageRating(TutorProfile tutorProfile);
 
     long countByTutorProfile(TutorProfile tutorProfile);
+
+    List<TutorReview> findByStudentId(Long id);
+
+    List<TutorReview> findByTutorId(Long id);
 }
