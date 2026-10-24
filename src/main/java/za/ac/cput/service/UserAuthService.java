@@ -47,17 +47,17 @@ public class UserAuthService implements IUserAuthService {
 
     @Override
     public List<UserAuth> getByUser(User user) {
-        return userAuthRepository.findByUser(user).orElse(null);
+        return userAuthRepository.findByUser(user);
     }
 
     @Override
     public List<UserAuth> getByUserId(Long userId) {
-        return userAuthRepository.findByUser_UserId(userId).orElse(null);
+        return userAuthRepository.findByUser_UserId(userId);
     }
 
     @Override
     public List<UserAuth> getByEmail(String email) {
-        return userAuthRepository.findByUser_Email(email).orElse(null);
+        return userAuthRepository.findByUser_Email(email);
     }
 
     @Override

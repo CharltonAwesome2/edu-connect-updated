@@ -14,4 +14,5 @@ public interface IUserAuthService extends service<UserAuth, Long> {
     List<UserAuth> getByEmail(String email);
 
     boolean existsByUser(User user);
+
 }
