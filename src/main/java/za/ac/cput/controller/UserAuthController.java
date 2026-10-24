@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.User;
 import za.ac.cput.domain.UserAuth;
 import za.ac.cput.service.UserAuthService;
-import za.ac.cput.service.UserService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.security.authentication.BadCredentialsException;
 
 @RestController
 @RequestMapping("/api/v1/user-auth")
@@ -18,11 +18,9 @@ public class UserAuthController {
 
     private final UserAuthService userAuthService;
 
-    private final UserService userService;
 
-    public UserAuthController(UserAuthService userAuthService, UserService userService) {
+    public UserAuthController(UserAuthService userAuthService) {
         this.userAuthService = userAuthService;
-        this.userService = userService;
     }
 
     @PostMapping("/create")
@@ -82,57 +80,38 @@ public class UserAuthController {
 
     @PostMapping("/verify")
     public ResponseEntity<?> verify(@RequestBody Map<String, String> body) {
-        String email = body.get("email");
-        String password = body.get("password");
+        try {
+            User user = userAuthService.verifyCredentials(
+                    body.get("email"),
+                    body.get("password"));
 
-        User user = userService.getByEmail(email); // inject IUserService
-        if (user == null)
-            return ResponseEntity.status(404).body(Map.of("message", "No account with that email."));
+            return ResponseEntity.ok(user);
 
-        List<UserAuth> auths = userAuthService.getByUserId(user.getUserId());
-        if (auths.isEmpty())
-            return ResponseEntity.status(404).body(Map.of("message", "No credentials for this user."));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("message", e.getMessage()));
 
-        UserAuth auth = auths.get(0);
-        // If using BCrypt: if (!passwordEncoder.matches(password, auth.getPasswordHash()))
-        if (!password.equals(auth.getPasswordHash())) {
-            return ResponseEntity.status(401).body(Map.of("message", "Incorrect password."));
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("message", "Invalid email or password."));
         }
-
-        auth.setLastLogin(LocalDateTime.now());
-        userAuthService.update(auth);
-
-        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, Object> body) {
-        String email = (String) body.get("email");
-        String password = (String) body.get("password");
+        try {
+            User user = userAuthService.register(body);
 
-        if (userService.existsByEmail(email)) {
-            return ResponseEntity.status(409).body(Map.of("message", "Email already registered."));
+            return ResponseEntity.status(HttpStatus.CREATED).body(user);
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("message", e.getMessage()));
+
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("message", e.getMessage()));
         }
-
-        User user = User.builder()
-                .name((String) body.get("name"))
-                .surname((String) body.get("surname"))
-                .studentNumber((String) body.get("studentNumber"))
-                .email(email)
-                .contactNumber((String) body.get("contactNumber"))
-                .createdAt(LocalDateTime.now())
-                .isTutor(Boolean.TRUE.equals(body.get("isTutor")))
-                .isStudent(Boolean.TRUE.equals(body.get("isStudent")))
-                .build();
-        user = userService.create(user);
-
-        UserAuth auth = UserAuth.builder()
-                .user(user)
-                .passwordHash(password) 
-                .build();
-        userAuthService.create(auth);
-
-        return ResponseEntity.status(201).body(user);
     }
 
 }
