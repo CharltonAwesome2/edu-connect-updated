@@ -59,11 +59,6 @@ public class NotificationService implements INotificationService {
         return notificationRepository.findAllByUser(user);
     }
 
-    // @Override
-    // public List<Notification> getAllByUserId(Long userId) {
-    //     return notificationRepository.findAllByUser_UserId(userId);
-    // }
-
     @Override
     public List<Notification> getAllByType(NotificationType type) {
         return notificationRepository.findAllByType(type);

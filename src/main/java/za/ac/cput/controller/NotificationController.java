@@ -52,4 +52,22 @@ public class NotificationController {
     public List<Notification> getAll() {
         return notificationService.getAll();
     }
+
+    @GetMapping("/by-user-id/{userId}")
+    public List<Notification> getAllByUserId(@PathVariable Long userId) {
+        return notificationService.getAllByUserId(userId);
+    }
+
+    @PatchMapping("/{id}/read")
+    public ResponseEntity<Notification> markRead(@PathVariable Long id) {
+        Notification n = notificationService.markAsRead(id);
+        if (n == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(n, HttpStatus.OK);
+    }
+
+    @PatchMapping("/by-user-id/{userId}/read-all")
+    public ResponseEntity<Integer> markAllRead(@PathVariable Long userId) {
+        return new ResponseEntity<>(notificationService.markAllAsRead(userId), HttpStatus.OK);
+    }
 }

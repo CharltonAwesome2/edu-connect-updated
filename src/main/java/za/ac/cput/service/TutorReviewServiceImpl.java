@@ -2,10 +2,13 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorReview;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
 import za.ac.cput.repository.TutorReviewRepository;
 import za.ac.cput.service.IService.ITutorReviewService;
 
@@ -21,15 +24,31 @@ import java.util.List;
 public class TutorReviewServiceImpl implements ITutorReviewService {
 
     private final TutorReviewRepository tutorReviewRepository;
+    private final NotificationService notificationService;
 
     @Autowired
-    public TutorReviewServiceImpl(TutorReviewRepository tutorReviewRepository) {
+    public TutorReviewServiceImpl(TutorReviewRepository tutorReviewRepository,
+                                  NotificationService notificationService) {
         this.tutorReviewRepository = tutorReviewRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
+    @Transactional
     public TutorReview create(TutorReview tutorReview) {
-        return tutorReviewRepository.save(tutorReview);
+        TutorReview saved = tutorReviewRepository.save(tutorReview);
+
+        if (saved.getTutorProfile() != null && saved.getTutorProfile().getUser() != null) {
+            notificationService.create(Notification.builder()
+                    .user(saved.getTutorProfile().getUser())
+                    .title("New review received")
+                    .message("A student left you a " + saved.getRating() + "-star review.")
+                    .type(NotificationType.REVIEW_RECEIVED)
+                    .isRead(false)
+                    .build());
+        }
+
+        return saved;
     }
 
     @Override
@@ -100,13 +119,11 @@ public class TutorReviewServiceImpl implements ITutorReviewService {
 
     @Override
     public List<TutorReview> findByStudentId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByStudentId'");
+        return tutorReviewRepository.findAllByStudent_UserId(id);
     }
 
     @Override
     public List<TutorReview> findByTutorId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByTutorId'");
+        return tutorReviewRepository.findAllByTutorProfile_TutorProfileId(id);
     }
 }
