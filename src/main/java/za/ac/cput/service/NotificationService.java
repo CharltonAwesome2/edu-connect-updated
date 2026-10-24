@@ -13,7 +13,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.NotificationType;
@@ -60,24 +59,14 @@ public class NotificationService implements INotificationService {
         return notificationRepository.findAllByUser(user);
     }
 
-    @Override
-    public List<Notification> getAllByUserId(Long userId) {
-        return notificationRepository.findAllByUser_UserId(userId);
-    }
+    // @Override
+    // public List<Notification> getAllByUserId(Long userId) {
+    //     return notificationRepository.findAllByUser_UserId(userId);
+    // }
 
     @Override
     public List<Notification> getAllByType(NotificationType type) {
         return notificationRepository.findAllByType(type);
-    }
-
-    @Override
-    public List<Notification> getAllUnreadByUserId(Long userId) {
-        return notificationRepository.findAllUnreadByUserId(userId);
-    }
-
-    @Override
-    public long countUnreadByUserId(Long userId) {
-        return notificationRepository.countUnreadByUserId(userId);
     }
 
     @Override
@@ -96,13 +85,31 @@ public class NotificationService implements INotificationService {
 
     @Override
     public int markAllAsRead(Long userId) {
-        List<Notification> unread = notificationRepository.findAllUnreadByUserId(userId);
+        List<Notification> unread = notificationRepository.findAllByUser_UserIdAndReadFalse(userId);
+
         LocalDateTime now = LocalDateTime.now();
+
         for (Notification notification : unread) {
             notification.setRead(true);
             notification.setReadAt(now);
         }
+
         notificationRepository.saveAll(unread);
         return unread.size();
+    }
+
+    @Override
+    public List<Notification> getAllUnreadByUserId(Long userId) {
+        return notificationRepository.findAllByUser_UserIdAndIsReadFalse(userId);
+    }
+
+    @Override
+    public long countUnreadByUserId(Long userId) {
+        return notificationRepository.countByUser_UserIdAndIsReadFalse(userId);
+    }
+
+    @Override
+    public List<Notification> getAllByUserId(Long userId) {
+        return notificationRepository.findAllByUser_UserId(userId);
     }
 }

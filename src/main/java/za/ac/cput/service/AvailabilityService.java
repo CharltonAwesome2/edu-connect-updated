@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Availability;
 import za.ac.cput.repository.AvailabilityRepository;
 import za.ac.cput.service.IService.IAvailabilityService;

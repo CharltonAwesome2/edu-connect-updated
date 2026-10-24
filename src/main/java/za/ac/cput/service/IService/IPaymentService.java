@@ -11,7 +11,6 @@ import za.ac.cput.domain.Payment;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import za.ac.cput.domain.Payment;
 import za.ac.cput.domain.TutoringSession;
 import za.ac.cput.enums.PaymentMethod;
 import za.ac.cput.enums.PaymentStatus;

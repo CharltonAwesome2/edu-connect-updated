@@ -12,7 +12,6 @@ import za.ac.cput.domain.Invoice;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import za.ac.cput.domain.Invoice;
 import za.ac.cput.domain.Payment;
 
 public interface IInvoiceService extends service<Invoice, Long> {
