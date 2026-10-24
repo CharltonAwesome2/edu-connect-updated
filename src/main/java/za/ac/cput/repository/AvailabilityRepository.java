@@ -8,6 +8,8 @@ import za.ac.cput.domain.Availability;
 
 public interface AvailabilityRepository extends JpaRepository<Availability, Long>{
 
+    List<Availability> findByAvailabilityId(Long availabilityId);
+    List<Availability> findByTutorProfile_TutorProfileId(Long tutorProfileId);
     List<Availability> findAllByDayOfWeek(DayOfWeek dayOfWeek);
     
 }

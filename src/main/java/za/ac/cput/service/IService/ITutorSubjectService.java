@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.IService;
 
 import za.ac.cput.domain.Subject;
 import za.ac.cput.domain.TutorProfile;
@@ -13,9 +13,11 @@ import java.util.List;
          * Date: 21 October 2026
          */
 
-public interface ITutorSubjectService extends service<TutorSubject, Long>{
+public interface ITutorSubjectService extends service<TutorSubject, Long> {
 
     List<TutorSubject> findByTutorSubjectId(Long tutorSubjectId);
     List<TutorSubject> findByTutorProfile(TutorProfile tutorProfile);
+    List<TutorSubject> findByTutorProfileId(Long tutorProfileId);
     List<TutorSubject> findBySubject(Subject subject);
+    List<TutorSubject> findBySubjectId(Long subjectId);
 }

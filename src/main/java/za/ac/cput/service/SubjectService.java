@@ -1,18 +1,15 @@
-// SubjectService.java
-// Subject service class
-// Author: Reotshepile Stock (230875807)
-// Date: 21 Oct 2026
-
-
 package za.ac.cput.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import za.ac.cput.domain.Subject;
 import za.ac.cput.repository.SubjectRepository;
+import za.ac.cput.service.IService.ISubjectService;
 
+@Service
 public class SubjectService implements ISubjectService {
 
     private final SubjectRepository subjectRepository;
@@ -45,5 +42,30 @@ public class SubjectService implements ISubjectService {
     @Override
     public List<Subject> getAll() {
         return subjectRepository.findAll();
+    }
+
+    @Override
+    public Subject getBySubjectCode(String subjectCode) {
+        return subjectRepository.findBySubjectCode(subjectCode).orElse(null);
+    }
+
+    @Override
+    public boolean existsBySubjectCode(String subjectCode) {
+        return subjectRepository.existsBySubjectCode(subjectCode);
+    }
+
+    @Override
+    public boolean existsBySubjectName(String subjectName) {
+        return subjectRepository.existsBySubjectName(subjectName);
+    }
+
+    @Override
+    public List<Subject> getAllByDepartment(String department) {
+        return subjectRepository.findAllByDepartment(department);
+    }
+
+    @Override
+    public List<Subject> searchByName(String keyword) {
+        return subjectRepository.findAllBySubjectNameContainingIgnoreCase(keyword);
     }
 }

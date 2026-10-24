@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.User;
 import za.ac.cput.repository.TutorProfileRepository;
+import za.ac.cput.service.IService.ITutorProfileService;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
          */
 
 @Service
-public class TutorProfileService implements ITutorProfileService{
+public class TutorProfileService implements ITutorProfileService {
 
     private final TutorProfileRepository tutorProfileRepository;
 
@@ -58,5 +59,10 @@ public class TutorProfileService implements ITutorProfileService{
     @Override
     public List<TutorProfile> findByUser(User user) {
         return tutorProfileRepository.findByUser(user);
+    }
+
+    @Override
+    public List<TutorProfile> findByUserId(Long userId) {
+        return tutorProfileRepository.findByUser_UserId(userId);
     }
 }

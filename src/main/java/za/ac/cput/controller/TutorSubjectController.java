@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Subject;
 import za.ac.cput.domain.TutorProfile;
 import za.ac.cput.domain.TutorSubject;
-import za.ac.cput.service.ITutorSubjectService;
+import za.ac.cput.service.IService.ITutorSubjectService;
 
 import java.util.List;
 
-/**
- * TutorSubjectController.java
- * TutorSubject REST controller
- * Author: Esaile Franck Siani Djiakeng
- * Date: 21 October 2026
- */
+        /**
+         * TutorSubjectController.java
+         * TutorSubject REST controller
+         * Author: Esaile Franck Siani Djiakeng
+         * Date: 21 October 2026
+         */
 @RestController
 @RequestMapping("/api/tutor-subject")
 public class TutorSubjectController {
@@ -71,8 +71,18 @@ public class TutorSubjectController {
         return tutorSubjectService.findByTutorProfile(tutorProfile);
     }
 
+    @GetMapping("/by-tutor-profile-id/{tutorProfileId}")
+    public List<TutorSubject> findByTutorProfileId(@PathVariable Long tutorProfileId) {
+        return tutorSubjectService.findByTutorProfileId(tutorProfileId);
+    }
+
     @PostMapping("/by-subject")
     public List<TutorSubject> findBySubject(@RequestBody Subject subject) {
         return tutorSubjectService.findBySubject(subject);
+    }
+
+    @GetMapping("/by-subject-id/{subjectId}")
+    public List<TutorSubject> findBySubjectId(@PathVariable Long subjectId) {
+        return tutorSubjectService.findBySubjectId(subjectId);
     }
 }
