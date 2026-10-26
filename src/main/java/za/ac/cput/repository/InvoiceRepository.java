@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import za.ac.cput.domain.Invoice;
 import za.ac.cput.domain.Payment;
 
@@ -22,7 +25,15 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
     Optional<Invoice> findByPayment(Payment payment);
 
+    boolean existsByPayment(Payment payment);
+
     List<Invoice> findAllByIssuedDateBetween(LocalDateTime start, LocalDateTime end);
 
     List<Invoice> findAllByDueDateBefore(LocalDateTime date);
+
+    @Query ("SELECT COALESCE(MAX(i.invoiceNumber), '') FROM Invoice i " +
+           "WHERE i.invoiceNumber LIKE CONCAT(:prefix, '%')")
+    String findMaxInvoiceNumberByPrefix(@Param ("prefix") String prefix);
+
+    List<Invoice> findAllByPayment_Session_Student_UserId(Long userId);
 }
