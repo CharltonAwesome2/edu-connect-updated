@@ -32,7 +32,7 @@ CREATE TABLE `availability` (
   PRIMARY KEY (`availability_id`),
   KEY `fk_av_profile` (`tutor_profile_id`),
   CONSTRAINT `fk_av_profile` FOREIGN KEY (`tutor_profile_id`) REFERENCES `tutor_profile` (`tutor_profile_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `availability` (
 
 LOCK TABLES `availability` WRITE;
 /*!40000 ALTER TABLE `availability` DISABLE KEYS */;
-INSERT INTO `availability` VALUES (1,1,'MONDAY','2025-02-10 14:00:00','2025-02-10 18:00:00',1),(2,1,'WEDNESDAY','2025-02-12 14:00:00','2025-02-12 18:00:00',1),(3,2,'TUESDAY','2025-02-11 10:00:00','2025-02-11 13:00:00',1),(4,2,'THURSDAY','2025-02-13 10:00:00','2025-02-13 13:00:00',1),(5,2,'FRIDAY','2025-02-14 15:00:00','2025-02-14 19:00:00',1);
+INSERT INTO `availability` VALUES (1,1,'MONDAY','2025-02-10 14:00:00','2025-02-10 18:00:00',1),(2,1,'WEDNESDAY','2025-02-12 14:00:00','2025-02-12 18:00:00',1),(3,2,'TUESDAY','2025-02-11 10:00:00','2025-02-11 13:00:00',1),(4,2,'THURSDAY','2025-02-13 10:00:00','2025-02-13 13:00:00',1),(5,2,'FRIDAY','2025-02-14 15:00:00','2025-02-14 19:00:00',1),(6,2,'SUNDAY','2026-10-24 09:00:00','2026-10-24 12:00:00',1);
 /*!40000 ALTER TABLE `availability` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ CREATE TABLE `booking_requests` (
   `subject_id` bigint NOT NULL,
   `requested_start_time` datetime NOT NULL,
   `duration_minutes` int NOT NULL,
-  `status` enum('PENDING','APPROVED','REJECTED','CANCELED','EXPIRED') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
+  `status` enum('PENDING','APPROVED','REJECTED','CANCELED','EXPIRED','DECLINED') COLLATE utf8mb4_unicode_ci NOT NULL,
   `student_notes` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`booking_request_id`),
   KEY `fk_br_tutor` (`tutor_profile_id`),
@@ -70,7 +70,7 @@ CREATE TABLE `booking_requests` (
   CONSTRAINT `fk_br_subject` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
   CONSTRAINT `fk_br_tutor` FOREIGN KEY (`tutor_profile_id`) REFERENCES `tutor_profile` (`tutor_profile_id`),
   CONSTRAINT `chk_duration` CHECK ((`duration_minutes` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `booking_requests` (
 
 LOCK TABLES `booking_requests` WRITE;
 /*!40000 ALTER TABLE `booking_requests` DISABLE KEYS */;
-INSERT INTO `booking_requests` VALUES (1,1,1,3,'2025-02-10 14:00:00',60,'APPROVED','Struggling with loops and functions.'),(2,2,2,1,'2025-02-11 10:00:00',90,'APPROVED','Need help preparing for midterm.'),(3,5,1,4,'2025-02-12 15:00:00',60,'PENDING','Would like to go over binary trees.'),(4,1,2,2,'2025-02-13 16:00:00',60,'REJECTED','Requested slot clashes with tutor.'),(5,2,1,3,'2025-02-14 16:00:00',60,'CANCELED','Changed my mind.');
+INSERT INTO `booking_requests` VALUES (1,1,1,3,'2025-02-10 14:00:00',60,'APPROVED','Struggling with loops and functions.'),(2,2,2,1,'2025-02-11 10:00:00',90,'APPROVED','Need help preparing for midterm.'),(3,5,1,4,'2025-02-12 15:00:00',60,'DECLINED','Would like to go over binary trees.'),(4,1,2,2,'2025-02-13 16:00:00',60,'REJECTED','Requested slot clashes with tutor.'),(5,2,1,3,'2025-02-14 16:00:00',60,'CANCELED','Changed my mind.'),(6,4,2,2,'2025-02-13 10:00:00',60,'DECLINED',''),(7,4,2,1,'2025-02-13 10:00:00',60,'DECLINED',''),(8,4,2,2,'2025-02-14 15:00:00',60,'APPROVED',''),(9,6,2,1,'2025-02-13 10:00:00',60,'APPROVED',''),(10,6,2,2,'2025-02-13 10:00:00',90,'DECLINED',''),(11,4,1,3,'2025-02-12 14:00:00',60,'DECLINED',''),(12,4,1,4,'2025-02-12 14:00:00',60,'DECLINED',''),(13,6,1,3,'2025-02-12 14:00:00',60,'APPROVED',''),(14,6,1,4,'2025-02-12 14:00:00',60,'APPROVED',''),(15,1,2,2,'2025-02-14 15:00:00',60,'APPROVED',''),(16,1,1,4,'2025-02-12 14:00:00',30,'APPROVED',''),(17,7,2,6,'2025-02-14 15:00:00',30,'APPROVED','');
 /*!40000 ALTER TABLE `booking_requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`notification_id`),
   KEY `idx_notif_user_unread` (`user_id`,`is_read`),
   CONSTRAINT `fk_n_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-INSERT INTO `notification` VALUES (1,1,'Booking approved','Your booking with Sipho Ndlovu has been approved.','BOOKING_CONFIRMATION',1,'2025-02-09 18:00:00'),(2,1,'Session reminder','Reminder: session with Sipho Ndlovu starts in 1 hour.','BOOKING_REMINDER',1,'2025-02-10 13:00:00'),(3,2,'Payment received','Your payment of R375.00 was successful.','PAYMENT_CONFIRMATION',1,'2025-02-11 11:46:00'),(4,3,'New review received','Thabo Mokoena left you a 5-star review.','REVIEW_RECEIVED',0,NULL),(5,5,'Booking pending approval','Your booking request is awaiting tutor approval.','SESSION_UPDATE',0,NULL);
+INSERT INTO `notification` VALUES (1,1,'Booking approved','Your booking with Sipho Ndlovu has been approved.','BOOKING_CONFIRMATION',1,'2026-10-24 11:37:02'),(2,1,'Session reminder','Reminder: session with Sipho Ndlovu starts in 1 hour.','BOOKING_REMINDER',1,'2026-10-24 11:37:02'),(3,2,'Payment received','Your payment of R375.00 was successful.','PAYMENT_CONFIRMATION',1,'2025-02-11 11:46:00'),(4,3,'New review received','Thabo Mokoena left you a 5-star review.','REVIEW_RECEIVED',0,'2026-10-24 11:20:22'),(5,5,'Booking pending approval','Your booking request is awaiting tutor approval.','SESSION_UPDATE',0,NULL),(6,1,'Booking approved','Your tutoring request was approved. Check your dashboard for the scheduled session.','BOOKING_CONFIRMATION',1,'2026-10-24 13:48:27'),(7,1,'Session completed','Your tutoring session has been marked complete. Leave a review to help your tutor.','SESSION_UPDATE',1,'2026-10-24 13:58:42'),(8,3,'New review received','A student left you a 5-star review.','REVIEW_RECEIVED',0,NULL),(9,7,'Booking approved','Your tutoring request was approved. Check your dashboard for the scheduled session.','BOOKING_CONFIRMATION',1,'2026-10-24 14:14:49'),(10,7,'Session completed','Your tutoring session has been marked complete. Leave a review to help your tutor.','SESSION_UPDATE',1,'2026-10-24 14:15:07'),(11,4,'New review received','A student left you a 5-star review.','REVIEW_RECEIVED',1,'2026-10-24 14:15:29');
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +256,7 @@ CREATE TABLE `subject` (
   `subject_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `department` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,7 +265,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,'Calculus I','MATH101','Mathematics'),(2,'Linear Algebra','MATH201','Mathematics'),(3,'Introduction to Programming','CS101','Computer Science'),(4,'Data Structures','CS201','Computer Science'),(5,'Organic Chemistry','CHEM201','Chemistry');
+INSERT INTO `subject` VALUES (1,'Calculus I','MATH101','Mathematics'),(2,'Linear Algebra','MATH201','Mathematics'),(3,'Introduction to Programming','CS101','Computer Science'),(4,'Data Structures','CS201','Computer Science'),(5,'Organic Chemistry','CHEM201','Chemistry'),(6,'Application Development','ADP3','Science'),(7,'Projects','PRT3','Engineering'),(8,'Projects','PRT3','Science');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +328,7 @@ CREATE TABLE `tutor_review` (
   CONSTRAINT `fk_rev_student` FOREIGN KEY (`student_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `fk_rev_tutor` FOREIGN KEY (`tutor_profile_id`) REFERENCES `tutor_profile` (`tutor_profile_id`),
   CONSTRAINT `chk_rating` CHECK ((`rating` between 1 and 5))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,7 +337,7 @@ CREATE TABLE `tutor_review` (
 
 LOCK TABLES `tutor_review` WRITE;
 /*!40000 ALTER TABLE `tutor_review` DISABLE KEYS */;
-INSERT INTO `tutor_review` VALUES (1,1,1,1,5,'Sipho made functions click for me!','Very patient and clear explanations.','Could share more practice problems.','2025-02-10 18:00:00',1),(2,2,2,2,4,'Great session, very helpful.','Deep subject knowledge.','Would like more worked examples.','2025-02-11 14:00:00',1);
+INSERT INTO `tutor_review` VALUES (1,2,2,2,3,'Very nice','','','2026-10-24 10:39:16',0),(2,4,6,1,5,'Amazing','','','2026-10-24 11:16:25',1),(3,5,6,1,4,'Great','','','2026-10-24 11:20:02',1),(4,6,1,2,5,'Enjoyable','','','2026-10-24 11:36:56',1),(5,7,1,1,5,'Fun','','','2026-10-24 11:59:03',1),(6,8,7,2,5,'Very helpful','','','2026-10-24 12:15:22',1);
 /*!40000 ALTER TABLE `tutor_review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,7 +357,7 @@ CREATE TABLE `tutor_subject` (
   KEY `fk_ts_subject` (`subject_id`),
   CONSTRAINT `fk_ts_profile` FOREIGN KEY (`tutor_profile_id`) REFERENCES `tutor_profile` (`tutor_profile_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_ts_subject` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,7 +366,7 @@ CREATE TABLE `tutor_subject` (
 
 LOCK TABLES `tutor_subject` WRITE;
 /*!40000 ALTER TABLE `tutor_subject` DISABLE KEYS */;
-INSERT INTO `tutor_subject` VALUES (1,1,3),(2,1,4),(3,2,1),(4,2,2);
+INSERT INTO `tutor_subject` VALUES (1,1,3),(2,1,4),(3,2,1),(4,2,2),(5,2,6);
 /*!40000 ALTER TABLE `tutor_subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,7 +400,7 @@ CREATE TABLE `tutoring_session` (
   CONSTRAINT `fk_s_subject` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
   CONSTRAINT `fk_s_tutor` FOREIGN KEY (`tutor_profile_id`) REFERENCES `tutor_profile` (`tutor_profile_id`),
   CONSTRAINT `chk_times` CHECK ((`end_time` > `start_time`))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -409,7 +409,7 @@ CREATE TABLE `tutoring_session` (
 
 LOCK TABLES `tutoring_session` WRITE;
 /*!40000 ALTER TABLE `tutoring_session` DISABLE KEYS */;
-INSERT INTO `tutoring_session` VALUES (1,1,1,1,3,'2025-02-10 14:00:00','2025-02-10 15:00:00','COMPLETED','Covered loops and functions.','2025-02-10 15:05:00','2025-02-10 15:05:00'),(2,2,2,2,1,'2025-02-11 10:00:00','2025-02-11 11:30:00','COMPLETED','Worked through past exam papers.','2025-02-11 11:35:00','2025-02-11 11:35:00'),(3,3,5,1,4,'2025-02-12 15:00:00','2025-02-12 16:00:00','SCHEDULED','Pending approval finalised.','2025-02-12 09:00:00','2025-02-12 09:00:00');
+INSERT INTO `tutoring_session` VALUES (1,1,1,1,3,'2025-02-10 14:00:00','2025-02-10 15:00:00','COMPLETED','Covered loops and functions.','2025-02-10 15:05:00','2025-02-10 15:05:00'),(2,2,2,2,1,'2025-02-11 10:00:00','2025-02-11 11:30:00','COMPLETED','Worked through past exam papers.','2025-02-11 11:35:00','2025-02-11 11:35:00'),(3,3,5,1,4,'2025-02-12 15:00:00','2025-02-12 16:00:00','COMPLETED','Pending approval finalised.','2025-02-12 09:00:00','2026-10-24 11:05:37'),(4,13,6,1,3,'2025-02-12 14:00:00','2025-02-12 15:00:00','COMPLETED','','2026-10-24 13:15:54','2026-10-24 11:16:01'),(5,14,6,1,4,'2025-02-12 14:00:00','2025-02-12 15:00:00','COMPLETED','','2026-10-24 13:19:33','2026-10-24 11:19:39'),(6,15,1,2,2,'2025-02-14 15:00:00','2025-02-14 16:00:00','COMPLETED','','2026-10-24 13:33:15','2026-10-24 11:34:47'),(7,16,1,1,4,'2025-02-12 14:00:00','2025-02-12 14:30:00','COMPLETED','','2026-10-24 13:48:14','2026-10-24 11:58:34'),(8,17,7,2,6,'2025-02-14 15:00:00','2025-02-14 15:30:00','COMPLETED','','2026-10-24 14:14:38','2026-10-24 12:14:58');
 /*!40000 ALTER TABLE `tutoring_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -428,7 +428,7 @@ CREATE TABLE `user_auth` (
   PRIMARY KEY (`user_auth_id`),
   UNIQUE KEY `uq_auth_user` (`user_id`),
   CONSTRAINT `fk_auth_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -437,7 +437,7 @@ CREATE TABLE `user_auth` (
 
 LOCK TABLES `user_auth` WRITE;
 /*!40000 ALTER TABLE `user_auth` DISABLE KEYS */;
-INSERT INTO `user_auth` VALUES (1,1,'$2a$12$Zv6kk5NZ/JH4ifZnhVjH0OQd7Kuv06cYQO2MoN9sOjhO.dIeitsZ6','2025-01-10 08:15:00'),(2,2,'$2a$12$Zv6kk5NZ/JH4ifZnhVjH0OQd7Kuv06cYQO2MoN9sOjhO.dIeitsZ6','2025-01-11 09:30:00'),(3,3,'$2a$12$Zv6kk5NZ/JH4ifZnhVjH0OQd7Kuv06cYQO2MoN9sOjhO.dIeitsZ6','2025-01-12 10:45:00'),(4,4,'$2a$12$Zv6kk5NZ/JH4ifZnhVjH0OQd7Kuv06cYQO2MoN9sOjhO.dIeitsZ6','2025-01-12 14:20:00'),(5,5,'$2a$12$Zv6kk5NZ/JH4ifZnhVjH0OQd7Kuv06cYQO2MoN9sOjhO.dIeitsZ6',NULL);
+INSERT INTO `user_auth` VALUES (1,1,'$2a$12$BFyrW/htwovkiylUFZzszOgxKcPz6XCf2fsGruC65oCfpAgMt7kSa','2026-10-24 13:45:45'),(2,2,'$2a$12$BFyrW/htwovkiylUFZzszOgxKcPz6XCf2fsGruC65oCfpAgMt7kSa','2026-10-24 11:10:53'),(3,3,'$2a$12$BFyrW/htwovkiylUFZzszOgxKcPz6XCf2fsGruC65oCfpAgMt7kSa','2026-10-24 13:45:41'),(4,4,'$2a$12$BFyrW/htwovkiylUFZzszOgxKcPz6XCf2fsGruC65oCfpAgMt7kSa','2026-10-24 14:13:50'),(5,5,'$2a$12$BFyrW/htwovkiylUFZzszOgxKcPz6XCf2fsGruC65oCfpAgMt7kSa',NULL),(6,6,'$2a$12$BFyrW/htwovkiylUFZzszOgxKcPz6XCf2fsGruC65oCfpAgMt7kSa','2026-10-25 16:29:43'),(7,7,'$2a$10$CKA15FA1W8dmUBx960HcEu9cegfJCWmE47unLt1U5PMUJgzwxpIZS','2026-10-24 14:07:29');
 /*!40000 ALTER TABLE `user_auth` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -488,7 +488,7 @@ CREATE TABLE `users` (
   `is_tutor` tinyint(1) NOT NULL DEFAULT '0',
   `is_student` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,7 +497,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Thabo','Mokoena','STU001','thabo.mokoena@example.com','+27821234567','2025-01-05 09:00:00',0,1),(2,'Lerato','Dlamini','STU002','lerato.dlamini@example.com','+27827654321','2025-01-06 09:00:00',0,1),(3,'Sipho','Ndlovu','TUT001','sipho.ndlovu@example.com','+27831112222','2025-01-07 09:00:00',1,0),(4,'Aisha','Patel','TUT002','aisha.patel@example.com','+27833334444','2025-01-08 09:00:00',1,1),(5,'Kagiso','Molefe','STU003','kagiso.molefe@example.com','+27825556666','2025-01-09 09:00:00',0,1);
+INSERT INTO `users` VALUES (1,'Thabo','Mokoena','STU001','thabo.mokoena@example.com','+27821234567','2025-01-05 09:00:00',0,1),(2,'Lerato','Dlamini','STU002','lerato.dlamini@example.com','+27827654321','2025-01-06 09:00:00',0,1),(3,'Sipho','Ndlovu','TUT001','sipho.ndlovu@example.com','+27831112222','2025-01-07 09:00:00',1,0),(4,'Aisha','Patel','TUT002','aisha.patel@example.com','+27833334444','2025-01-08 09:00:00',1,1),(5,'Kagiso','Molefe','STU003','kagiso.molefe@example.com','+27825556666','2025-01-09 09:00:00',0,1),(6,'StudentUser1','StudentSurname','Test-001','test@test.com','','2026-10-24 11:54:58',0,1),(7,'Charlton','Solomons','220483418','testuser@test.com',NULL,'2026-10-24 14:07:17',0,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -510,4 +510,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-23 11:02:54
+-- Dump completed on 2026-10-26 11:06:25
