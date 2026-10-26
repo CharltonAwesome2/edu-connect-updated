@@ -30,4 +30,8 @@ public interface IPaymentService extends service<Payment, Long> {
     List<Payment> getAllByPaidAtBetween(LocalDateTime start, LocalDateTime end);
 
     Payment updateStatus(Long id, PaymentStatus status);
+
+    List<Payment> getAllByStudentId(Long userId);
+
+    List<Payment> getAllByTutorProfileId(Long tutorProfileId);
 }

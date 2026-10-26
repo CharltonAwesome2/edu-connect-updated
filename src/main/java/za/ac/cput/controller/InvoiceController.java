@@ -87,4 +87,9 @@ public class InvoiceController {
     public List<Invoice> getAllDueBefore(@RequestParam LocalDateTime date) {
         return invoiceService.getAllDueBefore(date);
     }
+
+    @GetMapping("/by-student-id/{userId}")
+    public List<Invoice> getAllByStudentId(@PathVariable Long userId) {
+        return invoiceService.getAllByStudentId(userId);
+    }
 }

@@ -29,4 +29,10 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Payment> findAllByPaymentMethod(PaymentMethod paymentMethod);
 
     List<Payment> findAllByPaidAtBetween(LocalDateTime start, LocalDateTime end);
+
+    boolean existsBySession(TutoringSession session);  
+
+    List<Payment> findAllBySession_Student_UserId(Long userId);
+
+    List<Payment> findAllBySession_TutorProfile_TutorProfileId(Long tutorProfileId);
 }
