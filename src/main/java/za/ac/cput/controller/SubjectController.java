@@ -52,4 +52,32 @@ public class SubjectController {
     public List<Subject> getAll() {
         return subjectService.getAll();
     }
+
+    @GetMapping("/by-subject-code")
+    public ResponseEntity<Subject> getBySubjectCode(@RequestParam String subjectCode) {
+        Subject subject = subjectService.getBySubjectCode(subjectCode);
+        if (subject == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(subject, HttpStatus.OK);
+    }
+
+    @GetMapping("/exists-by-subject-code")
+    public ResponseEntity<Boolean> existsBySubjectCode(@RequestParam String subjectCode) {
+        return new ResponseEntity<>(subjectService.existsBySubjectCode(subjectCode), HttpStatus.OK);
+    }
+
+    @GetMapping("/exists-by-subject-name")
+    public ResponseEntity<Boolean> existsBySubjectName(@RequestParam String subjectName) {
+        return new ResponseEntity<>(subjectService.existsBySubjectName(subjectName), HttpStatus.OK);
+    }
+
+    @GetMapping("/by-department")
+    public List<Subject> getAllByDepartment(@RequestParam String department) {
+        return subjectService.getAllByDepartment(department);
+    }
+
+    @GetMapping("/search")
+    public List<Subject> searchByName(@RequestParam String keyword) {
+        return subjectService.searchByName(keyword);
+    }
 }

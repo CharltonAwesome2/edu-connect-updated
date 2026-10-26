@@ -4,8 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Invoice;
+import za.ac.cput.domain.Payment;
 import za.ac.cput.service.IService.IInvoiceService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -51,5 +53,38 @@ public class InvoiceController {
     @GetMapping("/all")
     public List<Invoice> getAll() {
         return invoiceService.getAll();
+    }
+
+    @GetMapping("/by-invoice-number")
+    public ResponseEntity<Invoice> getByInvoiceNumber(@RequestParam String invoiceNumber) {
+        Invoice invoice = invoiceService.getByInvoiceNumber(invoiceNumber);
+        if (invoice == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(invoice, HttpStatus.OK);
+    }
+
+    @GetMapping("/exists-by-invoice-number")
+    public ResponseEntity<Boolean> existsByInvoiceNumber(@RequestParam String invoiceNumber) {
+        return new ResponseEntity<>(invoiceService.existsByInvoiceNumber(invoiceNumber), HttpStatus.OK);
+    }
+
+    @PostMapping("/by-payment")
+    public ResponseEntity<Invoice> getByPayment(@RequestBody Payment payment) {
+        Invoice invoice = invoiceService.getByPayment(payment);
+        if (invoice == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(invoice, HttpStatus.OK);
+    }
+
+    @GetMapping("/by-issued-date-between")
+    public List<Invoice> getAllByIssuedDateBetween(
+            @RequestParam LocalDateTime start,
+            @RequestParam LocalDateTime end) {
+        return invoiceService.getAllByIssuedDateBetween(start, end);
+    }
+
+    @GetMapping("/due-before")
+    public List<Invoice> getAllDueBefore(@RequestParam LocalDateTime date) {
+        return invoiceService.getAllDueBefore(date);
     }
 }
