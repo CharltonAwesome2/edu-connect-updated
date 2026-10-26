@@ -92,4 +92,14 @@ public class PaymentServiceImpl implements IPaymentService {
         payment.setStatus(status);
         return paymentRepository.save(payment);
     }
+
+    @Override
+    public List<Payment> getAllByStudentId(Long userId) {
+        return paymentRepository.findAllBySession_Student_UserId(userId);
+    }
+
+    @Override
+    public List<Payment> getAllByTutorProfileId(Long tutorProfileId) {
+        return paymentRepository.findAllBySession_TutorProfile_TutorProfileId(tutorProfileId);
+    }
 }

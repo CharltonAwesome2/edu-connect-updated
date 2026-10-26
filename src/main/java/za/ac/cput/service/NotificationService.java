@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import za.ac.cput.domain.Notification;
 import za.ac.cput.domain.User;
 import za.ac.cput.enums.NotificationType;
@@ -79,11 +80,14 @@ public class NotificationService implements INotificationService {
     }
 
     @Override
+    @Transactional 
     public int markAllAsRead(Long userId) {
-        List<Notification> unread = notificationRepository.findAllByUser_UserIdAndReadFalse(userId);
+        List<Notification> unread = notificationRepository.findAllByUser_UserIdAndIsReadFalse(userId);
+
+        if (unread.isEmpty())
+            return 0;
 
         LocalDateTime now = LocalDateTime.now();
-
         for (Notification notification : unread) {
             notification.setRead(true);
             notification.setReadAt(now);

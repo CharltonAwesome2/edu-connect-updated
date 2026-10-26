@@ -3,6 +3,7 @@ package za.ac.cput.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import za.ac.cput.service.IService.IPaymentService;
 import za.ac.cput.domain.Payment;
 import za.ac.cput.domain.TutoringSession;
@@ -103,5 +104,32 @@ public class PaymentController {
         if (updated == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(updated, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/pay")
+    public ResponseEntity<Payment> markPaid(
+            @PathVariable Long id,
+            @RequestParam PaymentMethod method,
+            @RequestParam(required = false) String reference) {
+
+        Payment p = paymentService.read(id);
+        if (p == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        p.setStatus(PaymentStatus.PAID);
+        p.setPaymentMethod(method);
+        p.setTransactionReference(reference);
+        p.setPaidAt(LocalDateTime.now());
+        return new ResponseEntity<>(paymentService.update(p), HttpStatus.OK);
+    }
+
+    @GetMapping("/by-student-id/{userId}")
+    public List<Payment> getAllByStudentId(@PathVariable Long userId) {
+        return paymentService.getAllByStudentId(userId);
+    }
+
+    @GetMapping("/by-tutor-profile-id/{tutorProfileId}")
+    public List<Payment> getAllByTutorProfileId(@PathVariable Long tutorProfileId) {
+        return paymentService.getAllByTutorProfileId(tutorProfileId);
     }
 }

@@ -1,6 +1,11 @@
 package za.ac.cput.service.IService;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import za.ac.cput.domain.Invoice;
+import za.ac.cput.domain.Payment;
+
 
 /* IInvoiceService.java
     IInvoiceService interface
@@ -8,11 +13,6 @@ import za.ac.cput.domain.Invoice;
     Date: 22 July 2026
 */
 
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import za.ac.cput.domain.Payment;
 
 public interface IInvoiceService extends service<Invoice, Long> {
 
@@ -25,4 +25,8 @@ public interface IInvoiceService extends service<Invoice, Long> {
     List<Invoice> getAllByIssuedDateBetween(LocalDateTime start, LocalDateTime end);
 
     List<Invoice> getAllDueBefore(LocalDateTime date);
+
+    Invoice createForPayment(Payment payment);
+
+    List<Invoice> getAllByStudentId(Long userId);
 }
