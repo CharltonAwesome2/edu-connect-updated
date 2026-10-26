@@ -1,8 +1,9 @@
 package za.ac.cput.enums;
 
 public enum PaymentMethod {
-    CREDIT_CARD,
-    DEBIT_CARD,
+    CARD,
+    EFT,
+    SNAPSCAN,
     PAYPAL,
     BANK_TRANSFER,
     CASH

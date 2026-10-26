@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Notification;
+import za.ac.cput.domain.User;
+import za.ac.cput.enums.NotificationType;
 import za.ac.cput.service.IService.INotificationService;
 
 import java.util.List;
@@ -69,5 +71,25 @@ public class NotificationController {
     @PatchMapping("/by-user-id/{userId}/read-all")
     public ResponseEntity<Integer> markAllRead(@PathVariable Long userId) {
         return new ResponseEntity<>(notificationService.markAllAsRead(userId), HttpStatus.OK);
+    }
+
+    @PostMapping("/by-user")
+    public List<Notification> getAllByUser(@RequestBody User user) {
+        return notificationService.getAllByUser(user);
+    }
+
+    @GetMapping("/by-type/{type}")
+    public List<Notification> getAllByType(@PathVariable NotificationType type) {
+        return notificationService.getAllByType(type);
+    }
+
+    @GetMapping("/unread/by-user-id/{userId}")
+    public List<Notification> getAllUnreadByUserId(@PathVariable Long userId) {
+        return notificationService.getAllUnreadByUserId(userId);
+    }
+
+    @GetMapping("/unread/count/by-user-id/{userId}")
+    public ResponseEntity<Long> countUnreadByUserId(@PathVariable Long userId) {
+        return new ResponseEntity<>(notificationService.countUnreadByUserId(userId), HttpStatus.OK);
     }
 }
