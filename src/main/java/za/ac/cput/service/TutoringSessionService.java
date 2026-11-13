@@ -78,15 +78,19 @@ public class TutoringSessionService implements ITutoringSessionService {
     }
 
     private Payment createPaymentIfMissing(TutoringSession session) {
-        if (session.getTutoringSessionId() == null) return null;
+        if (session.getTutoringSessionId() == null)
+            return null;
 
         var existing = paymentRepository.findBySession(session);
-        if (existing.isPresent()) return existing.get();
+        if (existing.isPresent())
+            return existing.get();
 
-        if (session.getTutorProfile() == null) return null;
+        if (session.getTutorProfile() == null)
+            return null;
 
         BigDecimal hourlyRate = session.getTutorProfile().getHourlyRate();
-        if (hourlyRate == null) hourlyRate = BigDecimal.ZERO;
+        if (hourlyRate == null)
+            hourlyRate = BigDecimal.ZERO;
 
         BigDecimal hours = computeDurationHours(session);
         BigDecimal amount = hourlyRate.multiply(hours).setScale(2, RoundingMode.HALF_UP);
@@ -99,7 +103,7 @@ public class TutoringSessionService implements ITutoringSessionService {
                 .platformFee(fee)
                 .tutorEarnings(earnings)
                 .status(PaymentStatus.PENDING)
-                .paymentMethod(PaymentMethod.CARD)   // placeholder; overwritten on pay
+                .paymentMethod(PaymentMethod.CARD)
                 .build();
 
         return paymentRepository.save(payment);
@@ -110,38 +114,57 @@ public class TutoringSessionService implements ITutoringSessionService {
             return BigDecimal.ZERO;
         }
         long minutes = Duration.between(session.getStartTime(), session.getEndTime()).toMinutes();
-        if (minutes <= 0) return BigDecimal.ZERO;
+        if (minutes <= 0)
+            return BigDecimal.ZERO;
         return BigDecimal.valueOf(minutes)
                 .divide(BigDecimal.valueOf(60), 4, RoundingMode.HALF_UP);
     }
 
     private void notifyStudentOfCompletion(TutoringSession session) {
-        if (session.getStudent() == null) return;
+        if (session.getStudent() == null)
+            return;
         notificationService.create(Notification.builder()
                 .user(session.getStudent())
                 .title("Session completed")
                 .message("Your tutoring session has been marked complete. " +
-                         "An invoice has been generated — settle it from the Payments page.")
+                        "An invoice has been generated. Settle it from the Payments page.")
                 .type(NotificationType.SESSION_UPDATE)
                 .isRead(false)
                 .build());
     }
 
-    @Override public void delete(Long id) { tutoringSessionRepository.deleteById(id); }
-    @Override public List<TutoringSession> getAll() { return tutoringSessionRepository.findAll(); }
-    @Override public List<TutoringSession> findByTutoringSessionId(Long id) {
+    @Override
+    public void delete(Long id) {
+        tutoringSessionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TutoringSession> getAll() {
+        return tutoringSessionRepository.findAll();
+    }
+
+    @Override
+    public List<TutoringSession> findByTutoringSessionId(Long id) {
         return tutoringSessionRepository.findByTutoringSessionId(id);
     }
-    @Override public List<TutoringSession> findByTutorProfile(TutorProfile tp) {
+
+    @Override
+    public List<TutoringSession> findByTutorProfile(TutorProfile tp) {
         return tutoringSessionRepository.findByTutorProfile(tp);
     }
-    @Override public List<TutoringSession> findByTutorProfileId(Long id) {
+
+    @Override
+    public List<TutoringSession> findByTutorProfileId(Long id) {
         return tutoringSessionRepository.findByTutorProfile_TutorProfileId(id);
     }
-    @Override public List<TutoringSession> findByStudent(User s) {
+
+    @Override
+    public List<TutoringSession> findByStudent(User s) {
         return tutoringSessionRepository.findByStudent(s);
     }
-    @Override public List<TutoringSession> findByStudentId(Long id) {
+
+    @Override
+    public List<TutoringSession> findByStudentId(Long id) {
         return tutoringSessionRepository.findByStudent_UserId(id);
     }
 }

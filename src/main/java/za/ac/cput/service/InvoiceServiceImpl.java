@@ -89,7 +89,6 @@ public class InvoiceServiceImpl implements IInvoiceService {
         if (payment == null || payment.getPaymentId() == null)
             return null;
 
-        // Idempotent — return existing invoice if one already exists for this payment
         return invoiceRepository.findByPayment(payment).orElseGet(() -> {
             BigDecimal subtotal = payment.getAmount() != null
                     ? payment.getAmount().setScale(2, RoundingMode.HALF_UP)
